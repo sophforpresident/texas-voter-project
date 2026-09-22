@@ -91,6 +91,7 @@
           </ul>
         </div>
       </div>
+      <button id="recipe-open" class="text-link" style="color:var(--red); margin-top:32px; background:none; border:none; padding:0; cursor:pointer; font:inherit; font-weight:700;">Read the full recipe →</button>
     </div>
   </section>
 
@@ -171,6 +172,63 @@
     </div>
   </section>
 
+  <!-- RECIPE CARD MODAL -->
+  <div id="recipe-modal-backdrop" class="recipe-modal-backdrop" hidden>
+    <div class="recipe-modal" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
+      <button id="recipe-close" class="recipe-modal-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <div class="recipe-card">
+        <div class="recipe-tab">Recipe Card</div>
+        <span class="recipe-eyebrow">Every Voter Guide's Recipe</span>
+        <h2 id="recipe-modal-title" class="tvp-h recipe-title">Pick-A-Candidate Casserole</h2>
+        <p class="recipe-meta">Serves: every voter guide in America &nbsp;·&nbsp; Prep time: assumes you already know your way around the kitchen</p>
+
+        <div class="recipe-hr"></div>
+
+        <div class="recipe-cols">
+          <div>
+            <h3 class="recipe-section-title">Ingredients</h3>
+            <ul class="recipe-ingredients">
+              <li>2–6 candidates, room temperature</li>
+              <li>Their stated positions on the issues</li>
+              <li>A dash of endorsements</li>
+              <li>A pinch of party affiliation</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="recipe-section-title">Instructions</h3>
+            <ol class="recipe-instructions">
+              <li>Compare the candidates.</li>
+              <li>Pick the one whose ingredients match your taste.</li>
+              <li class="recipe-skip">Preheat the oven <span>— never explained</span></li>
+              <li class="recipe-skip">Know what the pan's for <span>— never explained</span></li>
+              <li>Vote.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="recipe-callout">
+          <div class="recipe-callout-label">The Missing Step</div>
+          <p>Every recipe like this assumes you already know how the kitchen works — how to register, where your polling place is, what a county commissioner actually controls versus a state legislator. That's not a footnote. It's the whole first half of the recipe, and most guides skip straight to step one.</p>
+        </div>
+
+        <div class="recipe-tvp">
+          <div class="recipe-tvp-label">TVP's Recipe Card</div>
+          <p class="recipe-tvp-lede">We start one step earlier.</p>
+          <ul class="recipe-tvp-list">
+            <li>How to register and confirm you're on the rolls</li>
+            <li>What each office actually has power over</li>
+            <li>What to expect walking into the ballot box</li>
+            <li>Then — and only then — the candidates <em>(coming soon)</em></li>
+          </ul>
+        </div>
+
+        <p class="recipe-citation">Adults under 25 are 20–30 percentage points less likely to know which level of government handles what — a gap that explains roughly half the youth turnout gap. <a href="research.html">See the research behind this →</a></p>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <footer class="site-footer">
@@ -197,5 +255,19 @@
   </div>
 </footer>
 <script src="main.js"></script>
+<script>
+(function () {
+  var openBtn = document.getElementById('recipe-open');
+  var closeBtn = document.getElementById('recipe-close');
+  var backdrop = document.getElementById('recipe-modal-backdrop');
+  if (!openBtn || !backdrop) return;
+  function openModal() { backdrop.hidden = false; document.body.style.overflow = 'hidden'; }
+  function closeModal() { backdrop.hidden = true; document.body.style.overflow = ''; }
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !backdrop.hidden) closeModal(); });
+})();
+</script>
 </body>
 </html>
