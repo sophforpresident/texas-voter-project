@@ -276,6 +276,33 @@ h1, h2, h3 { margin: 0; }
 }
 .hero-cta-row .text-link { color: var(--cream-white); }
 
+.hero-shape { position: absolute; pointer-events: none; opacity: 0.9; z-index: 1; }
+.hero-sticker {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 10px 22px rgba(20,14,8,0.4);
+  transform: rotate(-9deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+.hero-sticker span {
+  font-family: 'Ultra', 'Rockwell', 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cream-white);
+  font-size: 12px;
+  line-height: 1.2;
+}
+@media (max-width: 720px) {
+  .hero-shape, .hero-sticker { display: none; }
+}
+
 .photo-placeholder-note {
   position: absolute;
   top: 20px;
