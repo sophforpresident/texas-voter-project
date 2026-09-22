@@ -3,66 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Texas Voter Project</title>
-<style>
-  :root {
-    color-scheme: light;
-    --bg: #fdfaf5;
-    --ink: #1a1a1a;
-    --accent: #c0392b;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    padding: 2rem;
-  }
-  .wrap {
-    max-width: 640px;
-    text-align: center;
-  }
-  .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.15;
-    margin: 0 0 1.25rem;
-  }
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #444;
-    margin: 0 0 0.5rem;
-  }
-  .tag {
-    margin-top: 2rem;
-    font-size: 1rem;
-    font-style: italic;
-    color: #666;
-    border-top: 1px solid #e2ddd2;
-    padding-top: 1.5rem;
-  }
-</style>
+<title>Texas Voter Project — Home</title>
+<meta name="description" content="Texas Voter Project builds two infrastructures at once: clear, nonpartisan election information, and the real-world community that makes people want to use it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="wrap">
-    <div class="eyebrow">Texas Voter Project</div>
-    <h1>Our new site is on the way.</h1>
-    <p>We're rebuilding texasvoterproject.org from the ground up.</p>
-    <p>Check back soon.</p>
-    <p class="tag">"If we want higher participation, we have to build communities people actually want to participate in."</p>
+
+<div class="top-banner">
+  Check your voter registration status before the <strong>Oct 5</strong> deadline —
+  <a href="election-prep.html">Check Now →</a>
+</div>
+
+<header class="site-header bg-ink">
+  <div class="container">
+    <a href="index.html" class="logo">Texas Voter Project<span>Information + Community</span></a>
+    <nav class="nav-desktop">
+      <a href="index.html">Home</a>
+      <a href="why-we-exist.html">Why We Exist</a>
+      <a href="election-prep.html">Election Prep</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="events.html">Events</a>
+      <a href="research.html">Research</a>
+      <a href="about.html">About</a>
+      <a href="donate.html" class="nav-cta">Donate</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#F8F1E4" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
+  <nav class="nav-mobile">
+    <a href="index.html">Home</a>
+    <a href="why-we-exist.html">Why We Exist</a>
+    <a href="election-prep.html">Election Prep</a>
+    <a href="get-involved.html">Get Involved</a>
+    <a href="events.html">Events</a>
+    <a href="research.html">Research</a>
+    <a href="about.html">About</a>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero hero-bg-red">
+    <!-- TODO: replace gradient with real event photography -->
+    <div class="container hero-inner">
+      <span class="pill-tag" style="background:var(--pink); margin-bottom:20px;">Increasing Social Capital, Not Just Voter Turnout</span>
+      <h1 class="tvp-h">If we want higher participation, we have to build communities people actually want to participate in.</h1>
+      <p class="lede">Information tells you how. Community tells you why. TVP builds both — for every young Texan, not just the ones other orgs think to look for.</p>
+      <div class="hero-cta-row">
+        <a href="get-involved.html" class="btn btn-pink">Get Involved</a>
+        <a href="why-we-exist.html" class="text-link">Read our theory of change →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO INFRASTRUCTURES -->
+  <section class="section bg-teal-pale">
+    <div class="container flex-col-center">
+      <span class="eyebrow" style="color:var(--teal);">Why We're Different</span>
+      <h2 class="tvp-h center" style="font-size:clamp(24px,4vw,34px); max-width:760px; margin-bottom:44px;">Two infrastructures. Built together.</h2>
+      <div class="grid-2" style="width:100%;">
+        <div class="card">
+          <div style="width:56px; height:56px; background:var(--teal); border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#F8F1E4" stroke-width="1.7"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg>
+          </div>
+          <h3 class="tvp-h" style="font-size:21px; margin-bottom:14px;">Information Infrastructure</h3>
+          <p style="color:var(--ink-soft); line-height:1.6; margin:0 0 18px;">Most voter guides compare candidates and assume you already know what the office does. Ours start a level earlier — what does a county commissioner actually control? — before getting to who's running.</p>
+          <a href="election-prep.html" class="text-link" style="color:var(--ink);">See Election Prep →</a>
+        </div>
+        <div class="card rotate-l" style="position:relative;">
+          <span class="pill-tag" style="background:var(--red); position:absolute; top:-14px; right:24px;">Fun + Functional</span>
+          <div style="width:56px; height:56px; background:var(--pink); border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#F8F1E4" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>
+          </div>
+          <h3 class="tvp-h" style="font-size:21px; margin-bottom:14px;">Social Infrastructure</h3>
+          <p style="color:var(--ink-soft); line-height:1.6; margin:0 0 18px;">Real, in-person, low-stakes community built around third places — the bars, board game nights, and rec leagues where trust and social capital actually get built, one repeated hangout at a time.</p>
+          <a href="get-involved.html" class="text-link" style="color:var(--pink);">See Get Involved →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <section class="section hero-bg-blue" style="position:relative;">
+    <!-- TODO: replace gradient with real event photography -->
+    <div class="container flex-col-center">
+      <span class="eyebrow" style="color:var(--gold);">Third Places We've Actually Built</span>
+      <h2 class="tvp-h center" style="color:var(--cream-white); font-size:clamp(22px,4vw,30px); max-width:700px; margin-bottom:44px;">Not one-off events. Stepping-off points.</h2>
+      <div class="grid-3" style="width:100%; max-width:1000px;">
+        <div class="card rotate-l">
+          <div class="tvp-h" style="font-size:17px; margin-bottom:8px;">Pinot Pizza Primaries</div>
+          <p style="font-size:13.5px; color:var(--ink-soft); margin:0;">Wine + pizza primary watch parties — RSVP and pick a race to follow.</p>
+        </div>
+        <div class="card rotate-r">
+          <div class="tvp-h" style="font-size:17px; margin-bottom:8px;">Don't Talk About Politics</div>
+          <p style="font-size:13.5px; color:var(--ink-soft); margin:0;">Board game nights where candidates and voters meet as equals. No campaigning.</p>
+        </div>
+        <div class="card rotate-l">
+          <div class="tvp-h" style="font-size:17px; margin-bottom:8px;">Election Night Bar Crawl</div>
+          <p style="font-size:13.5px; color:var(--ink-soft); margin:0;">Neighborhood bar crawls in Zilker, Bouldin Creek, and Barton Hills.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LADDER TEASER -->
+  <section class="section bg-gold-pale">
+    <div class="container flex-col-center">
+      <h2 class="tvp-h center" style="font-size:clamp(22px,4vw,30px); margin-bottom:32px;">This is bigger than one vote.</h2>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:16px;">
+        <span class="pill-tag" style="background:var(--red);">Attend</span>
+        <span class="tvp-h">→</span>
+        <span class="pill-tag" style="background:var(--green);">Inquire</span>
+        <span class="tvp-h">→</span>
+        <span class="pill-tag" style="background:var(--pink);">Advocate</span>
+        <span class="tvp-h">→</span>
+        <span class="pill-tag" style="background:var(--teal);">Vote</span>
+        <span class="tvp-h">↻</span>
+      </div>
+      <p class="center" style="color:var(--ink-soft); max-width:600px; margin:0 0 20px;">Then further: Host · Volunteer · Donate · Join · Run. Civic participation means a lot more than a trip to the ballot box.</p>
+      <a href="get-involved.html" class="text-link">See the full path on Get Involved →</a>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="hero" style="background:linear-gradient(160deg, #6E4A2E 0%, #3E2C1C 100%); padding:64px 0; text-align:center;">
+    <!-- TODO: replace gradient with real event photography -->
+    <div class="container flex-col-center">
+      <span class="pill-tag" style="background:var(--red); margin-bottom:24px;">Ready To Get Curious?</span>
+      <h2 class="tvp-h" style="font-size:clamp(24px,4vw,32px); max-width:640px; margin-bottom:32px;">Every gathering is a stepping-off point, not an endpoint.</h2>
+      <a href="get-involved.html" class="btn btn-pink">Get Involved</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <div class="tvp-h">Texas Voter Project</div>
+      <p>Proud to stand alongside our friends at the Joy Resistance Network.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="why-we-exist.html">Why We Exist</a>
+      <a href="election-prep.html">Election Prep</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="events.html">Events</a>
+      <a href="research.html">Research</a>
+      <a href="about.html">About</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-contact">
+      <p><a href="mailto:info@texasvoterproject.org">info@texasvoterproject.org</a></p>
+      <p class="copyright">© 2026 Texas Voter Project — a fiscally sponsored project of Future Incubator.</p>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
 </body>
 </html>
