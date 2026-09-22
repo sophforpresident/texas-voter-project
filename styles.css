@@ -509,6 +509,7 @@ h1, h2, h3 { margin: 0; }
 .kyb-card-grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 18px;
 }
 .kyb-card-scene {
