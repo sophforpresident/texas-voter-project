@@ -656,6 +656,7 @@ h1, h2, h3 { margin: 0; }
   max-height: 88vh;
   overflow: auto;
   border-radius: 6px;
+  padding-top: 20px;
 }
 .recipe-modal-close {
   position: absolute;
