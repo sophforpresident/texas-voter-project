@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find Your Party — Texas Voter Project</title>
+<meta name="description" content="We're not asking you to pick a party. We're asking which party you're already at. Take TVP's 2-minute quiz and find your people.">
+<meta property="og:title" content="Find Your Party — Texas Voter Project">
+<meta property="og:description" content="We're not asking you to pick a party. We're asking which party you're already at. Take the 2-minute quiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .quiz-wrap { max-width: 680px; margin: 0 auto; }
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; animation: quizIn 0.25s ease; }
+  @keyframes quizIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .quiz-progress { height: 8px; background: var(--cream-light); border-radius: 8px; overflow: hidden; margin-bottom: 26px; box-shadow: inset 0 1px 3px rgba(62,44,28,0.15); }
+  .quiz-progress-bar { height: 100%; width: 0; background: var(--pink); border-radius: 8px; transition: width 0.3s ease; }
+  .quiz-count { font-size: 13px; color: var(--ink-soft); margin-bottom: 8px; letter-spacing: 0.04em; }
+  .quiz-q { font-size: clamp(21px, 4vw, 28px); margin-bottom: 22px; line-height: 1.25; }
+
+  .quiz-options { display: grid; gap: 12px; }
+  .quiz-option {
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    background: var(--cream-light); color: var(--ink);
+    border: 2px solid transparent; border-radius: var(--radius-md);
+    padding: 16px 20px; font: 500 16px/1.4 'Work Sans', system-ui, sans-serif;
+    box-shadow: var(--shadow-soft); transition: transform 0.12s ease, border-color 0.12s ease;
+  }
+  .quiz-option:hover, .quiz-option:focus-visible { border-color: var(--pink); transform: translateY(-1px); outline: none; }
+  .quiz-option.picked { border-color: var(--pink); background: #FFE3EA; }
+  .quiz-option .emoji { margin-right: 10px; }
+
+  .quiz-back { background: none; border: none; color: var(--ink-soft); font: 600 14px 'Work Sans', sans-serif; cursor: pointer; margin-top: 18px; padding: 6px 0; border-bottom: 1.5px solid currentColor; }
+
+  .gate.card { padding: 32px; }
+  .gate-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0 16px; }
+  .gate-fields .full { grid-column: 1 / -1; }
+  @media (max-width: 560px) { .gate-fields { grid-template-columns: 1fr; } }
+  .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .field .opt { font-weight: 400; color: var(--muted); }
+  .field input[type=text], .field input[type=email], .field input[type=tel], .field input[type=date] {
+    width: 100%; padding: 12px 14px; border-radius: var(--radius-sm);
+    border: 2px solid #E4D3B4; background: #fff; color: var(--ink);
+    font: 400 16px 'Work Sans', system-ui, sans-serif;
+  }
+  .field input:focus { outline: none; border-color: var(--pink); }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.45; margin-bottom: 10px; color: var(--ink-soft); }
+  .check input { margin-top: 3px; width: 17px; height: 17px; accent-color: var(--pink); flex-shrink: 0; }
+  .gate-fine { font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+  .gate-error { color: var(--red); font-size: 13.5px; font-weight: 600; margin-top: 10px; min-height: 1em; }
+  .hidden-field { display: none; }
+
+  .result-card { padding: 36px 32px; text-align: center; color: var(--cream-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-strong); }
+  .result-card .pill-tag { background: var(--gold); color: var(--ink); margin-bottom: 14px; }
+  .result-name { font-size: clamp(30px, 6vw, 44px); margin-bottom: 14px; line-height: 1.1; }
+  .result-blurb { font-size: 16.5px; line-height: 1.6; max-width: 520px; margin: 0 auto; }
+  .result-events { display: grid; gap: 12px; margin-top: 26px; text-align: left; }
+  .result-event { background: rgba(255,255,255,0.14); border-radius: var(--radius-sm); padding: 14px 16px; }
+  .result-event strong { display: block; font-size: 15px; margin-bottom: 2px; }
+  .result-event span { font-size: 13.5px; opacity: 0.92; }
+  .result-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+  .result-note { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 22px; }
+  .party-smarty { background: linear-gradient(160deg, #5B84A3 0%, #2F4F6A 100%); }
+  .party-after  { background: linear-gradient(160deg, #F33663 0%, #AB1337 100%); }
+  .party-active { background: linear-gradient(160deg, #178567 0%, #0E5541 100%); }
+  .party-split  { background: linear-gradient(160deg, #6E4A2E 0%, #3E2C1C 100%); }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero hero-bg-red">
+  <header class="site-header site-header-overlay">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="tvp-logo.png" alt="Texas Voter Project" class="logo-mark"></a>
+      <nav class="nav-desktop">
+        <a href="index.html">Home</a>
+        <a href="why-we-exist.html">Why We Exist</a>
+        <a href="election-prep.html">Election Prep</a>
+          <a href="know-your-ballot.html">Know Your Ballot</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="events.html">Events</a>
+        <a href="research.html">Research</a>
+        <a href="about.html">About</a>
+        <a href="donate.html" class="nav-cta">Donate</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F8F1E4" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html">Home</a>
+      <a href="why-we-exist.html">Why We Exist</a>
+      <a href="election-prep.html">Election Prep</a>
+      <a href="know-your-ballot.html">Know Your Ballot</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="events.html">Events</a>
+      <a href="research.html">Research</a>
+      <a href="about.html">About</a>
+      <a href="donate.html" class="nav-cta">Donate</a>
+    </nav>
+  </header>
+
+    <div class="container hero-inner">
+      <span class="pill-tag" style="background:var(--gold); color:var(--ink); margin-bottom:18px; transform:rotate(-1.5deg); display:inline-block;">2-Minute Quiz</span>
+      <h1 class="tvp-h" style="max-width:720px;">Find your party.</h1>
+      <p class="lede" style="max-width:580px;">We're not asking you to pick a party. We're asking which party you're already at.</p>
+      <a href="#quiz" class="btn btn-gold">Take the Quiz</a>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section bg-cream">
+    <div class="container">
+      <div class="quiz-wrap">
+
+        <div id="quiz-questions">
+          <div class="quiz-progress" aria-hidden="true"><div class="quiz-progress-bar" id="quiz-progress-bar"></div></div>
+          <div id="quiz-steps"></div>
+        </div>
+
+        <!-- RESULTS GATE: Netlify Form (detected at deploy; submitted via fetch) -->
+        <div class="quiz-step gate card" id="quiz-gate">
+          <span class="pill-tag" style="background:var(--pink);">Your results are ready</span>
+          <h2 class="tvp-h" style="font-size:clamp(22px,4vw,28px); margin-top:14px;">Where should we send the invite?</h2>
+          <p style="color:var(--ink-soft); margin:10px 0 0;">Drop your info to see your party, and we'll let you know when your kind of event is happening.</p>
+
+          <form name="find-your-party" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="party-form" novalidate>
+            <input type="hidden" name="form-name" value="find-your-party">
+            <input type="hidden" name="party" id="f-party">
+            <input type="hidden" name="party_tags" id="f-party-tags">
+            <input type="hidden" name="answers" id="f-answers">
+            <input type="hidden" name="quiz_version" value="2026-10-v1">
+            <p class="hidden-field"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+            <div class="gate-fields">
+              <div class="field"><label for="f-first">First name</label><input type="text" id="f-first" name="first_name" autocomplete="given-name" required></div>
+              <div class="field"><label for="f-last">Last name</label><input type="text" id="f-last" name="last_name" autocomplete="family-name" required></div>
+              <div class="field full"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" required></div>
+              <div class="field"><label for="f-bday">Birthday</label><input type="date" id="f-bday" name="birthday" autocomplete="bday" required></div>
+              <div class="field"><label for="f-zip">ZIP code</label><input type="text" id="f-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10" required></div>
+              <div class="field full"><label for="f-phone">Mobile number <span class="opt">(optional)</span></label><input type="tel" id="f-phone" name="phone" autocomplete="tel"></div>
+            </div>
+
+            <label class="check"><input type="checkbox" name="email_optin" value="yes" checked> Yes, send me TVP event invites and updates by email.</label>
+            <label class="check"><input type="checkbox" name="sms_optin" value="yes"> Yes, text me about TVP events. Msg &amp; data rates may apply; reply STOP to opt out.</label>
+
+            <div class="gate-error" id="gate-error" role="alert"></div>
+            <button type="submit" class="btn btn-red" id="gate-submit" style="margin-top:8px;">Reveal My Party</button>
+            <p class="gate-fine">Texas Voter Project is nonpartisan. We'll never sell your info. Your birthday helps us remind you about voter registration deadlines once you're eligible.</p>
+          </form>
+          <button type="button" class="quiz-back" id="gate-back">← Back</button>
+        </div>
+
+        <!-- RESULT -->
+        <div class="quiz-step" id="quiz-result">
+          <div class="result-card" id="result-card">
+            <span class="pill-tag">You belong to…</span>
+            <div class="tvp-h result-name" id="result-name"></div>
+            <p class="result-blurb" id="result-blurb"></p>
+            <div class="result-events" id="result-events"></div>
+            <div class="result-actions">
+              <a href="events.html" class="btn btn-gold">See All Events</a>
+              <button type="button" class="btn btn-dark" id="share-btn">Share the Quiz</button>
+            </div>
+          </div>
+          <p class="result-note">These parties don't come with platforms. TVP is nonpartisan, and every event is open to everyone.<br>
+            <a class="text-link" href="https://www.instagram.com/texasvoterproject/" target="_blank" rel="noopener">Follow us on Instagram</a> to stay in the know about future events and activations.</p>
+          <p class="center" style="margin-top:12px;"><button type="button" class="quiz-back" id="retake">Retake the quiz</button></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <div class="tvp-h">Texas Voter Project</div>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="why-we-exist.html">Why We Exist</a>
+      <a href="election-prep.html">Election Prep</a>
+      <a href="know-your-ballot.html">Know Your Ballot</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="events.html">Events</a>
+      <a href="research.html">Research</a>
+      <a href="about.html">About</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-contact">
+      <p><a href="mailto:info@texasvoterproject.org">info@texasvoterproject.org</a></p>
+      <p class="copyright">© 2026 Texas Voter Project — a fiscally sponsored project of Future Incubator.</p>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+<script src="findyourparty.js"></script>
+</body>
+</html>
