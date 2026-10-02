@@ -854,10 +854,12 @@ h1, h2, h3 { margin: 0; }
   padding: 4px 10px;
   margin-bottom: 10px;
 }
-.archive-host { grid-column: 2; }
+.archive-host { grid-column: auto; }
 @media (max-width: 900px) { .archive-host { grid-column: 1 / -1; justify-self: center; max-width: 360px; width: 100%; } }
 .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; }
 .archive-note { font-size: 11px; font-style: italic; color: var(--muted); margin: 0 0 8px; }
 @media (max-width: 900px) { .archive-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .archive-grid { grid-template-columns: 1fr; } }
 .event-card[hidden] { display: none; }
+
+.archive-noimg { height: 150px; display: flex; align-items: center; justify-content: center; color: var(--cream-white); font-size: 13px; text-align: center; padding: 0 16px; }
