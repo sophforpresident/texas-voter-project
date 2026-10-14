@@ -18,6 +18,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
 <link rel="stylesheet" href="styles.css">
+<!-- BallotReady Civic Center widget -->
+<script src="https://texasvoterproject.civicengine.com/embed.js" async defer></script>
+<link rel="stylesheet" media="screen" href="https://texasvoterproject.civicengine.com/embed.css">
 </head>
 <body>
 
@@ -159,6 +162,24 @@
       <span class="eyebrow" style="color:var(--red);">Available Today</span>
       <h2 class="tvp-h center" style="font-size:clamp(22px,4vw,30px); margin-bottom:12px;">Texas voter resources.</h2>
       <p class="center" style="font-size:15px; color:var(--ink); line-height:1.6; max-width:640px; margin:0 0 36px;">Everything you need to vote in Texas this fall, straight from official and nonpartisan sources. Every link opens in a new tab.</p>
+      <div id="my-ballot" class="ballot-lookup">
+        <span class="tier-tag" style="background:var(--gold);">Your Ballot</span>
+        <h3 class="tvp-h">See what's on your ballot.</h3>
+        <p>Enter your address to see every race and candidate you'll vote on, where to vote, and what each office does.</p>
+        <div class="civicengine-container">
+          <div
+            class="civicengine-address"
+            data-input-email="required"
+            data-input-first-name="optional"
+            data-input-last-name="optional"
+            data-input-phone="optional"
+            data-input-notifications-opt-in="optional"
+            data-input-locale="optional"
+            data-utm-source="tvp-website"
+            data-utm-medium="election-prep"
+          ></div>
+        </div>
+      </div>
       <div class="resource-grid">
         <a class="resource-card" href="https://www.sos.state.tx.us/elections/voter/important-election-dates.shtml" target="_blank" rel="noopener">
           <span class="tier-tag">Dates</span>
@@ -239,7 +260,7 @@
           <span class="resource-cta">Get Govvy →</span>
         </a>
       </div>
-      <p class="center" style="font-size:13px; color:var(--ink); opacity:.75; max-width:620px; margin:28px 0 0;">Dates are for the November 3, 2026 general election, from the Texas Secretary of State. A personalized ballot lookup is coming soon.</p>
+      <p class="center" style="font-size:13px; color:var(--ink); opacity:.75; max-width:620px; margin:28px 0 0;">Dates are for the November 3, 2026 general election, from the Texas Secretary of State. Ballot lookup above provided by BallotReady.</p>
     </div>
   </section>
 
@@ -309,7 +330,7 @@
             <li>How to register and confirm you're on the rolls</li>
             <li>What each office actually has power over</li>
             <li>What to expect walking into the ballot box</li>
-            <li>Then — and only then — the candidates <em>(coming soon)</em></li>
+            <li>Then — and only then — the candidates <a href="#my-ballot" onclick="document.getElementById('recipe-close').click()">(look up yours →)</a></li>
           </ul>
         </div>
 
