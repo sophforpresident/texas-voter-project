@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // copied from the matching Qomon Action) has already passed — so the page
 // never shows stale events without a manual edit.
 document.addEventListener('DOMContentLoaded', function () {
-  var cards = document.querySelectorAll('.event-card[data-end]');
+  var cards = document.querySelectorAll('.event-card[data-end], .feature-event[data-end]');
   if (!cards.length) return;
   var now = Date.now();
   cards.forEach(function (card) {

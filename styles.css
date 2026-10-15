@@ -894,3 +894,12 @@ h1, h2, h3 { margin: 0; }
 .ballot-lookup > p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 20px; }
 .civicengine-container { margin: 0 auto; max-width: 520px; text-align: left; }
 @media (max-width: 560px) { .ballot-lookup { padding: 24px 16px; } }
+
+/* ---------- Featured event ---------- */
+.feature-event { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; width: 100%; background: var(--cream-light); border-radius: var(--radius-md); box-shadow: var(--shadow-soft); padding: 24px; margin-bottom: 28px; box-sizing: border-box; }
+.feature-event[hidden] { display: none; }
+.feature-event-img img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.feature-event-body { display: flex; flex-direction: column; gap: 12px; }
+.feature-event-body h3 { font-size: clamp(24px, 4vw, 34px); margin: 0; }
+.feature-event-body p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+@media (max-width: 760px) { .feature-event { grid-template-columns: 1fr; gap: 20px; padding: 16px; } }
