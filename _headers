@@ -1,2 +1,5 @@
 /tvp-photo-*
   Access-Control-Allow-Origin: *
+
+/tvp-race-to-the-polls*
+  Access-Control-Allow-Origin: *
