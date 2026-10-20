@@ -79,7 +79,7 @@
       blurb: "You're the reason everyone shows up. Voting is better with friends, a playlist, and a drink in hand afterward, and you know that showing up together is how turnout actually happens.",
       events: [
         { n: 'Voter Fest (Sat, Oct 24)', d: 'Our early voting kickoff: DJs, breakfast tacos, and a party steps from the polls.' },
-        { n: 'Race to the Polls Bar Crawl', d: 'An East Austin bar crawl during early voting.' },
+        { n: 'Race to the Polls (Thu, Oct 22)', d: 'Vote at Carver Library by 7, then an East Austin bar crawl with The Flock starting at The Flower Shop.' },
         { n: 'NVED Happy Hour Guide', d: 'Where to celebrate after you cast your ballot.' }
       ]
     },
