@@ -9,3 +9,6 @@
 
 /tvp-pups-to-the-polls*
   Access-Control-Allow-Origin: *
+
+/tvp-vote-early-day*
+  Access-Control-Allow-Origin: *
