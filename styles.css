@@ -909,3 +909,5 @@ h1, h2, h3 { margin: 0; }
 .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--cream-white); transition: background .15s ease, transform .15s ease; }
 .footer-social a:hover, .footer-social a:focus-visible { background: var(--red); transform: translateY(-2px); }
 @media (max-width: 640px) { .footer-social { justify-content: flex-start; } }
+
+.event-card .card-photo { display: block; flex: none; width: calc(100% + 52px); height: 210px; margin: -24px -26px 4px; max-width: none; object-fit: cover; border-radius: var(--radius-md) var(--radius-md) 0 0; }
