@@ -3,3 +3,6 @@
 
 /tvp-race-to-the-polls*
   Access-Control-Allow-Origin: *
+
+/tvp-pinot-pizza-politics*
+  Access-Control-Allow-Origin: *
