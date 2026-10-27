@@ -6,3 +6,6 @@
 
 /tvp-pinot-pizza-politics*
   Access-Control-Allow-Origin: *
+
+/tvp-pups-to-the-polls*
+  Access-Control-Allow-Origin: *
