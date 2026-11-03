@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>My Bingo Card — Texas Voter Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="bingo.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/"><img src="/tvp-logo.png" alt="Texas Voter Project"></a>
+    <a class="home" href="index.html">Election Night Bingo</a>
+  </div>
+
+  <div>
+    <div class="eyebrow" id="who">Your card</div>
+    <h1>Election Night Bingo</h1>
+  </div>
+
+  <div class="bingo-banner hidden" id="bingo" role="status">
+    <h2>BINGO!</h2>
+    <p><strong>Show this screen to a TVP host.</strong> Card <span id="bingo-id"></span></p>
+  </div>
+
+  <p class="error hidden" id="err" role="alert"></p>
+
+  <div class="card" id="card-wrap">
+    <div class="letters"><div>V</div><div>O</div><div>T</div><div>E</div><div>D</div></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="legend">
+    <span class="l-called">Called by TVP hosts (counts toward bingo)</span>
+    <span class="l-mine">Your own marks (just for you)</span>
+  </div>
+  <p class="note" id="updated">Checking for called races…</p>
+
+  <div class="panel">
+    <h2>Save your card</h2>
+    <p class="muted">This link opens your card on any phone or laptop. Bookmark it or text it to yourself.</p>
+    <div class="linkbox"><code id="link"></code><button class="btn small" id="copy" type="button">Copy link</button></div>
+  </div>
+</div>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var id = (params.get('id') || '').replace(/[^a-z0-9]/g, '');
+  var grid = document.getElementById('grid'), err = document.getElementById('err');
+  var squares = [], card = null, called = new Set(), mine = new Set();
+  var LINES = [];
+  for (var i = 0; i < 5; i++) { LINES.push([0,1,2,3,4].map(function (j) { return i * 5 + j; })); LINES.push([0,1,2,3,4].map(function (j) { return j * 5 + i; })); }
+  LINES.push([0,6,12,18,24], [4,8,12,16,20]);
+
+  function showError(msg) { err.textContent = msg; err.classList.remove('hidden'); }
+  if (!id) { showError("This link is missing a card ID. Go back and deal a card."); return; }
+
+  var link = location.origin + location.pathname + '?id=' + id;
+  document.getElementById('link').textContent = link;
+  document.getElementById('bingo-id').textContent = id.toUpperCase();
+  document.getElementById('copy').addEventListener('click', function () {
+    var b = this;
+    navigator.clipboard.writeText(link).then(function () { b.textContent = 'Copied'; }, function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('link'));
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    });
+  });
+  try { mine = new Set(JSON.parse(localStorage.getItem('tvpBingoMarks-' + id) || '[]')); localStorage.setItem('tvpBingoId', id); } catch (e) {}
+
+  function render() {
+    if (!card) return;
+    grid.innerHTML = '';
+    var k = 0, pos = [];
+    for (var p = 0; p < 25; p++) {
+      var cell = document.createElement('button');
+      cell.type = 'button'; cell.className = 'cell'; cell.id = 'cell' + p;
+      if (p === 12) {
+        cell.className += ' free'; cell.disabled = true;
+        cell.innerHTML = '<b>FREE</b><img src="i-voted-sticker.png" alt="I Voted sticker">';
+        pos.push(-1);
+      } else {
+        var sq = card.squares[k++]; pos.push(sq);
+        cell.textContent = squares[sq] ? squares[sq].text : '';
+        if (squares[sq]) cell.title = squares[sq].detail;
+        if (called.has(sq)) cell.className += ' called';
+        else if (mine.has(sq)) cell.className += ' mine';
+        cell.setAttribute('aria-pressed', called.has(sq) || mine.has(sq));
+        (function (s) {
+          cell.addEventListener('click', function () {
+            if (called.has(s)) return;
+            mine.has(s) ? mine.delete(s) : mine.add(s);
+            try { localStorage.setItem('tvpBingoMarks-' + id, JSON.stringify(Array.from(mine))); } catch (e) {}
+            render();
+          });
+        })(sq);
+      }
+      grid.appendChild(cell);
+    }
+    var won = LINES.some(function (line) { return line.every(function (p) { return pos[p] === -1 || called.has(pos[p]); }); });
+    document.getElementById('bingo').classList.toggle('hidden', !won);
+  }
+
+  function poll() {
+    fetch('/api/bingo?action=state', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      called = new Set(d.called || []); render();
+      document.getElementById('updated').textContent = called.size + ' race' + (called.size === 1 ? '' : 's') + ' called so far. Updated ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. Updates every 15 seconds.';
+    }).catch(function () {
+      document.getElementById('updated').textContent = "Couldn't reach the server. Retrying in 15 seconds.";
+    });
+  }
+
+  Promise.all([
+    fetch('squares.json').then(function (r) { return r.json(); }),
+    fetch('/api/bingo?action=card&id=' + id, { cache: 'no-store' }).then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error); return d; }); })
+  ]).then(function (res) {
+    squares = res[0]; card = res[1];
+    document.getElementById('who').textContent = card.name + "'s card";
+    render(); poll(); setInterval(poll, 15000);
+  }).catch(function (e) { showError((e && e.message) || "We couldn't load this card. Refresh to try again."); });
+})();
+</script>
+</body>
+</html>

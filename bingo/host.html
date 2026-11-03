@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Bingo Host — Texas Voter Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="bingo.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/"><img src="/tvp-logo.png" alt="Texas Voter Project"></a>
+    <a class="home" href="index.html">Player page</a>
+  </div>
+  <div>
+    <div class="eyebrow">Hosts only</div>
+    <h1>Bingo Host</h1>
+  </div>
+
+  <form class="panel" id="login">
+    <label for="key">Host passphrase
+      <input id="key" autocomplete="off" autocapitalize="off" spellcheck="false">
+    </label>
+    <p class="error hidden" id="login-err" role="alert"></p>
+    <button class="btn" type="submit">Open host controls</button>
+  </form>
+
+  <div id="host" class="hidden" style="display:flex;flex-direction:column;gap:20px">
+    <div class="stat">
+      <div><b id="n-called">0</b>races called</div>
+      <div><b id="n-players">0</b>online players</div>
+      <div><b id="n-winners">0</b>bingos</div>
+    </div>
+
+    <div class="panel">
+      <h2>Bingos</h2>
+      <p class="note">Checked automatically against the races you've called. Refreshes every 15 seconds.</p>
+      <div id="winners"><p class="muted">No bingos yet.</p></div>
+    </div>
+
+    <div class="panel">
+      <h2>Check a printed card</h2>
+      <div class="linkbox">
+        <input id="printed-no" inputmode="numeric" placeholder="Card number, like 017" style="flex:1 1 160px">
+        <button class="btn small" id="check" type="button">Check</button>
+      </div>
+      <p id="check-out" class="muted" role="status"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Call a race</h2>
+      <p class="note">Tap a square once the AP (or another major outlet) calls it. It lights up on every player's card within 15 seconds. Tap again to undo.</p>
+      <p class="error hidden" id="call-err" role="alert"></p>
+      <div class="sqlist" id="sqlist"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var key = '', squares = [], called = new Set(), printed = [];
+  var LINES = [];
+  for (var i = 0; i < 5; i++) { LINES.push([0,1,2,3,4].map(function (j) { return i * 5 + j; })); LINES.push([0,1,2,3,4].map(function (j) { return j * 5 + i; })); }
+  LINES.push([0,6,12,18,24], [4,8,12,16,20]);
+  function bingo(sq) { var g = [], k = 0; for (var p = 0; p < 25; p++) g.push(p === 12 ? -1 : sq[k++]);
+    return LINES.some(function (l) { return l.every(function (p) { return g[p] === -1 || called.has(g[p]); }); }); }
+  function api(action, opts) {
+    opts = opts || {}; opts.headers = Object.assign({ 'x-host-key': key, 'content-type': 'application/json' }, opts.headers || {});
+    opts.cache = 'no-store';
+    return fetch('/api/bingo?action=' + action, opts).then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || 'Request failed'); return d; }); });
+  }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function renderList() {
+    var list = document.getElementById('sqlist'); list.innerHTML = '';
+    squares.forEach(function (s, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.id = 'sq' + i;
+      b.className = 'sq' + (called.has(i) ? ' on' : '');
+      b.setAttribute('aria-pressed', called.has(i));
+      b.innerHTML = '<span class="box"></span><span>' + esc(s.text) + '<small>' + esc(s.detail) + '</small></span>';
+      b.addEventListener('click', function () {
+        called.has(i) ? called.delete(i) : called.add(i);
+        renderList();
+        api('call', { method: 'POST', body: JSON.stringify({ called: Array.from(called) }) })
+          .then(function (d) { called = new Set(d.called); document.getElementById('call-err').classList.add('hidden'); refresh(); })
+          .catch(function (e) { var el = document.getElementById('call-err'); el.textContent = "That didn't save: " + e.message + ' Tap it again.'; el.classList.remove('hidden'); });
+      });
+      list.appendChild(b);
+    });
+    document.getElementById('n-called').textContent = called.size;
+  }
+
+  function refresh() {
+    return api('winners').then(function (d) {
+      document.getElementById('n-players').textContent = d.players;
+      document.getElementById('n-winners').textContent = d.online.length + d.printed.length;
+      var html = '';
+      if (d.online.length) html += '<p><strong>Online</strong></p><ul class="winners">' + d.online.map(function (w) { return '<li>' + esc(w.name) + ' · card ' + esc(w.id.toUpperCase()) + ' · ' + esc(w.email) + '</li>'; }).join('') + '</ul>';
+      if (d.printed.length) html += '<p><strong>Printed cards with a bingo</strong></p><p>' + d.printed.map(function (n) { return '#' + String(n).padStart(3, '0'); }).join(', ') + '</p>';
+      document.getElementById('winners').innerHTML = html || '<p class="muted">No bingos yet.</p>';
+    });
+  }
+
+  function start() {
+    Promise.all([fetch('squares.json').then(function (r) { return r.json(); }), fetch('printed-cards.json').then(function (r) { return r.json(); }),
+      api('state', { headers: {} })]).then(function (res) {
+      squares = res[0]; printed = res[1]; called = new Set(res[2].called || []);
+      return refresh().then(function () {
+        try { sessionStorage.setItem('tvpHostKey', key); } catch (e) {}
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('host').classList.remove('hidden');
+        renderList();
+        setInterval(function () { api('state').then(function (d) { called = new Set(d.called); renderList(); }).then(refresh).catch(function () {}); }, 15000);
+      });
+    }).catch(function (e) { var el = document.getElementById('login-err'); el.textContent = e.message; el.classList.remove('hidden'); });
+  }
+
+  document.getElementById('login').addEventListener('submit', function (e) { e.preventDefault(); key = document.getElementById('key').value.trim(); start(); });
+  document.getElementById('check').addEventListener('click', function () {
+    var n = parseInt(document.getElementById('printed-no').value, 10), out = document.getElementById('check-out');
+    if (!(n >= 1 && n <= printed.length)) { out.textContent = 'Enter a card number from 1 to ' + printed.length + '.'; return; }
+    var sq = printed[n - 1];
+    out.innerHTML = bingo(sq) ? '<strong style="color:var(--called)">Card #' + String(n).padStart(3, '0') + ' has a real bingo.</strong>'
+      : 'Card #' + String(n).padStart(3, '0') + ' does not have a bingo yet. Called squares on it: ' + sq.filter(function (s) { return called.has(s); }).length + ' of 24.';
+  });
+  try { var k = sessionStorage.getItem('tvpHostKey'); if (k) { key = k; document.getElementById('key').value = k; start(); } } catch (e) {}
+})();
+</script>
+</body>
+</html>

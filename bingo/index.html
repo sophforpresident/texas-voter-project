@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Election Night Bingo — Texas Voter Project</title>
+<meta name="description" content="Grab your own Election Night Bingo card from Texas Voter Project. Squares light up live as races get called.">
+<meta property="og:title" content="Election Night Bingo">
+<meta property="og:description" content="Grab your own card. Squares light up live as races get called.">
+<meta property="og:image" content="https://texasvoterproject.org/tvp-share-default.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="bingo.css">
+<script defer async src="https://scripts.qomon.org/forms/v1/setup.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/"><img src="/tvp-logo.png" alt="Texas Voter Project"></a>
+    <a class="home" href="/">texasvoterproject.org</a>
+  </div>
+
+  <div>
+    <div class="eyebrow">Watch Party · Tue, Nov 3, 2026</div>
+    <h1>Election Night Bingo</h1>
+  </div>
+  <p class="muted">Get your own card in two quick steps. When a race on your card gets called, the square lights up on its own. Five called squares in a row and your phone tells you it's a bingo.</p>
+
+  <div class="panel hidden" id="returning">
+    <h2>Welcome back</h2>
+    <p class="muted">You already have a card on this phone.</p>
+    <a class="btn" id="returning-link" href="#">Open my card</a>
+  </div>
+
+  <div class="panel">
+    <div class="step-row"><span class="step">1</span><h2>Join the guest list</h2></div>
+    <div class="qomon-form" data-base_id="b1d6eb6f-c5ad-41b9-a5aa-a072401a11e6"></div>
+  </div>
+
+  <form class="panel" id="deal-form" novalidate>
+    <div class="step-row"><span class="step">2</span><h2>Deal my card</h2></div>
+    <p class="note">Use the same email you just signed up with. One card per email.</p>
+    <label for="name">First name
+      <input id="name" name="name" autocomplete="given-name" maxlength="40" required>
+    </label>
+    <label for="email">Email
+      <input id="email" name="email" type="email" autocomplete="email" maxlength="120" required>
+    </label>
+    <p class="error hidden" id="err" role="alert"></p>
+    <button class="btn" id="deal" type="submit">Deal my card</button>
+  </form>
+
+  <p class="note">Squares are called by TVP hosts from AP race calls. Texas Voter Project is nonpartisan; bingo squares are just for fun.</p>
+</div>
+<script>
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('tvpBingoId'); } catch (e) {}
+  if (saved) {
+    document.getElementById('returning').classList.remove('hidden');
+    document.getElementById('returning-link').href = 'card.html?id=' + encodeURIComponent(saved);
+  }
+  var form = document.getElementById('deal-form'), btn = document.getElementById('deal'), err = document.getElementById('err');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.classList.add('hidden');
+    btn.disabled = true; btn.textContent = 'Dealing…';
+    fetch('/api/bingo?action=deal', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name: form.name.value, email: form.email.value })
+    }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.d.error || 'Something went wrong. Try again.');
+        try { localStorage.setItem('tvpBingoId', res.d.id); } catch (e) {}
+        location.href = 'card.html?id=' + encodeURIComponent(res.d.id);
+      })
+      .catch(function (e2) {
+        err.textContent = e2.message || 'Something went wrong. Try again.';
+        err.classList.remove('hidden');
+        btn.disabled = false; btn.textContent = 'Deal my card';
+      });
+  });
+})();
+</script>
+</body>
+</html>
