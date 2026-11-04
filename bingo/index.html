@@ -11,6 +11,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="bingo.css">
+<script>
+// After the guest hits Subscribe, a successful POST from the Qomon form means the signup went through.
+(function () {
+  window.__tvpQomonOk = false;
+  function mark(url, ok, method) {
+    if (ok && window.__tvpSubmitted && String(method || 'GET').toUpperCase() === 'POST' && !/\/api\/bingo/.test(url || '')) {
+      window.__tvpQomonOk = true; document.dispatchEvent(new Event('tvp-qomon-ok'));
+    }
+  }
+  var of = window.fetch;
+  if (of) window.fetch = function (input, init) {
+    var url = typeof input === 'string' ? input : (input && input.url) || '';
+    var method = (init && init.method) || (input && input.method) || 'GET';
+    return of.apply(this, arguments).then(function (r) { mark(url, r.ok, method); return r; });
+  };
+  var oo = XMLHttpRequest.prototype.open, os = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.open = function (m, u) { this.__m = m; this.__u = u; return oo.apply(this, arguments); };
+  XMLHttpRequest.prototype.send = function () {
+    var x = this; x.addEventListener('load', function () { mark(x.__u, x.status >= 200 && x.status < 300, x.__m); });
+    return os.apply(this, arguments);
+  };
+})();
+</script>
 <script defer async src="https://scripts.qomon.org/forms/v1/setup.js"></script>
 </head>
 <body>
@@ -33,13 +56,16 @@
   </div>
 
   <div class="panel">
-    <div class="step-row"><span class="step">1</span><h2>Join the guest list</h2></div>
+    <div class="step-row"><span class="step">1</span><h2>Join the guest list to get your card</h2></div>
+    <p class="note">Hit <strong>Subscribe now!</strong> and we'll take you straight to your bingo card.</p>
     <div class="qomon-form" data-base_id="b1d6eb6f-c5ad-41b9-a5aa-a072401a11e6"></div>
   </div>
 
-  <form class="panel" id="deal-form" novalidate>
+  <div class="panel hidden" id="dealing" role="status"><h2>Dealing your card…</h2><p class="muted">One second while we shuffle.</p></div>
+
+  <form class="panel hidden" id="deal-form" novalidate>
     <div class="step-row"><span class="step">2</span><h2>Deal my card</h2></div>
-    <p class="note">Use the same email you just signed up with. One card per email.</p>
+    <p class="note">Thanks for signing up. Confirm your first name and email to get your card.</p>
     <label for="name">First name
       <input id="name" name="name" autocomplete="given-name" maxlength="40" required>
     </label>
@@ -61,13 +87,51 @@
     document.getElementById('returning-link').href = 'card.html?id=' + encodeURIComponent(saved);
   }
   var form = document.getElementById('deal-form'), btn = document.getElementById('deal'), err = document.getElementById('err');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+  var captured = null, dealt = false, fallbackTimer = null;
+
+  // Grab the name and email from the Qomon form the moment the guest hits Subscribe.
+  document.addEventListener('submit', function (e) {
+    var q = e.target.closest && e.target.closest('.qomon-form');
+    if (!q) return;
+    var fn = q.querySelector('[name="firstname"]'), ml = q.querySelector('[name="mail"]');
+    captured = { name: fn ? fn.value.trim() : '', email: ml ? ml.value.trim() : '' };
+    window.__tvpSubmitted = true;
+    form.name.value = captured.name; form.email.value = captured.email;
+    clearTimeout(fallbackTimer);
+    // If we can't confirm the signup automatically, show the confirm step once the form is gone.
+    fallbackTimer = setTimeout(function () {
+      if (dealt) return;
+      if (!q.querySelector('form') || window.__tvpQomonOk) showConfirm();
+    }, 8000);
+  }, true);
+
+  function showConfirm() {
+    document.getElementById('dealing').classList.add('hidden');
+    form.classList.remove('hidden');
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function autoDeal() {
+    if (dealt || !captured) return;
+    if (!captured.name || !captured.email) { showConfirm(); return; }
+    dealt = true;
+    document.getElementById('dealing').classList.remove('hidden');
+    deal(captured.name, captured.email, function () { dealt = false; showConfirm(); });
+  }
+  document.addEventListener('tvp-qomon-ok', autoDeal);
+
+  // Also treat the Qomon form disappearing (its thank-you screen) as success.
+  var qRoot = document.querySelector('.qomon-form');
+  new MutationObserver(function () {
+    if (window.__tvpSubmitted && captured && !qRoot.querySelector('form')) autoDeal();
+  }).observe(qRoot, { childList: true, subtree: true });
+
+  function deal(name, email, onFail) {
     err.classList.add('hidden');
     btn.disabled = true; btn.textContent = 'Dealing…';
     fetch('/api/bingo?action=deal', {
       method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ name: form.name.value, email: form.email.value })
+      body: JSON.stringify({ name: name, email: email })
     }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (!res.ok) throw new Error(res.d.error || 'Something went wrong. Try again.');
@@ -78,7 +142,14 @@
         err.textContent = e2.message || 'Something went wrong. Try again.';
         err.classList.remove('hidden');
         btn.disabled = false; btn.textContent = 'Deal my card';
+        if (onFail) onFail();
       });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!window.__tvpSubmitted) return;
+    deal(form.name.value, form.email.value);
   });
 })();
 </script>
