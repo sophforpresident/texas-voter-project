@@ -922,3 +922,10 @@ h1, h2, h3 { margin: 0; }
 .article a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
 .article a:hover { color: var(--pink); }
 .article .article-note { font-size: 14px; font-style: italic; color: var(--muted); }
+
+/* ---------- Get Involved sign-ups (Qomon embeds) ---------- */
+.signup-grid { align-items: start; }
+.signup-card { display: flex; flex-direction: column; }
+.signup-card .qomon-form { width: 100%; min-height: 120px; text-align: left; }
+.signup-fallback { font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+.signup-fallback a { color: var(--red); font-weight: 600; }
