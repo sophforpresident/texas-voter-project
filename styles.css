@@ -929,3 +929,8 @@ h1, h2, h3 { margin: 0; }
 .signup-card .qomon-form { width: 100%; min-height: 120px; text-align: left; }
 .signup-fallback { font-size: 13px; color: var(--muted); margin: 14px 0 0; }
 .signup-fallback a { color: var(--red); font-weight: 600; }
+
+/* Get Involved "path keeps going" grid: 3 / 2 / 1 columns so Host sits by Run */
+.path-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .path-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .path-grid { grid-template-columns: 1fr; } }
