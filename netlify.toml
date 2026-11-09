@@ -4,3 +4,14 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+# "Know Your Ballot" was renamed "Know Your Government" (Nov 2026)
+[[redirects]]
+  from = "/know-your-ballot.html"
+  to = "/know-your-government.html"
+  status = 301
+
+[[redirects]]
+  from = "/know-your-ballot"
+  to = "/know-your-government"
+  status = 301
