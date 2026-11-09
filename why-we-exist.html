@@ -178,5 +178,47 @@
   </div>
 </footer>
 <script src="main.js"></script>
+
+<!-- HOT TAKE PROMO: pops up once per visitor, links to the election post -->
+<div id="promo-backdrop" class="promo-backdrop" hidden>
+  <div class="promo-card" role="dialog" aria-modal="true" aria-labelledby="promo-title">
+    <button id="promo-close" class="recipe-modal-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <span class="pill-tag promo-tag">Hot Take</span>
+    <h2 id="promo-title" class="tvp-h promo-title">Nov. 3 wasn't the finish line.</h2>
+    <p class="promo-text">What Texas voters said, the risk hiding in the win, and why TVP is built for what comes next.</p>
+    <a id="promo-read" href="hot-takes.html" class="btn btn-red">Read the hot take &rarr;</a>
+    <button id="promo-later" class="promo-later" type="button">Maybe later</button>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'tvp-promo-hot-take-2026-11';
+  var backdrop = document.getElementById('promo-backdrop');
+  if (!backdrop) return;
+  try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+  var lastFocus = null;
+  function remember() { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+  function open() {
+    lastFocus = document.activeElement;
+    backdrop.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('promo-read').focus();
+  }
+  function close() {
+    backdrop.hidden = true;
+    document.body.style.overflow = '';
+    remember();
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.getElementById('promo-close').addEventListener('click', close);
+  document.getElementById('promo-later').addEventListener('click', close);
+  document.getElementById('promo-read').addEventListener('click', remember);
+  backdrop.addEventListener('click', function (e) { if (e.target === backdrop) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !backdrop.hidden) close(); });
+  setTimeout(open, 3500);
+})();
+</script>
 </body>
 </html>

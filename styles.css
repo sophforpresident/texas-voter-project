@@ -934,3 +934,24 @@ h1, h2, h3 { margin: 0; }
 .path-grid { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .path-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .path-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Hot Take promo pop-up (Why We Exist) ---------- */
+.promo-backdrop {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(20,26,19,0.62);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px 20px;
+}
+.promo-backdrop[hidden] { display: none; }
+.promo-card {
+  position: relative; width: 100%; max-width: 460px;
+  background: var(--cream-light); border-radius: 22px;
+  padding: 46px 34px 30px; text-align: center;
+  box-shadow: var(--shadow-strong);
+  display: flex; flex-direction: column; align-items: center;
+}
+.promo-tag { background: var(--pink); transform: rotate(-2deg); margin-bottom: 16px; }
+.promo-title { font-size: clamp(24px, 4.5vw, 30px); line-height: 1.2; margin: 0 0 12px; color: var(--ink); }
+.promo-text { color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; margin: 0 0 24px; }
+.promo-later { background: none; border: none; cursor: pointer; font: inherit; font-size: 14px; color: var(--muted); margin-top: 14px; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 480px) { .promo-card { padding: 42px 22px 24px; } }
