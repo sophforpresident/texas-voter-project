@@ -152,9 +152,10 @@ h1, h2, h3 { margin: 0; }
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: clamp(14px, 1.9vw, 28px);
 }
 .nav-desktop a {
+  white-space: nowrap;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -210,7 +211,7 @@ h1, h2, h3 { margin: 0; }
   padding: 13px 22px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1120px) {
   .nav-desktop { display: none; }
   .nav-toggle { display: flex; }
 }
@@ -911,3 +912,13 @@ h1, h2, h3 { margin: 0; }
 @media (max-width: 640px) { .footer-social { justify-content: flex-start; } }
 
 .event-card .card-photo { display: block; flex: none; width: calc(100% + 52px); height: 210px; margin: -24px -26px 4px; max-width: none; object-fit: cover; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+
+/* ---------- Hot Takes (blog) ---------- */
+.article-title { font-size: clamp(26px, 4.5vw, 36px); line-height: 1.2; margin: 0 0 28px; }
+.article h3 { font-family: 'Bevan', serif; font-weight: 400; font-size: clamp(20px, 3.2vw, 24px); color: var(--ink); margin: 40px 0 14px; }
+.article p { color: var(--ink-soft); font-size: 17px; line-height: 1.75; margin: 0 0 18px; }
+.article ul { color: var(--ink-soft); font-size: 17px; line-height: 1.7; margin: 0 0 18px; padding-left: 22px; }
+.article li { margin-bottom: 8px; }
+.article a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
+.article a:hover { color: var(--pink); }
+.article .article-note { font-size: 14px; font-style: italic; color: var(--muted); }
