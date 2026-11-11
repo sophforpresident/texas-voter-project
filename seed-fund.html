@@ -35,6 +35,7 @@
 .seed-main .grid-2>*{flex:0 1 520px}
 .seed-main .grid-3>*{flex:0 1 360px}
 .seed-main .grid-4>*{flex:0 1 260px}
+.seed-main .roadmap-grid>*{flex:0 1 480px}
 .bb{position:absolute;pointer-events:none;z-index:1;height:auto}
 .seed-main .container{position:relative;z-index:2}
 @media (max-width:900px){.bb{transform:scale(.6);transform-origin:center bottom;opacity:.7}.bb[style*="top:"]{display:none}}
@@ -238,16 +239,32 @@
   </section>
 
   <!-- ROADMAP -->
-  <section id="roadmap" class="section bg-gold-pale">
+  <section id="roadmap" class="section" style="background:var(--green-pale);">
     <img src="tvp-bluebonnet-bloom-ink.svg" alt="" class="bb" style="right:6%; top:20px; width:120px;">
     <div class="container">
       <div style="max-width:720px; margin-bottom:36px;">
         <span class="eyebrow" style="color:var(--red);">The Roadmap</span>
-        <h2 class="tvp-h" style="font-size:clamp(24px,4vw,34px); margin-bottom:14px;">Three stages from founder-funded to statewide.</h2>
+        <h2 class="tvp-h" style="font-size:clamp(24px,4vw,34px); margin-bottom:14px;">From Stage 0 to statewide.</h2>
         <p style="color:var(--ink-soft); line-height:1.65; margin:0;">There's no building to rent. Nearly every dollar goes to people building trust with other people.</p>
       </div>
 
-      <div class="grid-3">
+      <div class="grid-3 roadmap-grid">
+        <div class="card" style="border:2px dashed rgba(62,44,28,.35); background:transparent; box-shadow:none;">
+          <span class="tier-tag" style="background:var(--cream-white);">Stage 0 &middot; Done</span>
+          <div class="tvp-h" style="font-size:30px; margin-bottom:6px;">$20,000</div>
+          <p style="font-size:13.5px; color:var(--muted); margin:0 0 14px;">Election-only grants, fall 2026</p>
+          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0 0 14px;">
+            <li>5 voter registration events</li>
+            <li>15 pop-up events</li>
+            <li>1 large early-voting festival, Voter Fest</li>
+          </ul>
+          <p style="font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--red); margin:0 0 6px;">Never paid for</p>
+          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0;">
+            <li>Executive Director salary: $0</li>
+            <li>Development consultant: $0</li>
+            <li>Tools, travel and operations: my credit card, $3,246 in October and November alone</li>
+          </ul>
+        </div>
         <div class="card">
           <span class="tier-tag" style="background:var(--green-pale);">Stage 1</span>
           <div class="tvp-h" style="font-size:30px; margin-bottom:6px;">$190,000</div>
