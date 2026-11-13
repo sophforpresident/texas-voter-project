@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Texas Voter Project</title>
+<meta name="description" content="Texas Voter Project builds political knowledge and real-life community together, so young Texans want to show up for civic life.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Texas Voter Project">
+<meta property="og:title" content="Texas Voter Project">
+<meta property="og:description" content="Texas Voter Project builds political knowledge and real-life community together, so young Texans want to show up for civic life.">
+<meta property="og:url" content="https://texasvoterproject.org/">
+<meta property="og:image" content="https://texasvoterproject.org/tvp-share-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://texasvoterproject.org/tvp-share-default.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
+<!--QOMON-->
+<style>
+/* Layout concept: a community bulletin board that turns into an annual report.
+   Youth sections are pinned, tilted, photo-led; the funder section is a ruled, quiet ledger. */
+:root {
+  --paper: #F6ECDA;      /* warm editorial neutral, main ground */
+  --cream: #F1E1C4;      /* brand cream, secondary ground */
+  --card: #FCF7EE;       /* lifted paper */
+  --ink: #2E2116;        /* brown-black text */
+  --ink-soft: #5B4632;
+  --muted: #86735a;
+  --rule: #d9c6a4;
+  --red: #AB1337;
+  --pink: #F33663;
+  --gold: #FFD037;
+  --blue: #5B84A3;
+  --green: #178567;
+  --forest: #123B2E;     /* funder band */
+  --forest-ink: #F3EBDD;
+  --forest-soft: #b9cbbf;
+  --forest-rule: #2e5a49;
+  --display: 'Bevan', 'Rockwell', Georgia, serif;
+  --sticker: 'Ultra', 'Rockwell', Georgia, serif;
+  --body: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wrap: 1180px;
+  --gut: max(16px, env(safe-area-inset-left, 0px));
+  --gut-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; letter-spacing: -0.005em; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--gut); padding-right: var(--gut-r); }
+@media (min-width: 700px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; font: 600 16px/1 var(--body); text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-pink { background: var(--pink); color: #fff; }
+.btn-ink { background: var(--ink); color: var(--paper); }
+.btn-line { border-color: var(--ink); color: var(--ink); background: transparent; }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-line-light { border-color: var(--forest-ink); color: var(--forest-ink); background: transparent; }
+.link { color: var(--red); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+/* Banner + header */
+.banner { background: var(--ink); color: var(--paper); font-size: 14.5px; text-align: center; padding-block: 10px; }
+.banner a { color: var(--gold); font-weight: 600; margin-left: 6px; }
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); border-bottom: 1px solid var(--rule); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 76px; }
+.logo img { height: 52px; width: auto; }
+.nav-desktop { display: none; align-items: center; gap: 22px; font-size: 15px; font-weight: 500; }
+.nav-desktop a { text-decoration: none; }
+.nav-desktop a:hover { color: var(--red); }
+.nav-desktop .btn { min-height: 40px; padding: 0 18px; font-size: 15px; }
+.nav-toggle { background: var(--ink); border: 0; border-radius: 12px; width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.nav-toggle svg { width: 24px; height: 24px; }
+.nav-mobile { display: none; padding: 8px var(--gut-r) 20px var(--gut); border-top: 1px solid var(--rule); background: var(--paper); }
+.nav-mobile.open { display: grid; gap: 2px; }
+.nav-mobile a { text-decoration: none; font-weight: 500; padding: 10px 0; font-size: 17px; }
+.nav-mobile .btn { margin-top: 10px; justify-self: start; }
+@media (min-width: 1080px) { .nav-desktop { display: flex; } .nav-toggle { display: none; } .nav-mobile, .nav-mobile.open { display: none; } }
+
+/* Hero */
+.hero { padding-block: 48px 64px; }
+.hero-grid { display: grid; gap: 44px; align-items: center; }
+@media (min-width: 960px) { .hero-grid { grid-template-columns: 1.15fr 1fr; gap: 56px; } .hero { padding-block: 64px 88px; } }
+.hero h1 { font-size: clamp(38px, 5.4vw, 68px); line-height: 1.03; text-wrap: wrap; }
+@media (max-width: 959px) { .hero h1 .br { display: none; } }
+.hero h1 .line2 { display: block; padding-left: 0.55em; color: var(--red); }
+@media (max-width: 520px) { .hero h1 .line2 { padding-left: 0.5em; } }
+.hero-lede { font-size: clamp(18px, 2vw, 20px); color: var(--ink-soft); max-width: 34em; margin-top: 26px; }
+
+.switch { margin-top: 34px; max-width: 560px; }
+.switch-label { font-weight: 600; font-size: 15px; color: var(--ink-soft); margin-bottom: 10px; }
+.tabs { display: inline-flex; background: var(--cream); border-radius: 999px; padding: 5px; gap: 4px; flex-wrap: wrap; }
+.tab { border: 0; background: transparent; font: 600 15.5px/1 var(--body); color: var(--ink); padding: 13px 20px; border-radius: 999px; cursor: pointer; min-height: 44px; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.panel { margin-top: 18px; padding: 22px 24px; background: var(--card); border-radius: 18px; border: 1px solid var(--rule); }
+.panel p { color: var(--ink-soft); }
+.panel .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; align-items: center; }
+.panel[data-for="fund"] { border-color: var(--forest); }
+
+/* Pinned photo collage */
+.board { position: relative; aspect-ratio: 1 / 0.95; width: 100%; }
+.pin { position: absolute; background: var(--card); padding: 10px 10px 12px; box-shadow: 0 12px 26px rgba(46,33,22,.18); border-radius: 4px; }
+.pin img { width: 100%; height: auto; border-radius: 2px; }
+.pin figcaption { font-size: 13px; font-weight: 600; color: var(--ink-soft); padding-top: 8px; }
+.pin-a { width: 68%; right: 2%; top: 0; transform: rotate(2.2deg); }
+.pin-b { width: 54%; left: 0; top: 52%; transform: rotate(-3.4deg); z-index: 2; }
+.pin-c { width: 42%; right: 0; top: 66%; transform: rotate(4deg); z-index: 3; }
+.tape { position: absolute; width: 74px; height: 22px; background: rgba(255, 208, 55, .78); top: -10px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
+.pin .sticker { position: absolute; width: 74px; left: -22px; top: -30px; transform: rotate(-24deg); z-index: 3; filter: drop-shadow(0 6px 8px rgba(46,33,22,.25)); }
+.stamp { position: absolute; z-index: 4; left: 2%; top: 6%; transform: rotate(-9deg); background: var(--pink); color: #fff; font: 400 15px/1.05 var(--sticker); text-align: center; padding: 14px 16px; border-radius: 999px; box-shadow: 0 8px 18px rgba(171,19,55,.3); }
+@media (max-width: 959px) { .board { max-width: 560px; margin: 0 auto; } }
+@media (max-width: 520px) { .pin { padding: 6px 6px 8px; } .pin figcaption { font-size: 11px; padding-top: 5px; } .pin .sticker { width: 52px; left: -8px; top: -20px; } .stamp { font-size: 11.5px; padding: 9px 11px; } .board { width: calc(100% - 8px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .pin { animation: drop .7s cubic-bezier(.2,.8,.2,1) both; }
+  .pin-b { animation-delay: .12s; } .pin-c { animation-delay: .24s; }
+  @keyframes drop { from { opacity: .001; translate: 0 -18px; } to { opacity: 1; translate: 0 0; } }
+}
+
+/* Ledger sentence */
+.ledger { background: var(--cream); border-block: 2px solid var(--ink); }
+.ledger .wrap { padding-block: 44px; display: grid; gap: 14px; }
+.ledger-k { font-weight: 600; font-size: 15px; color: var(--ink-soft); }
+.ledger p { font-size: clamp(21px, 2.7vw, 31px); line-height: 1.5; max-width: 34em; font-weight: 500; }
+.ledger b { font-family: var(--display); font-weight: 400; font-size: 1.32em; line-height: 1; padding: 0 .06em; }
+.ledger .c1 { color: var(--red); } .ledger .c2 { color: var(--green); } .ledger .c3 { color: var(--blue); } .ledger .c4 { color: var(--pink); }
+
+/* Sections */
+.sec { padding-block: 72px; }
+@media (max-width: 700px) { .sec { padding-block: 56px; } }
+.sec-head { display: grid; gap: 12px; margin-bottom: 36px; max-width: 40em; }
+.sec-head h2 { font-size: clamp(30px, 4.2vw, 48px); line-height: 1.08; }
+.sec-head p { color: var(--ink-soft); font-size: 18px; }
+
+/* Two infrastructures, asymmetric */
+.twin { display: grid; gap: 28px; }
+@media (min-width: 900px) { .twin { grid-template-columns: 5fr 7fr; align-items: start; } }
+.info { background: var(--card); border: 1px solid var(--rule); border-radius: 22px; padding: 30px; display: grid; gap: 18px; }
+@media (min-width: 900px) { .info { margin-top: 64px; } }
+.info h3, .social h3 { font-size: 26px; line-height: 1.15; }
+.info p, .social p { color: var(--ink-soft); }
+.tools { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.tools a { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
+.tools a strong { font-size: 17px; }
+.tools a span { grid-column: 1; font-size: 14.5px; color: var(--muted); }
+.tools a i { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-style: normal; color: var(--red); font-weight: 700; }
+.tools a:hover strong { color: var(--red); }
+.social { display: grid; gap: 18px; }
+.social figure { margin: 0; position: relative; }
+.social figure img { border-radius: 22px; width: 100%; aspect-ratio: 16 / 9.5; object-fit: cover; }
+.social figure figcaption { position: absolute; left: 16px; bottom: 16px; background: var(--paper); font-size: 13.5px; font-weight: 600; padding: 7px 12px; border-radius: 999px; max-width: calc(100% - 32px); }
+.social .txt { display: grid; gap: 12px; max-width: 36em; padding-inline: 4px; }
+
+/* Formats rail */
+.rail-sec { background: var(--ink); color: var(--paper); }
+.rail-sec .sec-head p { color: #d8c8ad; }
+.rail-top { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.rail-top .sec-head { margin-bottom: 0; }
+.rail-ctrl { display: flex; gap: 10px; }
+.rail-ctrl button { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--paper); background: transparent; color: var(--paper); font-size: 20px; cursor: pointer; }
+.rail-ctrl button:hover { background: var(--paper); color: var(--ink); }
+.rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px, 300px); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 18px; scrollbar-width: thin; scrollbar-color: var(--gold) transparent; }
+.fmt { scroll-snap-align: start; background: var(--paper); color: var(--ink); border-radius: 18px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.fmt:nth-child(even) { transform: translateY(18px); }
+.fmt img { width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; }
+.fmt div { padding: 16px 18px 20px; display: grid; gap: 6px; align-content: start; }
+.fmt h3 { font-size: 20px; line-height: 1.15; }
+.fmt p { font-size: 15px; color: var(--ink-soft); }
+.rail-foot { margin-top: 34px; }
+
+/* Ladder */
+.ladder { display: grid; gap: 36px; }
+@media (min-width: 900px) { .ladder { grid-template-columns: 7fr 5fr; align-items: center; gap: 56px; } }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 64px 1fr; gap: 4px 18px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.steps li:first-child { border-top: 1px solid var(--rule); }
+.steps li::before { content: counter(s); grid-row: 1 / span 2; font: 400 40px/1 var(--display); }
+.steps li:nth-child(1)::before { color: var(--red); } .steps li:nth-child(2)::before { color: var(--green); }
+.steps li:nth-child(3)::before { color: var(--pink); } .steps li:nth-child(4)::before { color: var(--blue); }
+.steps strong { font-size: 19px; }
+.steps span { color: var(--ink-soft); font-size: 16px; }
+.loop { margin-top: 18px; color: var(--ink-soft); }
+.proof { margin: 0; background: var(--card); padding: 12px 12px 16px; border-radius: 6px; transform: rotate(-1.6deg); box-shadow: 0 12px 26px rgba(46,33,22,.16); }
+.proof img { border-radius: 3px; width: 100%; }
+.proof figcaption { font-size: 14px; color: var(--ink-soft); padding-top: 10px; }
+
+/* Funders band */
+.fund { background: var(--forest); color: var(--forest-ink); }
+.fund .sec-head p { color: var(--forest-soft); }
+.fund-grid { display: grid; gap: 40px; }
+@media (min-width: 960px) { .fund-grid { grid-template-columns: 7fr 4fr; gap: 64px; } }
+.facts { margin: 0; display: grid; }
+.facts div { display: grid; gap: 4px 28px; padding: 18px 0; border-top: 1px solid var(--forest-rule); }
+@media (min-width: 640px) { .facts div { grid-template-columns: 170px 1fr; } }
+.facts div:last-child { border-bottom: 1px solid var(--forest-rule); }
+.facts dt { font-weight: 600; color: var(--gold); font-size: 15.5px; }
+.facts dd { margin: 0; color: var(--forest-ink); }
+.facts dd small { display: block; color: var(--forest-soft); font-size: 14.5px; margin-top: 4px; }
+.aside { display: grid; gap: 22px; align-content: start; }
+.aside .note { background: rgba(243,235,221,.06); border: 1px solid var(--forest-rule); border-radius: 18px; padding: 24px; display: grid; gap: 14px; }
+.aside h3 { font-size: 22px; color: var(--forest-ink); }
+.aside p { color: var(--forest-soft); font-size: 16px; }
+.aside .btns { display: grid; gap: 10px; }
+.aside .btns .btn { width: 100%; }
+.mail { font-weight: 600; color: var(--forest-ink); word-break: break-all; }
+.partners { margin-top: 44px; padding-top: 26px; border-top: 1px solid var(--forest-rule); }
+.partners h3 { font: 600 15.5px/1.4 var(--body); color: var(--gold); margin-bottom: 12px; }
+.partners p { font-size: clamp(17px, 2vw, 20px); line-height: 1.75; color: var(--forest-ink); max-width: 60em; }
+.partners p { display: flex; flex-wrap: wrap; gap: 6px 0; }
+.partners p span { white-space: nowrap; max-width: 100%; white-space: normal; }
+.partners p span:not(:last-child)::after { content: "/"; color: var(--forest-rule); padding: 0 .55em; }
+
+/* Newsletter */
+.join { display: grid; gap: 28px; align-items: start; }
+@media (min-width: 900px) { .join { grid-template-columns: 5fr 6fr; gap: 56px; } }
+.join h2 { font-size: clamp(36px, 5vw, 60px); line-height: 1; }
+.join .lead { color: var(--ink-soft); margin-top: 16px; max-width: 30em; }
+.form-card { background: var(--card); border: 2px solid var(--ink); border-radius: 22px; padding: 26px; position: relative; }
+.form-card .ticket { position: absolute; top: -16px; right: 22px; background: var(--gold); font: 400 13px/1 var(--sticker); padding: 9px 14px; border-radius: 999px; transform: rotate(4deg); }
+.form-card .alt { margin-top: 16px; font-size: 15px; color: var(--ink-soft); }
+
+/* Footer */
+.foot { background: var(--ink); color: var(--paper); padding-block: 48px; font-size: 15px; }
+.foot-grid { display: grid; gap: 28px; }
+@media (min-width: 820px) { .foot-grid { grid-template-columns: 1.2fr 2fr 1.2fr; } }
+.foot h2 { font-size: 22px; }
+.foot nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; }
+.foot nav a, .foot a { text-decoration: none; }
+.foot nav a:hover { color: var(--gold); }
+.foot .social-links { display: flex; gap: 10px; margin-bottom: 14px; }
+.foot .social-links a { width: 42px; height: 42px; border-radius: 50%; background: var(--paper); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; }
+.foot .fine { color: #c9b89c; font-size: 13.5px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<div class="banner"><div class="wrap">Wondering how Texas flipped, and what happens next? <a href="hot-takes.html">Read our election hot take</a></div></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="tvp-logo.png" alt="Texas Voter Project home" width="140" height="104"></a>
+    <nav class="nav-desktop" aria-label="Main">
+      <a href="events.html">Events</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="know-your-government.html">Know Your Government</a>
+      <a href="why-we-exist.html">Why We Exist</a>
+      <a href="research.html">Research</a>
+      <a href="hot-takes.html">Hot Takes</a>
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+      <a href="donate.html" class="btn btn-pink">Donate</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#F6ECDA" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="mnav" aria-label="Main">
+    <a href="events.html">Events</a>
+    <a href="get-involved.html">Get Involved</a>
+    <a href="know-your-government.html">Know Your Government</a>
+    <a href="why-we-exist.html">Why We Exist</a>
+    <a href="research.html">Research</a>
+    <a href="hot-takes.html">Hot Takes</a>
+    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
+    <a href="donate.html" class="btn btn-pink">Donate</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Information <br class="br">tells you how. <span class="line2">Community <br class="br">tells you why.</span></h1>
+        <p class="hero-lede">Texas Voter Project builds both for young Texans: plain-language guides to who holds power, and real-life third places where people actually want to show up.</p>
+
+        <div class="switch">
+          <p class="switch-label" id="switch-label">I'm here to&hellip;</p>
+          <div class="tabs" role="tablist" aria-labelledby="switch-label">
+            <button class="tab" role="tab" id="tab-show" aria-selected="true" aria-controls="panel-show">Find my people</button>
+            <button class="tab" role="tab" id="tab-fund" aria-selected="false" aria-controls="panel-fund" tabindex="-1">Back the work</button>
+          </div>
+          <div class="panel" role="tabpanel" id="panel-show" aria-labelledby="tab-show" data-for="show">
+            <p>Our events are small on purpose: pizza and ballot research, board game nights, trivia, pop-ups at the polls. Come once and you'll know people the next time.</p>
+            <div class="row">
+              <a href="events.html" class="btn btn-pink">See upcoming events</a>
+              <a href="https://form.qomon.org/4054abad-text-alerts-sign-up-texas-voter-project/" class="link" target="_blank" rel="noopener">Get event invites by text</a>
+            </div>
+          </div>
+          <div class="panel" role="tabpanel" id="panel-fund" aria-labelledby="tab-fund" data-for="fund" hidden>
+            <p>TVP is a fiscally sponsored 501(c)(3) project working to raise civic participation among Texans 18 to 35. This fall we ran 21 events on about $20K in election-only grants.</p>
+            <div class="row">
+              <a href="#funders" class="btn btn-ink">See the details</a>
+              <a href="donate.html" class="link">Give to TVP</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="board" aria-label="Photos from TVP events">
+        <figure class="pin pin-a"><span class="tape" aria-hidden="true"></span><img src="tvp-photo-voter-fest-booth.jpg" alt="Five friends in Your Vote Is Sexy shirts at the Voter Fest photo booth" width="734" height="455"><figcaption>Voter Fest, Central Machine Works</figcaption></figure>
+        <figure class="pin pin-b"><img src="tvp-photo-pinot-pizza-politics.jpg" alt="Friends holding sample ballots at a Pinot, Pizza and Politics night" width="700" height="525"><figcaption>Pinot, Pizza &amp; Politics</figcaption><img class="sticker" src="tvp-sticker-pizzacutter.png" alt="" width="300" height="303"></figure>
+        <figure class="pin pin-c"><img src="tvp-photo-dtap.jpg" alt="A table of people playing a board game at Don't Talk About Politics" width="640" height="360"><figcaption>Don't Talk About Politics</figcaption></figure>
+        <span class="stamp" aria-hidden="true">Free &amp;<br>nonpartisan</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ledger" aria-label="Fall 2026 at a glance">
+    <div class="wrap">
+      <p class="ledger-k">Fall 2026, in one sentence</p>
+      <p>We hosted <b class="c1">5</b> voter registration events, <b class="c2">15</b> small gatherings and <b class="c3">1</b> festival, built <b class="c4">500+</b> real relationships, and did it all on about <b class="c1">$20K</b> in election-only grants with no paid staff.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Two things we build, in the same room</h2>
+        <p>Knowing how government works and knowing people who care about it grow together. So we build them together.</p>
+      </div>
+      <div class="twin">
+        <div class="info">
+          <h3>Know the job before you pick who gets it</h3>
+          <p>Most voter guides assume you already know what a county commissioner does. Ours start there, then show where candidates stand on the issues, not just their party.</p>
+          <div class="tools">
+            <a href="myballot.html"><strong>My Ballot</strong><span>Compare candidates on the issues and find your polling place</span><i aria-hidden="true">&#8599;</i></a>
+            <a href="know-your-government.html"><strong>Know Your Government</strong><span>Who holds which levers of power in Texas</span><i aria-hidden="true">&#8599;</i></a>
+            <a href="research.html"><strong>Research</strong><span>The studies behind how we work</span><i aria-hidden="true">&#8599;</i></a>
+          </div>
+        </div>
+        <div class="social">
+          <figure>
+            <img src="tvp-photo-ddvrd.jpg" alt="People at picnic tables on a string-lit patio during a Diners, Dives and VR Drives trivia night" width="900" height="506" loading="lazy">
+            <figcaption>Diners, Dives &amp; VR Drives trivia night</figcaption>
+          </figure>
+          <div class="txt">
+            <h3>Third places where trust gets built</h3>
+            <p>Bars, game tables, run clubs and patios. Every gathering is small enough to learn names, and it repeats, so the people you meet become people you know.</p>
+            <a href="get-involved.html" class="link">Find your way in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec rail-sec">
+    <div class="wrap">
+      <div class="rail-top">
+        <div class="sec-head">
+          <h2>Ways to show up</h2>
+          <p>No experience, no politics degree, no plus-one required.</p>
+        </div>
+        <div class="rail-ctrl">
+          <button type="button" data-dir="-1" aria-label="Scroll formats left">&larr;</button>
+          <button type="button" data-dir="1" aria-label="Scroll formats right">&rarr;</button>
+        </div>
+      </div>
+      <div class="rail" id="rail" tabindex="0" aria-label="Event formats">
+        <article class="fmt"><img src="tvp-pinot-pizza-politics.jpg" alt="Pinot, Pizza and Politics flyer" width="852" height="1042" loading="lazy"><div><h3>Pinot, Pizza &amp; Politics</h3><p>Free pizza, BYOB, and the ballot as a group project. Everyone researches a race and presents it.</p></div></article>
+        <article class="fmt"><img src="tvp-photo-ddvrd.jpg" alt="A patio trivia night" width="900" height="506" loading="lazy"><div><h3>Diners, Dives &amp; VR Drives</h3><p>Trivia nights at local spots, with voter registration at the door.</p></div></article>
+        <article class="fmt"><img src="tvp-photo-dtap.jpg" alt="Board game night" width="640" height="360" loading="lazy"><div><h3>Don't Talk About Politics</h3><p>Board game nights where candidates and voters meet as equals. No campaigning.</p></div></article>
+        <article class="fmt"><img src="tvp-pups-to-the-polls.jpg" alt="Pups to the Polls flyer with a dog at a polling station sign" width="850" height="1042" loading="lazy"><div><h3>Pups to the Polls</h3><p>Pop-ups at polling places with Dogland: dog treats, bandanas and a selfie stop.</p></div></article>
+        <article class="fmt"><img src="tvp-photo-bar-crawl.jpg" alt="Friends at a bar during a TVP bar crawl" width="493" height="700" loading="lazy"><div><h3>Election Night Bar Crawl</h3><p>Neighborhood crawls through Zilker, Bouldin Creek and Barton Hills.</p></div></article>
+        <article class="fmt"><img src="tvp-voter-fest.jpg" alt="Voter Fest 2026 poster" width="1000" height="1000" loading="lazy"><div><h3>Voter Fest</h3><p>Our early voting block party: DJs, bracelets, tarot readers and nonpartisan voting info.</p></div></article>
+      </div>
+      <div class="rail-foot"><a href="events.html" class="btn btn-gold">See what's coming up</a></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap ladder">
+      <div>
+        <div class="sec-head">
+          <h2>One night out is the first step</h2>
+          <p>Every event leads somewhere. People come back, get curious, and start showing up in places where decisions get made.</p>
+        </div>
+        <ol class="steps">
+          <li><strong>Attend</strong><span>Come to a low-key TVP event. There's no wrong place to start.</span></li>
+          <li><strong>Inquire</strong><span>Get curious about what's happening locally and who decides it.</span></li>
+          <li><strong>Advocate</strong><span>Speak up at city hall, the county or the Capitol.</span></li>
+          <li><strong>Vote</strong><span>In every race on your ballot, all the way down.</span></li>
+        </ol>
+        <p class="loop">Then back to the start, bringing a friend. From there people host, volunteer, join boards and run. <a href="get-involved.html" class="link">See the full path</a></p>
+      </div>
+      <figure class="proof">
+        <img src="tvp-photo-parking-petition.jpg" alt="Sophia speaking during public communication at an Austin City Council meeting" width="616" height="346" loading="lazy">
+        <figcaption>Our founder, Sophia DeLoretto-Chudy, speaking at Austin City Council, March 2026.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec fund" id="funders">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>For funders and partners</h2>
+        <p>The short version, for anyone deciding whether to invest in this work.</p>
+      </div>
+      <div class="fund-grid">
+        <dl class="facts">
+          <div><dt>Mission</dt><dd>Raise civic participation among Texans 18 to 35 by building political knowledge and social connection at the same time.</dd></div>
+          <div><dt>Who we reach</dt><dd>Young people who distrust formal political institutions and rarely hear from political organizations, including young people in rural Texas.<small>Traditional rural organizing tends to focus on farmers and ranchers. We look for the people it misses.</small></dd></div>
+          <div><dt>Where</dt><dd>Mostly Austin, sharing what works with partner organizations in Houston, San Antonio and the Rio Grande Valley.</dd></div>
+          <div><dt>Fall 2026</dt><dd>21 events: 5 voter registration events, 15 small gatherings and Voter Fest.<small>500+ real relationships. Instagram grew by 418 followers this year.</small></dd></div>
+          <div><dt>Funding</dt><dd>About $20K in election-only grants for 2026 programs. No general operating budget and no paid staff yet.</dd></div>
+          <div><dt>Structure</dt><dd>Fiscally sponsored project of Future Incubator, a 501(c)(3). Gifts are tax-deductible.<small>EIN 33-3913132</small></dd></div>
+          <div><dt>Recognition</dt><dd>Our founder is featured in <em>The Young Vote</em>, a PBS documentary about young voters. <a href="about.html#pbs" class="link" style="color:var(--gold)">Watch</a></dd></div>
+        </dl>
+        <div class="aside">
+          <div class="note">
+            <h3>Why fund it now</h3>
+            <p>Election grants end on Election Day. The relationships don't. The time between elections is when trust gets built, and it's the hardest work to fund.</p>
+            <div class="btns">
+              <a href="donate.html" class="btn btn-gold">Give to TVP</a>
+              <a href="why-we-exist.html" class="btn btn-line-light">Read our theory of change</a>
+            </div>
+          </div>
+          <div class="note">
+            <h3>Talk with Sophia</h3>
+            <p>For grants, partnerships and larger gifts, email our founder directly.</p>
+            <p class="mail">sophia@texasvoterproject.org</p>
+          </div>
+        </div>
+      </div>
+      <div class="partners">
+        <h3>2026 partners and coalitions</h3>
+        <p><span>Texas Election Protection coalition</span><span>Texas Youth Power Alliance</span><span>MOVE Texas</span><span>Jolt</span><span>Grita Canta Vota</span><span>Mi Familia Vota</span><span>Common Cause</span><span>Deeds Not Words</span><span>Planned Parenthood Advocates of Texas</span><span>Center for Artistic Activism</span><span>San Antonio Area Foundation</span><span>SEAT</span><span>Civitech</span><span>Dogland</span><span>The Flock</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="join-the-party">
+    <div class="wrap join">
+      <div>
+        <h2>Join the party.</h2>
+        <p class="lead">Get on the guest list for event invites, ballot breakdowns and whatever we're planning next. We email when there's something worth showing up for.</p>
+      </div>
+      <div class="form-card">
+        <span class="ticket" aria-hidden="true">You're invited</span>
+        <!--FORM-->
+        <p class="alt">Prefer texts? <a href="https://form.qomon.org/4054abad-text-alerts-sign-up-texas-voter-project/" target="_blank" rel="noopener" class="link">Sign up for text invites</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <h2>Texas Voter Project</h2>
+      <p class="fine">A fiscally sponsored project of Future Incubator, a 501(c)(3). EIN 33-3913132.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="events.html">Events</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="election-prep.html">Election Prep</a>
+      <a href="know-your-government.html">Know Your Government</a>
+      <a href="why-we-exist.html">Why We Exist</a>
+      <a href="research.html">Research</a>
+      <a href="hot-takes.html">Hot Takes</a>
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/texasvoterproject/" target="_blank" rel="noopener" aria-label="Texas Voter Project on Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.linkedin.com/company/texas-voter-project/" target="_blank" rel="noopener" aria-label="Texas Voter Project on LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.59h-4v-4.95c0-1.18-.02-2.7-1.7-2.7-1.7 0-1.96 1.28-1.96 2.6v5.05h-4z"/></svg></a>
+      </div>
+      <p>info@texasvoterproject.org</p>
+      <p class="fine">&copy; 2026 Texas Voter Project</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var toggle = document.querySelector('.nav-toggle'), m = document.getElementById('mnav');
+  if (toggle && m) toggle.addEventListener('click', function () {
+    var open = m.classList.toggle('open'); toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  function pick(t, focus) {
+    tabs.forEach(function (x) {
+      var on = x === t;
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) t.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(t); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault(); pick(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+      }
+    });
+  });
+  if (location.hash === '#funders' || location.hash === '#fund') pick(tabs[1]);
+
+  var rail = document.getElementById('rail');
+  document.querySelectorAll('.rail-ctrl button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var card = rail.querySelector('.fmt'); var step = card ? card.getBoundingClientRect().width + 20 : 300;
+      rail.scrollBy({ left: step * Number(b.dataset.dir), behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
