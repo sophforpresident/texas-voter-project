@@ -405,6 +405,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .collage .clip-a { left: -14px; top: -62px; }
 .collage .clip-b { right: -10px; top: auto; bottom: -14px; }
 @media (max-width: 520px) { .collage { gap: 5px; } .collage { margin-top: 52px; } .collage .clip-a { left: -6px; top: -50px; } .collage .clip-b { right: -4px; } }
+
+/* ===== Poster clippings ===== */
+.poster-clip { position: relative; margin: 26px 0 0 auto; width: min(58%, 260px); transform: rotate(3.5deg); }
+.poster-clip img { display: block; width: 100%; outline: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.poster-clip::before { content: ""; position: absolute; top: -12px; left: 50%; width: 84px; height: 24px; background: rgba(255,208,55,.85); transform: translateX(-50%) rotate(-4deg); z-index: 1; }
+.rip-clip { margin: 0; background: #fff; padding: 10px 16px; transform: rotate(-3deg); outline: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); width: 230px; max-width: 70%; }
+.rip-clip img { display: block; width: 100%; }
+@media (max-width: 899px) { .poster-clip { margin-right: 8px; } }
 </style>
 </head>
 <body>
@@ -565,6 +573,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <h2>Ways to show up</h2>
           <p>No experience, no politics degree, no plus-one required.</p>
         </div>
+        <figure class="rip-clip"><img src="tvp-art-running-is-political.png" alt="Running Is Political" width="482" height="270" loading="lazy"></figure>
         <div class="rail-ctrl">
           <button type="button" data-dir="-1" aria-label="Scroll formats left">&larr;</button>
           <button type="button" data-dir="1" aria-label="Scroll formats right">&rarr;</button>
@@ -597,10 +606,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         </ol>
         <p class="loop">Then back to the start, bringing a friend. From there people host, volunteer, join boards and run. <a href="get-involved.html" class="link">See the full path</a></p>
       </div>
+      <div class="ladder-art">
       <figure class="proof">
         <img src="tvp-photo-parking-petition.jpg" alt="A speaker giving public comment at an Austin City Council meeting" width="616" height="346" loading="lazy">
         <figcaption>Public comment at Austin City Council, March 2026.</figcaption>
       </figure>
+      <figure class="poster-clip"><img src="tvp-art-yvis-pink.jpg" alt="Your Vote Is Sexy poster: red lips and yellow lettering on pink, with early voting dates" width="900" height="1140" loading="lazy"></figure>
+      </div>
     </div>
   </section>
 
