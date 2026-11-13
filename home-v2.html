@@ -169,7 +169,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .social .txt { display: grid; gap: 12px; max-width: 36em; padding-inline: 4px; }
 
 /* Formats rail */
-.rail-sec { background: var(--navy); color: var(--paper); }
+.rail-sec { color: var(--paper); background: linear-gradient(rgba(31,74,107,.5), rgba(20,40,58,.82)), url(tvp-bg-baddies-vote.jpg) center 40% / cover; }
 .rail-sec h2 { color: var(--paper); }
 .rail-sec .sec-head p { color: #c9dbe6; }
 .rail-top { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
@@ -193,8 +193,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .steps li { counter-increment: s; display: grid; grid-template-columns: 64px 1fr; gap: 4px 18px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
 .steps li:first-child { border-top: 1px solid var(--rule); }
 .steps li::before { content: counter(s); grid-row: 1 / span 2; font: 400 36px/1 var(--display); }
-.steps li:nth-child(1)::before { color: var(--navy); } .steps li:nth-child(2)::before { color: var(--green); }
-.steps li:nth-child(3)::before { color: var(--pink); } .steps li:nth-child(4)::before { color: var(--red); }
+.steps li::before { color: var(--navy); }
+
 .steps strong { font-size: 19px; }
 .steps span { color: var(--ink-soft); font-size: 16px; }
 .loop { margin-top: 18px; color: var(--ink-soft); }
@@ -203,7 +203,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .proof figcaption { font-size: 14px; color: var(--ink-soft); padding-top: 10px; }
 
 /* Funders band */
-.fund { background: var(--forest); color: var(--forest-ink); }
+.fund { color: var(--forest-ink); background: linear-gradient(rgba(18,59,46,.66), rgba(18,59,46,.9) 55%), url(tvp-bg-patio-night.jpg) center / cover; }
 .fund h2, .fund h3 { color: var(--forest-ink); }
 .fund .sec-head p { color: var(--forest-soft); }
 .fund-grid { display: grid; gap: 40px; }
@@ -355,6 +355,45 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .choice input:checked + .oval { background: var(--ink); }
 .choice input:focus-visible + .oval { outline: 3px solid var(--green); outline-offset: 3px; }
 .ballot .panel { margin: 0; border: 0; border-radius: 0; box-shadow: none; padding: 18px 16px 20px; }
+
+/* ===== Evidence wall: clipped research ===== */
+.evidence { color: #fff; background: linear-gradient(rgba(20,40,58,.55), rgba(20,40,58,.72)), url(tvp-bg-bar-posters.jpg) center 35% / cover; border-top: var(--line); }
+.evidence .ev-head .link { color: #fff; text-decoration-color: var(--gold); }
+.evidence .ev { color: var(--ink); }
+.evidence .ev-trust { color: #fff; }
+.ev-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 14px 24px; margin-bottom: 40px; }
+.ev-strip { display: inline-block; background: var(--gold); color: var(--ink); font: 400 clamp(28px, 4vw, 46px)/1 var(--clip); text-transform: uppercase; letter-spacing: .01em; padding: 10px 16px 8px; transform: rotate(-1.2deg); }
+.ev-wall { display: grid; grid-template-columns: repeat(12, 1fr); gap: 22px; align-items: start; }
+.ev { margin: 0; position: relative; padding: 22px 22px 18px; display: grid; gap: 12px; min-width: 0; }
+.ev blockquote { margin: 0; }
+.ev figcaption { font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
+.ev cite { font-style: italic; }
+.ev .big { font: 400 clamp(56px, 7vw, 88px)/.9 var(--clip); color: var(--navy); }
+.ev .big span { font-size: .3em; margin-left: 8px; letter-spacing: .02em; text-transform: uppercase; }
+.ev-quote { grid-column: 1 / 8; background: #fff; border-top: 6px solid var(--ink); transform: rotate(-1deg); }
+.ev-quote blockquote { font: 500 clamp(22px, 2.6vw, 31px)/1.3 var(--body); color: var(--ink); }
+.ev-stat { grid-column: 8 / 13; background: var(--gold); transform: rotate(2deg); margin-top: 26px; }
+.ev-trust { grid-column: 1 / 6; background: var(--pink); color: #fff; transform: rotate(1.5deg); margin-top: -6px; }
+.ev-trust blockquote { font: 400 clamp(26px, 3vw, 36px)/1.05 var(--clip); text-transform: uppercase; }
+.ev-trust figcaption { color: #ffe3ea; }
+.ev-survey { grid-column: 6 / 13; grid-row: span 2; background: #fff; outline: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); transform: rotate(-.8deg); }
+.ev-survey .kick { font: 400 14px/1 var(--clip); text-transform: uppercase; letter-spacing: .05em; color: var(--green); }
+.ev-survey .big { color: var(--green); }
+.ev-survey blockquote { border-left: 5px solid var(--green); padding-left: 14px; font-style: italic; color: var(--ink); }
+.ev-card { grid-column: 2 / 6; background: #DCE9EE; transform: rotate(-2deg); background-image: repeating-linear-gradient(transparent 0 27px, rgba(31,74,107,.18) 27px 28px); line-height: 28px; }
+.ev-card::before { content: ""; position: absolute; top: -11px; left: 50%; width: 80px; height: 22px; background: rgba(243,54,99,.8); transform: translateX(-50%) rotate(3deg); }
+@media (max-width: 860px) {
+  .ev-wall { grid-template-columns: 1fr; gap: 26px; }
+  .ev-quote, .ev-stat, .ev-trust, .ev-survey, .ev-card { grid-column: 1; grid-row: auto; margin-top: 0; }
+}
+
+/* ===== Photo-backed signup ===== */
+#join-the-party { background: linear-gradient(90deg, rgba(20,40,58,.85) 0%, rgba(20,40,58,.5) 45%, rgba(20,40,58,.15) 100%), url(tvp-bg-friends-shirts.jpg) center 30% / cover; color: #fff; border-top: var(--line); }
+#join-the-party .join h2 { color: #fff; }
+#join-the-party .join .lead { color: #dbe7ef; }
+#join-the-party .form-card { color: var(--ink); }
+@media (max-width: 899px) { #join-the-party { background: linear-gradient(rgba(20,40,58,.86), rgba(20,40,58,.92)), url(tvp-bg-friends-shirts.jpg) center / cover; } }
+.rail-sec .sec-head h2, .rail-sec .sec-head p, .fund .sec-head h2, .fund .sec-head p, #join-the-party .join h2, #join-the-party .lead { text-shadow: 0 2px 14px rgba(0,0,0,.55); }
 </style>
 </head>
 <body>
@@ -474,6 +513,41 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </section>
 
+  <section class="sec evidence" aria-labelledby="ev-h">
+    <div class="wrap">
+      <div class="ev-head">
+        <h2 id="ev-h" class="ev-strip">What the research says</h2>
+        <a href="research.html" class="link">See all the research</a>
+      </div>
+      <div class="ev-wall">
+        <figure class="ev ev-quote">
+          <blockquote>&ldquo;Somebody might know who the prime minister&hellip; is, but he or she might not know his or her role in politics and in the government.&rdquo;</blockquote>
+          <figcaption>Stockemer &amp; Rocher, <cite>Age, political knowledge and electoral turnout</cite>, 2016</figcaption>
+        </figure>
+        <figure class="ev ev-stat">
+          <p class="big">20&ndash;30<span>points</span></p>
+          <p>How much less young adults know about which level of government does what. That gap explains about half the youth turnout gap.</p>
+          <figcaption>Stockemer &amp; Rocher, 2016</figcaption>
+        </figure>
+        <figure class="ev ev-trust">
+          <blockquote>&ldquo;Without trust, nothing happens and nothing changes.&rdquo;</blockquote>
+          <figcaption>Antionette Priscilla Carroll, Grinnell College 2026 Social Innovator in Residence</figcaption>
+        </figure>
+        <figure class="ev ev-survey">
+          <p class="kick">425 Texans, ages 18&ndash;35</p>
+          <p class="big">69.6%</p>
+          <p>had never seen a nonpartisan voter guide before ours.</p>
+          <blockquote>&ldquo;I was feeling very overwhelmed by the large number of mayoral candidates but this was informative, easy to digest, and helped me to narrow down my choices.&rdquo;</blockquote>
+          <figcaption>TVP and UTSA survey, San Antonio, May 2025</figcaption>
+        </figure>
+        <figure class="ev ev-card">
+          <p>Voter guides helped people pick the candidate closest to their own views, and helped most for voters who knew the least going in.</p>
+          <figcaption><cite>Roadmaps to Representation</cite>, San Francisco, 2018</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section class="sec rail-sec">
     <div class="wrap">
       <div class="rail-top">
@@ -514,8 +588,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <p class="loop">Then back to the start, bringing a friend. From there people host, volunteer, join boards and run. <a href="get-involved.html" class="link">See the full path</a></p>
       </div>
       <figure class="proof">
-        <img src="tvp-photo-parking-petition.jpg" alt="Sophia speaking during public communication at an Austin City Council meeting" width="616" height="346" loading="lazy">
-        <figcaption>Our founder, Sophia DeLoretto-Chudy, speaking at Austin City Council, March 2026.</figcaption>
+        <img src="tvp-photo-parking-petition.jpg" alt="A speaker giving public comment at an Austin City Council meeting" width="616" height="346" loading="lazy">
+        <figcaption>Public comment at Austin City Council, March 2026.</figcaption>
       </figure>
     </div>
   </section>
@@ -534,7 +608,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <div><dt>Fall 2026</dt><dd>21 events: 5 voter registration events, 15 small gatherings and Voter Fest.<small>500+ real relationships.</small></dd></div>
           <div><dt>Funding</dt><dd>About $20K in election-only grants for 2026 programs. No general operating budget and no paid staff yet.</dd></div>
           <div><dt>Structure</dt><dd>Fiscally sponsored project of Future Incubator, a 501(c)(3). Gifts are tax-deductible.<small>EIN 33-3913132</small></dd></div>
-          <div><dt>Recognition</dt><dd>Our founder is featured in <em>The Young Vote</em>, a PBS documentary about young voters. <a href="about.html#pbs" class="link" style="color:var(--mint);text-decoration-color:var(--mint)">Watch</a></dd></div>
+          <div><dt>Recognition</dt><dd>Featured in <em>The Young Vote</em>, a PBS documentary about young voters. <a href="about.html#pbs" class="link" style="color:var(--mint);text-decoration-color:var(--mint)">Watch</a></dd></div>
         </dl>
         <div class="aside">
           <div class="note">
