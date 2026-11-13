@@ -401,9 +401,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .c-strip { grid-column: 10 / 13; grid-row: 1 / 10; object-position: top; z-index: 2; outline: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); transform: rotate(2.5deg) translate(4px, -6px); }
 .c-booth { grid-column: 1 / 6; grid-row: 8 / 13; object-position: 50% 40%; }
 .c-sticker { grid-column: 6 / 10; grid-row: 8 / 13; object-position: 50% 6%; }
-.collage .clip-a { left: -14px; top: -16px; }
+.collage { margin-top: 64px; }
+.collage .clip-a { left: -14px; top: -62px; }
 .collage .clip-b { right: -10px; top: auto; bottom: -14px; }
-@media (max-width: 520px) { .collage { gap: 5px; } .collage .clip-a { left: -6px; } .collage .clip-b { right: -4px; } }
+@media (max-width: 520px) { .collage { gap: 5px; } .collage { margin-top: 52px; } .collage .clip-a { left: -6px; top: -50px; } .collage .clip-b { right: -4px; } }
 </style>
 </head>
 <body>
