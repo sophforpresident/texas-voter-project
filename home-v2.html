@@ -169,7 +169,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .social .txt { display: grid; gap: 12px; max-width: 36em; padding-inline: 4px; }
 
 /* Formats rail */
-.rail-sec { color: var(--paper); background: linear-gradient(rgba(31,74,107,.5), rgba(20,40,58,.82)), url(tvp-bg-baddies-vote.jpg) center 40% / cover; }
+.rail-sec { color: var(--paper); background: linear-gradient(rgba(31,74,107,.5), rgba(20,40,58,.82)), url(tvp-bg-voting-machine.jpg) center 45% / cover; }
 .rail-sec h2 { color: var(--paper); }
 .rail-sec .sec-head p { color: #c9dbe6; }
 .rail-top { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
@@ -388,12 +388,22 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 }
 
 /* ===== Photo-backed signup ===== */
-#join-the-party { background: linear-gradient(90deg, rgba(20,40,58,.85) 0%, rgba(20,40,58,.5) 45%, rgba(20,40,58,.15) 100%), url(tvp-bg-friends-shirts.jpg) center 30% / cover; color: #fff; border-top: var(--line); }
+#join-the-party { background: linear-gradient(90deg, rgba(20,40,58,.85) 0%, rgba(20,40,58,.5) 45%, rgba(20,40,58,.15) 100%), url(tvp-bg-baddies-vote.jpg) center 45% / cover; color: #fff; border-top: var(--line); }
 #join-the-party .join h2 { color: #fff; }
 #join-the-party .join .lead { color: #dbe7ef; }
 #join-the-party .form-card { color: var(--ink); }
-@media (max-width: 899px) { #join-the-party { background: linear-gradient(rgba(20,40,58,.86), rgba(20,40,58,.92)), url(tvp-bg-friends-shirts.jpg) center / cover; } }
+@media (max-width: 899px) { #join-the-party { background: linear-gradient(rgba(20,40,58,.86), rgba(20,40,58,.92)), url(tvp-bg-baddies-vote.jpg) center / cover; } }
 .rail-sec .sec-head h2, .rail-sec .sec-head p, .fund .sec-head h2, .fund .sec-head p, #join-the-party .join h2, #join-the-party .lead { text-shadow: 0 2px 14px rgba(0,0,0,.55); }
+
+/* ===== Hero collage v3: tight grid, one strip ===== */
+.collage { gap: 8px; grid-template-rows: repeat(12, 1fr); aspect-ratio: 1 / 1.02; }
+.c-main { grid-column: 1 / 10; grid-row: 1 / 8; object-position: 50% 35%; }
+.c-strip { grid-column: 10 / 13; grid-row: 1 / 10; object-position: top; z-index: 2; outline: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); transform: rotate(2.5deg) translate(4px, -6px); }
+.c-booth { grid-column: 1 / 6; grid-row: 8 / 13; object-position: 50% 40%; }
+.c-sticker { grid-column: 6 / 10; grid-row: 8 / 13; object-position: 50% 6%; }
+.collage .clip-a { left: -14px; top: -16px; }
+.collage .clip-b { right: -10px; top: auto; bottom: -14px; }
+@media (max-width: 520px) { .collage { gap: 5px; } .collage .clip-a { left: -6px; } .collage .clip-b { right: -4px; } }
 </style>
 </head>
 <body>
@@ -464,11 +474,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       </div>
 
       <div class="collage" aria-label="Photos from TVP events">
-        <img class="t c-patio" src="tvp-photo-beats-patio.jpg" alt="Three people talking over drinks on a sunny patio at Beats and Ballots, one in a Your Vote Is Sexy shirt" width="1100" height="1539">
+        <img class="t c-main" src="tvp-photo-friends-shirts.jpg" alt="Four friends arm in arm at a TVP bar night, three in Your Vote Is Sexy shirts" width="1300" height="892">
+        <img class="t c-strip" src="tvp-strip-race-costumes.jpg" alt="Photo-booth strip of friends in costume at Race to the Polls" width="520" height="1560">
         <img class="t c-booth" src="tvp-photo-voter-fest-booth.jpg" alt="Five friends in Your Vote Is Sexy shirts at the Voter Fest photo booth" width="734" height="455">
-        <img class="t c-vendor" src="tvp-photo-dogland-vendor.jpg" alt="A smiling vendor in a cowboy hat at his hand-painted shirt table" width="1400" height="933">
-        <img class="strip strip-a" src="tvp-strip-race-costumes.jpg" alt="Photo-booth strip of friends in costume at Race to the Polls" width="520" height="1560">
-        <img class="strip strip-b" src="tvp-strip-voterfest-election-protection.jpg" alt="Photo-booth strip from Voter Fest" width="520" height="1560">
+        <img class="t c-sticker" src="tvp-photo-i-voted-stickers.jpg" alt="A friend pointing at an I Voted sticker on a white T-shirt" width="800" height="925">
         <p class="clip clip-a"><span>Increasing</span> <span>Social Capital,</span></p>
         <p class="clip clip-b"><span>Not Just</span> <span class="r">Voter</span> <span>Turnout</span></p>
       </div>
