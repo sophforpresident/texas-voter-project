@@ -328,6 +328,33 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .clip-b { animation-delay: .35s; }
   @keyframes slap { from { opacity: .001; scale: 1.25; } to { opacity: 1; scale: 1; } }
 }
+
+/* ===== Collage with whole photo-booth strips ===== */
+.collage { grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); aspect-ratio: 1 / 1.08; max-width: 580px; }
+.c-patio { grid-column: 1 / 7; grid-row: 1 / 13; object-position: 62% 30%; }
+.c-booth { grid-column: 7 / 13; grid-row: 1 / 6; }
+.c-vendor { grid-column: 7 / 13; grid-row: 6 / 13; object-position: 45% 45%; }
+.strip { position: absolute; z-index: 3; width: 21%; height: auto; box-shadow: 6px 6px 0 var(--ink); outline: 2px solid var(--ink); }
+.strip-a { left: 3%; top: 47%; transform: rotate(-6deg); }
+.strip-b { right: -4%; top: 20%; width: 19%; transform: rotate(5deg); z-index: 2; }
+.clip-a { left: -14px; top: 6%; }
+.clip-b { right: -10px; top: auto; bottom: -4%; }
+@media (max-width: 520px) { .strip { box-shadow: 4px 4px 0 var(--ink); } .strip-b { right: -2%; } }
+
+/* ===== Sample-ballot chooser ===== */
+.ballot { margin-top: 34px; max-width: 560px; background: var(--card); border: var(--line); border-radius: 2px; box-shadow: var(--hard); }
+.ballot-top { display: flex; justify-content: space-between; gap: 12px; padding: 8px 16px; border-bottom: var(--line); font: 400 13px/1 var(--clip); text-transform: uppercase; letter-spacing: .06em; }
+.ballot fieldset { border: 0; margin: 0; padding: 0; }
+.ballot legend { display: block; width: 100%; background: var(--navy); color: #fff; padding: 10px 16px; font: 400 22px/1.1 var(--clip); text-transform: uppercase; letter-spacing: .02em; float: left; }
+.ballot legend small { display: block; font: 500 13px/1.4 var(--body); text-transform: none; letter-spacing: 0; color: #c9dbe6; margin-top: 2px; }
+.choice { clear: both; display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-bottom: 2px solid var(--ink); cursor: pointer; font-weight: 600; font-size: 18px; }
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.oval { flex: none; width: 46px; height: 22px; border: 2.5px solid var(--ink); border-radius: 50%; background: #fff; transition: background .15s ease; }
+.choice input:checked + .oval { background: var(--ink); box-shadow: inset 0 0 0 3px #fff; }
+.choice:hover .oval { background: #dfe9ee; }
+.choice input:checked + .oval { background: var(--ink); }
+.choice input:focus-visible + .oval { outline: 3px solid var(--green); outline-offset: 3px; }
+.ballot .panel { margin: 0; border: 0; border-radius: 0; box-shadow: none; padding: 18px 16px 20px; }
 </style>
 </head>
 <body>
@@ -373,35 +400,36 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <h1>Information <br class="br">tells you how. <span class="line2">Community <br class="br">tells you why.</span></h1>
         <p class="hero-lede">Texas Voter Project builds both for young Texans: plain-language guides to who holds power, and real-life third places where people actually want to show up.</p>
 
-        <div class="switch">
-          <p class="switch-label" id="switch-label">I'm here to&hellip;</p>
-          <div class="tabs" role="tablist" aria-labelledby="switch-label">
-            <button class="tab" role="tab" id="tab-show" aria-selected="true" aria-controls="panel-show">Find my people</button>
-            <button class="tab" role="tab" id="tab-fund" aria-selected="false" aria-controls="panel-fund" tabindex="-1">Back the work</button>
-          </div>
-          <div class="panel" role="tabpanel" id="panel-show" aria-labelledby="tab-show" data-for="show">
+        <form class="ballot" aria-labelledby="ballot-q" onsubmit="return false">
+          <div class="ballot-top"><span>Sample ballot</span><span lang="es">Boleta de muestra</span></div>
+          <fieldset>
+            <legend id="ballot-q">I'm here to <small>Fill in the oval next to your choice</small></legend>
+            <label class="choice"><input type="radio" name="path" value="show" id="pick-show" checked><span class="oval" aria-hidden="true"></span><span class="choice-t">Find my people</span></label>
+            <label class="choice"><input type="radio" name="path" value="fund" id="pick-fund"><span class="oval" aria-hidden="true"></span><span class="choice-t">Back the work</span></label>
+          </fieldset>
+          <div class="panel" id="panel-show" aria-live="polite">
             <p>Our events are small on purpose: pizza and ballot research, board game nights, trivia, pop-ups at the polls. Come once and you'll know people the next time.</p>
             <div class="row">
               <a href="events.html" class="btn btn-green">See upcoming events</a>
               <a href="https://form.qomon.org/4054abad-text-alerts-sign-up-texas-voter-project/" class="link" target="_blank" rel="noopener">Get event invites by text</a>
             </div>
           </div>
-          <div class="panel" role="tabpanel" id="panel-fund" aria-labelledby="tab-fund" data-for="fund" hidden>
+          <div class="panel" id="panel-fund" hidden>
             <p>TVP is a fiscally sponsored 501(c)(3) project working to raise civic participation among Texans 18 to 35. This fall we ran 21 events on about $20K in election-only grants.</p>
             <div class="row">
               <a href="#funders" class="btn btn-ink">See the details</a>
               <a href="donate.html" class="link">Give to TVP</a>
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
       <div class="collage" aria-label="Photos from TVP events">
-        <img class="t t1" src="tvp-photo-voter-fest-booth.jpg" alt="Five friends in Your Vote Is Sexy shirts at the Voter Fest photo booth" width="734" height="455">
-        <img class="t t5" src="tvp-photo-bar-crawl.jpg" alt="Friends at the bar during a TVP election night bar crawl" width="493" height="700">
-        <img class="t t2" src="tvp-photo-pinot-pizza-politics.jpg" alt="Friends holding sample ballots at a Pinot, Pizza and Politics night" width="700" height="525">
-        <img class="t t4" src="tvp-photo-ddvrd.jpg" alt="People at picnic tables on a string-lit patio during a trivia night" width="900" height="506">
-        <img class="t t3" src="tvp-photo-dtap.jpg" alt="A table of people playing a board game at Don't Talk About Politics" width="640" height="360">
+        <img class="t c-patio" src="tvp-photo-beats-patio.jpg" alt="Three people talking over drinks on a sunny patio at Beats and Ballots, one in a Your Vote Is Sexy shirt" width="1100" height="1539">
+        <img class="t c-booth" src="tvp-photo-voter-fest-booth.jpg" alt="Five friends in Your Vote Is Sexy shirts at the Voter Fest photo booth" width="734" height="455">
+        <img class="t c-vendor" src="tvp-photo-dogland-vendor.jpg" alt="A smiling vendor in a cowboy hat at his hand-painted shirt table" width="1400" height="933">
+        <img class="strip strip-a" src="tvp-strip-race-costumes.jpg" alt="Photo-booth strip of friends in costume at Race to the Polls" width="520" height="1560">
+        <img class="strip strip-b" src="tvp-strip-voterfest-election-protection.jpg" alt="Photo-booth strip from Voter Fest" width="520" height="1560">
         <p class="clip clip-a"><span>Increasing</span> <span>Social Capital,</span></p>
         <p class="clip clip-b"><span>Not Just</span> <span class="r">Voter</span> <span>Turnout</span></p>
       </div>
@@ -584,25 +612,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
 
-  var tabs = [].slice.call(document.querySelectorAll('.tab'));
-  function pick(t, focus) {
-    tabs.forEach(function (x) {
-      var on = x === t;
-      x.setAttribute('aria-selected', on ? 'true' : 'false');
-      x.tabIndex = on ? 0 : -1;
-      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
-    });
-    if (focus) t.focus();
+  var picks = document.querySelectorAll('input[name="path"]');
+  function show(v) {
+    document.getElementById('panel-show').hidden = v !== 'show';
+    document.getElementById('panel-fund').hidden = v !== 'fund';
   }
-  tabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { pick(t); });
-    t.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        e.preventDefault(); pick(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
-      }
-    });
-  });
-  if (location.hash === '#funders' || location.hash === '#fund') pick(tabs[1]);
+  picks.forEach(function (r) { r.addEventListener('change', function () { show(r.value); }); });
+  if (location.hash === '#funders' || location.hash === '#fund') { document.getElementById('pick-fund').checked = true; show('fund'); }
 
   var rail = document.getElementById('rail');
   document.querySelectorAll('.rail-ctrl button').forEach(function (b) {
