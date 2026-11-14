@@ -17,179 +17,302 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://texasvoterproject.org/tvp-share-seed-fund-v2.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
+<style>
+:root {
+  --ink: #1C3347; --navy: #1F4A6B; --deep: #142C40; --green: #178567; --forest: #123B2E;
+  --mint: #9FD6B8; --sky: #8EC3E6; --pink: #F33663; --red: #AB1337; --gold: #FFD037;
+  --white: #fff; --soft: #4C6578; --mintbg: #D3ECDF; --skybg: #DCEBF4;
+  --display: 'Ultra', Georgia, serif; --body: 'Work Sans', system-ui, -apple-system, sans-serif;
+  --line: 3px solid var(--ink);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+p, ul { margin: 0; }
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.btn { display: inline-flex; align-items: center; justify-content: center; font: 700 15.5px/1 var(--body); padding: 15px 26px; border: 0; border-radius: 999px; text-decoration: none; transition: filter .15s; cursor: pointer; }
+.btn:hover { filter: brightness(.92); }
+.btn-pink { background: var(--pink); color: #fff; } .btn-gold { background: var(--gold); color: var(--ink); } .btn-light { background: #fff; color: var(--ink); }
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+.kick { font-weight: 700; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 
-<style>
-.bloom{position:fixed;right:clamp(12px,2vw,32px);bottom:clamp(16px,4vh,40px);width:clamp(100px,8.5vw,128px);z-index:20;pointer-events:none;background:var(--cream-white);border:1.5px solid rgba(62,44,28,.18);border-radius:18px;padding:8px 8px 6px;box-shadow:var(--shadow-soft);text-align:center}
-.bloom-svg{display:block;width:100%;height:auto}
-.bloom-svg path{stroke-dasharray:1;stroke-dashoffset:1}
-.bloom-wash{transition:opacity .6s ease}
-.bloom-label{margin-top:2px;color:var(--ink);font:700 11px/1.3 "Work Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
-@media (max-width:900px){.bloom{display:none}}
-</style>
-<style>
-.seed-main > section{position:relative}
-.seed-main > section.section{overflow:hidden}
-.seed-main .grid-2,.seed-main .grid-3,.seed-main .grid-4{display:flex;flex-wrap:wrap;justify-content:center}
-.seed-main .grid-2>*{flex:0 1 520px}
-.seed-main .grid-3>*{flex:0 1 360px}
-.seed-main .grid-4>*{flex:0 1 260px}
-.seed-main .roadmap-grid>*{flex:0 1 480px}
-.bb{position:absolute;pointer-events:none;z-index:1;height:auto}
-.seed-main .container{position:relative;z-index:2}
-@media (max-width:900px){.bb{transform:scale(.6);transform-origin:center bottom;opacity:.7}.bb[style*="top:"]{display:none}}
-.partner-band{background:var(--ink);color:var(--cream-white);padding:26px 0 30px;overflow:hidden}
-.partner-band-title{margin:0 0 16px;font:600 13px/1.4 "Work Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-align:center}
-.marquee{display:flex;width:max-content;animation:tvp-marquee 140s linear infinite}
-.partner-band:hover .marquee{animation-play-state:paused}
-.marquee-track{display:flex;gap:12px;list-style:none;margin:0;padding:0 12px 0 0}
-.marquee-track li{white-space:nowrap;padding:8px 16px;border:1.5px solid rgba(248,241,228,.35);border-radius:999px;font:600 15px/1.2 "Work Sans",sans-serif}
-@keyframes tvp-marquee{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marquee{animation:none;width:auto;flex-wrap:wrap}.marquee-track{flex-wrap:wrap;justify-content:center;padding:0 16px}.marquee-track[aria-hidden]{display:none}}
+/* Header */
+.top { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; }
+.logo img { width: 88px; }
+.top nav { display: flex; align-items: center; gap: 26px; }
+.top nav a:not(.btn) { font-weight: 600; font-size: 15px; text-decoration: none; }
+.top nav a:not(.btn):hover { text-decoration: underline; text-underline-offset: 4px; }
+.top .btn { padding: 11px 18px; font-size: 14.5px; }
+@media (max-width: 880px) { .top nav a:not(.btn) { display: none; } .logo img { width: 74px; } .top .wrap { height: 64px; } }
+
+/* Hero */
+.hero { position: relative; min-height: min(86vh, 780px); display: grid; align-items: end; color: #fff; overflow: hidden; border-bottom: var(--line); background: var(--deep); }
+.hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,44,64,.2) 0%, rgba(20,44,64,.55) 45%, rgba(20,44,64,.92) 100%); }
+.hero .wrap { position: relative; z-index: 2; padding-block: 80px 70px; display: grid; gap: 22px; }
+.hero .kick { color: var(--gold); }
+.hero h1 { font: 400 clamp(38px, 6vw, 82px)/1.02 var(--display); max-width: 15ch; }
+.hero h1 span { color: var(--gold); }
+.hero p { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 46ch; }
+.hero .btns { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* Name band */
+.name { background: var(--pink); color: #fff; border-bottom: var(--line); }
+.name .wrap { padding-block: 34px; display: grid; grid-template-columns: auto 1fr; gap: 14px 40px; align-items: center; }
+.name h2 { font: 400 clamp(24px, 2.6vw, 32px)/1.1 var(--display); }
+.name p { font-size: 17px; font-weight: 500; max-width: 70ch; }
+@media (max-width: 800px) { .name .wrap { grid-template-columns: 1fr; } }
+
+/* Stage 0 */
+.zero .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(30px, 5vw, 70px); }
+.zero .kick { color: var(--green); }
+.zero .lead { display: grid; gap: 18px; align-content: start; }
+.zero .lead > p { font-size: 18px; }
+.nums { list-style: none; padding: 0; border-top: var(--line); margin-top: 10px; }
+.nums li { display: grid; grid-template-columns: 170px 1fr; gap: 18px; align-items: center; padding: 14px 0; border-bottom: 2px solid var(--ink); }
+.nums b { font: 400 clamp(34px, 4vw, 48px)/1 var(--display); }
+.nums li:nth-child(1) b { color: var(--pink); } .nums li:nth-child(2) b { color: var(--green); } .nums li:nth-child(3) b { color: var(--navy); } .nums li:nth-child(4) b { color: var(--red); }
+.notes { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 16px; }
+.notes h3 { font: 700 18px/1.3 var(--body); margin-bottom: 6px; }
+.notes p { font-size: 15.5px; color: var(--soft); }
+.zero figure { margin: 0; }
+.zero figure img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: 50% 15%; border: var(--line); }
+.zero figcaption { font-size: 14px; color: var(--soft); margin-top: 12px; }
+@media (max-width: 880px) { .zero .wrap { grid-template-columns: 1fr; } .zero figure { max-width: 420px; } .notes { grid-template-columns: 1fr; } .nums li { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Partners */
+.partners { background: var(--mintbg); border-top: var(--line); border-bottom: var(--line); }
+.partners .wrap { padding-block: 56px; display: grid; gap: 18px; }
+.partners .kick { color: var(--forest); }
+.plist { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; padding: 0; }
+.plist li { background: #fff; border-radius: 999px; padding: 7px 15px; font-weight: 600; font-size: 15px; }
+.partners details { font-size: 15px; color: var(--soft); }
+.partners summary { cursor: pointer; font-weight: 700; color: var(--forest); }
+.partners details p { margin-top: 10px; max-width: 110ch; }
+
+/* Statement over photo */
+.over { color: #fff; text-align: center; background: linear-gradient(rgba(20,44,64,.7), rgba(20,44,64,.86)), url(tvp-bg-bar-posters.jpg) center 35% / cover; border-bottom: var(--line); }
+.over .wrap { padding-block: clamp(90px, 12vw, 150px); display: grid; gap: 22px; justify-items: center; }
+.over h2 { font: 400 clamp(30px, 4vw, 50px)/1.12 var(--display); max-width: 22ch; }
+.over p { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 54ch; }
+
+/* Why seed */
+.why .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: start; }
+.why .kick { color: var(--red); }
+.why .intro { display: grid; gap: 18px; }
+.why .intro > p { font-size: 18px; }
+.why img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border: var(--line); margin-top: 8px; }
+.reasons { display: grid; gap: 0; border-top: var(--line); }
+.reasons div { padding: 22px 0; border-bottom: 2px solid var(--ink); display: grid; gap: 8px; }
+.reasons h3 { font: 400 22px/1.2 var(--display); color: var(--navy); }
+.reasons p { color: var(--soft); }
+@media (max-width: 880px) { .why .wrap { grid-template-columns: 1fr; } }
+
+/* Uses */
+.uses { background: var(--forest); color: #EAF4EE; border-top: var(--line); border-bottom: var(--line); }
+.uses .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(30px, 5vw, 70px); }
+.uses .kick { color: var(--mint); }
+.uses h2 { color: #fff; }
+.uses .l { display: grid; gap: 18px; align-content: start; }
+.uses .l > p { color: #CFE3D8; font-size: 18px; }
+.uses ul { list-style: none; padding: 0; border-top: 2px solid var(--mint); }
+.uses ul li { padding: 12px 0; border-bottom: 1px solid rgba(159,214,184,.35); font-weight: 500; }
+.hires { display: grid; gap: 18px; align-content: start; }
+.hire { background: #fff; color: var(--ink); border-radius: 10px; padding: 24px; display: grid; gap: 8px; }
+.hire span { font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--green); }
+.hire h3 { font: 400 22px/1.2 var(--display); color: var(--navy); }
+.hire p { color: var(--soft); font-size: 15.5px; }
+@media (max-width: 880px) { .uses .wrap { grid-template-columns: 1fr; } }
+
+/* Travel */
+.travel .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; gap: 22px; }
+.travel .kick { color: var(--navy); }
+.travel .wrap > p { font-size: 18px; max-width: 64ch; }
+.conf { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin-top: 6px; }
+.conf li { background: var(--skybg); border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 15px; }
+
+/* Roadmap */
+.road { background: var(--skybg); border-top: var(--line); border-bottom: var(--line); }
+.road .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; gap: 30px; }
+.road .kick { color: var(--navy); }
+.road .head p { font-size: 18px; margin-top: 12px; }
+.stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stage { background: #fff; border-radius: 10px; padding: 22px 20px; display: grid; gap: 10px; align-content: start; border-top: 8px solid var(--sky); }
+.stage:nth-child(1) { border-top-color: var(--green); } .stage:nth-child(2) { border-top-color: var(--gold); } .stage:nth-child(3) { border-top-color: var(--pink); } .stage:nth-child(4) { border-top-color: var(--red); }
+.stage .s { font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--soft); }
+.stage .amt { font: 400 clamp(28px, 2.6vw, 36px)/1 var(--display); }
+.stage h3 { font: 700 17px/1.3 var(--body); }
+.stage ul { padding-left: 18px; font-size: 15px; color: var(--soft); display: grid; gap: 4px; }
+.stage .never { margin-top: 6px; padding-top: 10px; border-top: 1px dashed #B9C8D3; font-size: 14.5px; color: var(--soft); }
+.stage .never b { color: var(--red); display: block; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+@media (max-width: 1000px) { .stages { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .stages { grid-template-columns: 1fr; } }
+
+/* Ask */
+.ask { display: grid; grid-template-columns: 1fr 1.1fr; background: var(--pink); color: #fff; border-bottom: var(--line); }
+.ask figure { margin: 0; }
+.ask figure img { width: 100%; height: 100%; object-fit: cover; border-right: var(--line); }
+.ask .t { padding: clamp(44px, 6vw, 90px) clamp(24px, 5vw, 70px); display: grid; gap: 20px; align-content: center; }
+.ask .kick { color: #FFE2E9; }
+.ask h2 { font: 400 clamp(34px, 4.6vw, 60px)/1.02 var(--display); }
+.ask p { font-size: 17.5px; font-weight: 500; }
+@media (max-width: 860px) { .ask { grid-template-columns: 1fr; } .ask figure img { aspect-ratio: 4 / 3; border-right: 0; border-bottom: var(--line); } }
+
+/* Give */
+.give .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; gap: 30px; }
+.give .kick { color: var(--green); }
+.levels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.lvl { border: 2px solid var(--ink); border-radius: 10px; padding: 22px 20px; display: grid; gap: 10px; align-content: start; }
+.lvl b { font: 400 34px/1 var(--display); color: var(--navy); }
+.lvl p { font-size: 15.5px; color: var(--soft); }
+.lvl.top { background: var(--forest); color: #fff; border-color: var(--forest); }
+.lvl.top b { color: var(--gold); } .lvl.top p { color: #D5E8DD; }
+.give .cta { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; }
+.give .fine { font-size: 14.5px; color: var(--soft); max-width: 80ch; }
+.give .mail { user-select: all; font-weight: 700; color: var(--ink); }
+@media (max-width: 1000px) { .levels { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .levels { grid-template-columns: 1fr; } }
+
+/* Footer */
+.foot { background: var(--ink); color: #C7D6E2; }
+.foot .wrap { padding-block: 56px; display: grid; grid-template-columns: 1.2fr 2fr 1fr; gap: 32px; }
+.foot h2 { font: 400 22px/1.2 var(--display); color: #fff; margin-bottom: 8px; }
+.foot nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; align-content: start; }
+.foot a { text-decoration: none; } .foot a:hover { text-decoration: underline; }
+.foot .fine { font-size: 13.5px; }
+@media (max-width: 760px) { .foot .wrap { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
 </style>
 </head>
 <body>
 
-<main class="seed-main">
-
-  <!-- HERO -->
-  <section class="hero hero-bg-maroon" style="padding-bottom:56px;">
-    <img src="tvp-bluebonnet-seedling-cream.svg" alt="" class="bb" style="left:4%; bottom:0; width:120px; opacity:.85;"><img src="tvp-bluebonnet-bloom-cream.svg" alt="" class="bb" style="right:5%; bottom:0; width:130px; opacity:.9;">
-  <header class="site-header site-header-overlay">
-    <div class="container">
-      <a href="index.html" class="logo"><img src="tvp-logo.png" alt="Texas Voter Project" class="logo-mark"></a>
-      <nav class="nav-desktop">
-        <a href="index.html">Home</a>
-        <a href="why-we-exist.html">Why We Exist</a>
-        <a href="know-your-government.html">Know Your Government</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="events.html">Events</a>
-        <a href="research.html">Research</a>
-        <a href="hot-takes.html">Hot Takes</a>
-        <a href="about.html">About</a>
-        <a href="shop.html">Shop</a>
-        <a href="donate.html" class="nav-cta">Donate</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F8F1E4" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-    <nav class="nav-mobile">
-      <a href="index.html">Home</a>
-      <a href="why-we-exist.html">Why We Exist</a>
-      <a href="know-your-government.html">Know Your Government</a>
-      <a href="get-involved.html">Get Involved</a>
+<header class="top">
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="tvp-logo.png" alt="Texas Voter Project home" width="140" height="104"></a>
+    <nav aria-label="Main">
       <a href="events.html">Events</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="why-we-exist.html">Why We Exist</a>
       <a href="research.html">Research</a>
-      <a href="hot-takes.html">Hot Takes</a>
       <a href="about.html">About</a>
-      <a href="shop.html">Shop</a>
-      <a href="donate.html" class="nav-cta">Donate</a>
+      <a href="#give" class="btn btn-pink">Become a seed funder</a>
     </nav>
-  </header>
-    <div class="container hero-inner center flex-col-center">
-      <span class="eyebrow" style="color:var(--gold);">Founding Seed Funders</span>
-      <h1 class="tvp-h" style="max-width:780px;">Election money built a moment. Seed money builds what lasts.</h1>
-      <p style="max-width:600px; color:#F1E4D6; margin:0 0 26px;">I'm looking for ten people to put $25,000 behind Texas Voter Project, so we can stop starting over every cycle and build the civic infrastructure young Texans deserve.</p>
-      <div class="hero-cta-row" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-        <a href="#give" class="btn btn-gold">Become a Seed Funder</a>
-        <a href="#roadmap" class="btn btn-outline">See the Roadmap</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" aria-labelledby="h">
+    <video src="tvp-vid-voterfest-courtyard.mp4" poster="tvp-vid-voterfest-courtyard.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    <div class="wrap">
+      <p class="kick">Founding seed funders</p>
+      <h1 id="h">Election money built a moment. <span>Seed money builds what lasts.</span></h1>
+      <p>I'm looking for ten people to put $25,000 behind Texas Voter Project, so we can stop starting over every cycle and build the civic infrastructure young Texans deserve.</p>
+      <div class="btns">
+        <a href="#give" class="btn btn-gold">Become a seed funder</a>
+        <a href="#roadmap" class="btn btn-light">See the roadmap</a>
       </div>
     </div>
   </section>
 
-  <!-- NAME CHANGE TEASER -->
-  <section class="bg-gold-pale" style="padding:28px 0;">
-    <div class="container center" style="max-width:760px;">
-      <span class="eyebrow" style="color:var(--red);">A new name is coming</span>
-      <p style="color:var(--ink); line-height:1.65; margin:0;">We don't want to be thought of as an organization that only works on turnout around elections. Voting will always be part of what we do, but the work is bigger than one day every two years: it's helping young Texans take part in civic life all year long. So we're growing into a name that says that. We'll reveal it at our relaunch party this December. Fair warning: it's a word you might have to look up.</p>
+  <section class="name" aria-labelledby="name-h">
+    <div class="wrap">
+      <h2 id="name-h">A new name is coming</h2>
+      <p>Voting will always be part of what we do, but the work is bigger than one day every two years. We're growing into a name that says that, and we'll reveal it at our relaunch party this December. Fair warning: it's a word you might have to look up.</p>
     </div>
   </section>
 
-  <!-- STAGE 0: WHAT WE DID -->
-  <section class="section bg-cream-white">
-    <img src="tvp-bluebonnet-sprout-ink.svg" alt="" class="bb" style="right:7%; top:50px; width:130px;">
-    <div class="container">
-      <div style="max-width:720px; margin-bottom:36px;">
-        <span class="eyebrow" style="color:var(--red);">Stage 0 &middot; Fall 2026</span>
-        <h2 class="tvp-h" style="font-size:clamp(24px,4vw,34px); margin-bottom:14px;">Less than three months of funding. Over 500 real relationships.</h2>
-        <p style="color:var(--ink-soft); line-height:1.65; margin:0;">This fall, TVP received $20,000 in grants earmarked for the election. In under three months, we turned it into trivia nights, bar crawls, dog-friendly polling pop-ups, run clubs and a voter festival, and built over 500 real relationships along the way. We're matching sign-ins against the voter file now, and we expect the turnout number to make us proud.</p>
-      </div>
-
-      <div class="grid-4" style="margin-bottom:36px;">
-        <div class="stat-tile" style="background:var(--red);"><div class="num tvp-h">500+</div><div class="label">real relationships built this fall</div></div>
-        <div class="stat-tile" style="background:var(--green);"><div class="num tvp-h">&lt; 3 mo</div><div class="label">from first grant dollar to Election Day</div></div>
-        <div class="stat-tile" style="background:var(--pink);"><div class="num tvp-h">+418</div><div class="label">new Instagram followers this year</div></div>
-        <div class="stat-tile" style="background:var(--teal);"><div class="num tvp-h">$0</div><div class="label">in rent. This work runs on relationships.</div></div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="badge-inline" style="color:var(--red); margin-bottom:10px;">A sign-in is more than a head count</div>
-          <p style="font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0;">Our events are intentional. The young Texans we reach are skeptical of formal political institutions and don't usually show up for political organizations, so trust comes first. Some signed in, some follow us on Instagram, and some just keep coming back with friends. That's over 500 real relationships, and the start of a network. Imagine what it becomes with a real staff behind it.</p>
-        </div>
-        <div class="card">
-          <div class="badge-inline" style="color:var(--green); margin-bottom:10px;">Then it all went away</div>
-          <p style="font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0;">Every dollar was tied to the election, and none of it could go toward the tools, travel or staff it takes to run a nonprofit. On November 4, the funding ended. The relationships didn't, and neither did the work.</p>
+  <section class="zero" aria-labelledby="zero-h">
+    <div class="wrap">
+      <div class="lead">
+        <p class="kick">Stage 0 &middot; Fall 2026</p>
+        <h2 id="zero-h" class="big">Less than three months of funding. Over 500 real relationships.</h2>
+        <p>This fall, TVP received $20,000 in grants earmarked for the election. In under three months, we turned it into trivia nights, bar crawls, dog-friendly polling pop-ups, run clubs and a voter festival. We're matching sign-ins against the voter file now, and we expect the turnout number to make us proud.</p>
+        <ul class="nums">
+          <li><b>500+</b><span>real relationships built this fall</span></li>
+          <li><b>21</b><span>events, from trivia nights to Voter Fest</span></li>
+          <li><b>&lt; 3 mo</b><span>from first grant dollar to Election Day</span></li>
+          <li><b>$0</b><span>in rent. This work runs on relationships.</span></li>
+        </ul>
+        <div class="notes">
+          <div><h3>A sign-in is more than a head count</h3><p>The young Texans we reach are skeptical of formal political institutions, so trust comes first. Some signed in, some follow us online, and some just keep coming back with friends. That's the start of a network.</p></div>
+          <div><h3>Then it all went away</h3><p>Every dollar was tied to the election, and none of it could go toward the tools, travel or staff it takes to run a nonprofit. On November 4, the funding ended. The relationships didn't, and neither did the work.</p></div>
         </div>
       </div>
+      <figure>
+        <img src="tvp-photo-jrn-table.jpg" alt="Two volunteers waving small flags at a voter registration table" width="700" height="1256" loading="lazy">
+        <figcaption>Registering voters with the Joy Resistance Network, Austin, fall 2026.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- THE REAL WORK -->
-  <!-- PARTNER MARQUEE -->
-  <section class="partner-band" aria-labelledby="partners-title">
-    <div class="container"><p id="partners-title" class="partner-band-title">In good company: the partners and coalitions we built this fall with, including the Texas Election Protection coalition</p></div>
-    <div class="marquee">
-      <ul class="marquee-track"><li>Texas Youth Power Alliance</li><li>Joy Resistance Network</li><li>Radical Registrars</li><li>Este Poder</li><li>Commission Shift</li><li>When We All Vote</li><li>Civitech</li><li>SEAT</li><li>Dogland</li><li>Body Art Run Club</li><li>Shelton Art Co</li><li>Deeds Not Words</li><li>Center for Artistic Activism</li><li>San Antonio Area Foundation</li><li>Planned Parenthood Advocates of Texas</li><li>The Flock</li><li>Jolt</li><li>Grita Canta Vota</li><li>Texas Civil Rights Project</li><li>Common Cause Texas</li><li>League of Women Voters of Texas</li><li>MOVE Texas</li><li>Mi Familia Vota</li><li>SAAVE TX Education Fund</li><li>Poder Latinx</li><li>URGE</li><li>ACLU of Texas</li><li>Texas Freedom Network</li><li>Texas Impact</li><li>Workers Defense Project</li><li>United We Dream</li><li>LUPE</li><li>Voces Unidas RGV</li><li>Asian Texans for Justice</li><li>AALDEF</li><li>NAACP Legal Defense Fund</li><li>NALEO Educational Fund</li><li>Campaign Legal Center</li><li>Lawyers' Committee for Civil Rights Under Law</li><li>VoteRiders</li><li>Black Voters Matter Fund</li><li>Disability Rights Texas</li><li>Houston in Action</li><li>Houston Area Urban League</li><li>Arise Adelante</li><li>LEAD Filipino</li><li>Laredo Immigrant Alliance</li><li>Interfaith Welcome Coalition</li><li>Somos Tejas</li><li>ActiVote</li><li>SEIU Texas</li><li>Indivisible</li><li>Common Defense</li><li>Local Progress</li></ul>
-      <ul class="marquee-track" aria-hidden="true"><li>Texas Youth Power Alliance</li><li>Joy Resistance Network</li><li>Radical Registrars</li><li>Este Poder</li><li>Commission Shift</li><li>When We All Vote</li><li>Civitech</li><li>SEAT</li><li>Dogland</li><li>Body Art Run Club</li><li>Shelton Art Co</li><li>Deeds Not Words</li><li>Center for Artistic Activism</li><li>San Antonio Area Foundation</li><li>Planned Parenthood Advocates of Texas</li><li>The Flock</li><li>Jolt</li><li>Grita Canta Vota</li><li>Texas Civil Rights Project</li><li>Common Cause Texas</li><li>League of Women Voters of Texas</li><li>MOVE Texas</li><li>Mi Familia Vota</li><li>SAAVE TX Education Fund</li><li>Poder Latinx</li><li>URGE</li><li>ACLU of Texas</li><li>Texas Freedom Network</li><li>Texas Impact</li><li>Workers Defense Project</li><li>United We Dream</li><li>LUPE</li><li>Voces Unidas RGV</li><li>Asian Texans for Justice</li><li>AALDEF</li><li>NAACP Legal Defense Fund</li><li>NALEO Educational Fund</li><li>Campaign Legal Center</li><li>Lawyers' Committee for Civil Rights Under Law</li><li>VoteRiders</li><li>Black Voters Matter Fund</li><li>Disability Rights Texas</li><li>Houston in Action</li><li>Houston Area Urban League</li><li>Arise Adelante</li><li>LEAD Filipino</li><li>Laredo Immigrant Alliance</li><li>Interfaith Welcome Coalition</li><li>Somos Tejas</li><li>ActiVote</li><li>SEIU Texas</li><li>Indivisible</li><li>Common Defense</li><li>Local Progress</li></ul>
+  <section class="partners" aria-labelledby="p-h">
+    <div class="wrap">
+      <p class="kick" id="p-h">Who we built with this fall</p>
+      <ul class="plist">
+        <li>Texas Youth Power Alliance</li>
+        <li>Joy Resistance Network</li>
+        <li>Radical Registrars</li>
+        <li>Este Poder</li>
+        <li>Commission Shift</li>
+        <li>When We All Vote</li>
+        <li>Civitech</li>
+        <li>SEAT</li>
+        <li>Dogland</li>
+        <li>Body Art Run Club</li>
+        <li>Shelton Art Co</li>
+        <li>Deeds Not Words</li>
+        <li>Center for Artistic Activism</li>
+        <li>San Antonio Area Foundation</li>
+        <li>Planned Parenthood Advocates of Texas</li>
+        <li>The Flock</li>
+        <li>Jolt</li>
+        <li>Grita Canta Vota</li>
+      </ul>
+      <details>
+        <summary>Plus 36 more organizations in the Texas Election Protection coalition</summary>
+        <p>Texas Civil Rights Project, Common Cause Texas, League of Women Voters of Texas, MOVE Texas, Mi Familia Vota, SAAVE TX Education Fund, Poder Latinx, URGE, ACLU of Texas, Texas Freedom Network, Texas Impact, Workers Defense Project, United We Dream, LUPE, Voces Unidas RGV, Asian Texans for Justice, AALDEF, NAACP Legal Defense Fund, NALEO Educational Fund, Campaign Legal Center, Lawyers' Committee for Civil Rights Under Law, VoteRiders, Black Voters Matter Fund, Disability Rights Texas, Houston in Action, Houston Area Urban League, Arise Adelante, LEAD Filipino, Laredo Immigrant Alliance, Interfaith Welcome Coalition, Somos Tejas, ActiVote, SEIU Texas, Indivisible, Common Defense, Local Progress.</p>
+      </details>
     </div>
   </section>
 
-  <section class="section bg-forest" style="color:var(--cream-white);">
-    <img src="tvp-bluebonnet-sprout-cream.svg" alt="" class="bb" style="left:5%; bottom:0; width:140px;"><img src="tvp-bluebonnet-sprout-cream.svg" alt="" class="bb" style="right:6%; bottom:0; width:110px;">
-    <div class="container">
-      <p class="quote-block tvp-h" style="margin-bottom:22px;">Turnout is what you see on Election Day. The power behind it gets built in the off years.</p>
-      <p class="center" style="max-width:680px; margin:0 auto; line-height:1.7; color:#E6EFE9;">Election Day gets the attention. The real work is slower and longer: building social capital, civic infrastructure and lasting civic power among young Texans in the off cycle, when no one is paying for it. That's when trust gets built with neighbors, with newly elected leaders, and with the institutions that are supposed to answer to us.</p>
+  <section class="over">
+    <div class="wrap">
+      <h2>Turnout is what you see on Election Day. The power behind it gets built in the off years.</h2>
+      <p>The real work is slower: building social capital, civic infrastructure and lasting civic power among young Texans in the off cycle, when no one is paying for it. That's when trust gets built with neighbors, with newly elected leaders, and with the institutions that are supposed to answer to us.</p>
     </div>
   </section>
 
-  <!-- WHY SEED MONEY -->
-  <section class="section bg-mint">
-    <img src="tvp-bluebonnet-seedling-ink.svg" alt="" class="bb" style="right:6%; top:40px; width:140px;">
-    <div class="container">
-      <div style="max-width:720px; margin-bottom:36px;">
-        <span class="eyebrow" style="color:var(--green);">Why Seed Money</span>
-        <h2 class="tvp-h" style="font-size:clamp(24px,4vw,34px); margin-bottom:14px;">It costs money to raise money.</h2>
-        <p style="color:var(--ink-soft); line-height:1.65; margin:0;">No one expects a startup to build its product, pay for its own pitch meetings and fund its first hires out of its first customer's order. A new nonprofit is a startup too, and it needs seed capital for the same reasons.</p>
+  <section class="why" aria-labelledby="why-h">
+    <div class="wrap">
+      <div class="intro">
+        <p class="kick">Why seed money</p>
+        <h2 id="why-h" class="big">It costs money to raise money.</h2>
+        <p>No one expects a startup to build its product, pay for its own pitch meetings and fund its first hires out of its first customer's order. A new nonprofit is a startup too, and it needs seed capital for the same reasons.</p>
+        <img src="tvp-photo-ppp-table.jpg" alt="Young voters researching their ballots around a table at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy">
       </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="badge-inline" style="color:var(--red); margin-bottom:10px;">Grants come with strings</div>
-          <p style="font-size:14px; line-height:1.65; color:var(--ink-soft); margin:0;">We are absolutely going after grants, and we'll keep winning them. But every grant TVP received this year was for program spending only. None of it can keep the lights on between cycles.</p>
-        </div>
-        <div class="card">
-          <div class="badge-inline" style="color:var(--pink); margin-bottom:10px;">The founder has been the subsidy</div>
-          <p style="font-size:14px; line-height:1.65; color:var(--ink-soft); margin:0;">I've never drawn a paycheck from TVP. The travel, the lunch meetings and the conferences that earn a foundation's trust have all gone on my personal credit card, including every conference I've attended this year. I can't keep building this on debt.</p>
-        </div>
-        <div class="card">
-          <div class="badge-inline" style="color:var(--teal); margin-bottom:10px;">Seed money unlocks the rest</div>
-          <p style="font-size:14px; line-height:1.65; color:var(--ink-soft); margin:0;">Flexible money pays for the tools, the travel and the people that bring in larger, multi-year grants. Every seed dollar is built to bring more dollars in after it.</p>
-        </div>
+      <div class="reasons">
+        <div><h3>Grants come with strings</h3><p>We are absolutely going after grants, and we'll keep winning them. But every grant TVP received this year was for program spending only. None of it can keep the lights on between cycles.</p></div>
+        <div><h3>The founder has been the subsidy</h3><p>I've never drawn a paycheck from TVP. The travel, the lunch meetings and the conferences that earn a foundation's trust have all gone on my personal credit card. I can't keep building this on debt.</p></div>
+        <div><h3>Seed money unlocks the rest</h3><p>Flexible money pays for the tools, the travel and the people that bring in larger, multi-year grants. Every seed dollar is built to bring more dollars in after it.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- HOW SEED FUNDS ARE USED -->
-  <section class="section bg-cream-white">
-    <div class="container two-col" style="align-items:start;">
-      <div>
-        <span class="eyebrow" style="color:var(--red);">How Seed Funds Are Used</span>
-        <h2 class="tvp-h" style="font-size:clamp(22px,3.6vw,30px); margin-bottom:14px;">Backbone first. Salaries once the floor is solid.</h2>
-        <p style="color:var(--ink-soft); line-height:1.65; margin:0 0 14px;">Seed funds don't go to salaries until the fund reaches our Stage 1 goal of $190,000. Until then, every dollar goes into the backbone a brand-new nonprofit needs:</p>
-        <ul style="color:var(--ink-soft); line-height:1.8; padding-left:20px; margin:0;">
+  <section class="uses" aria-labelledby="uses-h">
+    <div class="wrap">
+      <div class="l">
+        <p class="kick">How seed funds are used</p>
+        <h2 id="uses-h" class="big">Backbone first. Salaries once the floor is solid.</h2>
+        <p>Seed funds don't go to salaries until the fund reaches our Stage 1 goal of $190,000. Until then, every dollar goes into the backbone a brand-new nonprofit needs:</p>
+        <ul>
           <li>Organizing and data tools like Qomon and RunningMate</li>
           <li>Grant research through Instrumentl</li>
           <li>Travel to the conferences and convenings where funders meet new organizations</li>
@@ -197,328 +320,120 @@
           <li>The everyday systems that make an organization credible</li>
         </ul>
       </div>
-      <div style="display:flex; flex-direction:column; gap:18px;">
-        <div class="card">
-          <div class="badge-inline" style="color:var(--green); margin-bottom:10px;">First hire &middot; Development</div>
-          <p style="font-size:14px; line-height:1.65; color:var(--ink-soft); margin:0;">A fundraising consultant who brings in the grants, so seed money grows into a sustainable budget.</p>
-        </div>
-        <div class="card">
-          <div class="badge-inline" style="color:var(--pink); margin-bottom:10px;">Second hire &middot; Communications</div>
-          <p style="font-size:14px; line-height:1.65; color:var(--ink-soft); margin:0;">Communications is the piece I can't cover alone, and consistent communication is how a young organization earns its legitimacy.</p>
-        </div>
+      <div class="hires">
+        <div class="hire"><span>First hire</span><h3>Development</h3><p>A fundraising consultant who brings in the grants, so seed money grows into a sustainable budget.</p></div>
+        <div class="hire"><span>Second hire</span><h3>Communications</h3><p>Communications is the piece I can't cover alone, and consistent communication is how a young organization earns its legitimacy.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- TRAVEL, SPELLED OUT -->
-  <section class="section bg-teal-pale">
-    <img src="tvp-bluebonnet-bud-ink.svg" alt="" class="bb" style="right:6%; top:30px; width:120px;">
-    <div class="container">
-      <div style="max-width:720px; margin-bottom:28px;">
-        <span class="eyebrow" style="color:var(--red);">What "Travel" Means</span>
-        <h2 class="tvp-h" style="font-size:clamp(22px,3.6vw,30px); margin-bottom:14px;">This is where funders and partners decide who they trust.</h2>
-        <p style="color:var(--ink-soft); line-height:1.65; margin:0;">When we say travel, we mean these rooms. They're where national funders, coalition partners and peer organizations meet new groups, and where a young Texas organization either gets known or gets overlooked. Here are the conferences and convenings we're working to be in the room for, and the list keeps growing.</p>
+  <section class="travel" aria-labelledby="tr-h">
+    <div class="wrap">
+      <p class="kick">What "travel" means</p>
+      <h2 id="tr-h" class="big">This is where funders and partners decide who they trust.</h2>
+      <p>When we say travel, we mean these rooms. They're where national funders, coalition partners and peer organizations meet new groups, and where a young Texas organization either gets known or gets overlooked. Here are the conferences and convenings we're working to be in the room for.</p>
+      <ul class="conf">
+        <li>Crooked Con</li>
+        <li>Facing Race</li>
+        <li>NANR</li>
+        <li>BISC Road Ahead</li>
+        <li>America Votes</li>
+        <li>Hispanics in Philanthropy</li>
+        <li>Netroots Nation</li>
+        <li>Democracy Alliance</li>
+        <li>Climate Week</li>
+        <li>Aspen Ideas Festival</li>
+        <li>NALEO</li>
+        <li>Color of Change</li>
+        <li>Power of Pink</li>
+        <li>State Voices</li>
+        <li>Higher Ground Labs</li>
+        <li>Gain Power</li>
+        <li>FCCP</li>
+        <li>Committee on States</li>
+        <li>PolicyLink</li>
+        <li>Independent Sector</li>
+        <li>Echoing Green Just Futures</li>
+        <li>Dream for America Democracy Summit</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="road" id="roadmap" aria-labelledby="rd-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="kick">The roadmap</p>
+        <h2 id="rd-h" class="big">From Stage 0 to statewide.</h2>
+        <p>There's no building to rent. Nearly every dollar goes to people building trust with other people.</p>
       </div>
-      <div style="display:flex; flex-wrap:wrap; gap:10px;">
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Crooked Con</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Facing Race</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">NANR</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">BISC Road Ahead</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">America Votes</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Hispanics in Philanthropy</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Netroots Nation</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Democracy Alliance</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Climate Week</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Aspen Ideas Festival</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">NALEO</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Color of Change</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Power of Pink</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">State Voices</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Higher Ground Labs</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Gain Power</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">FCCP</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Committee on States</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">PolicyLink</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Independent Sector</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Echoing Green Just Futures</span>
-          <span style="display:inline-block; background:var(--cream-white); border:1.5px solid var(--ink); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; color:var(--ink);">Dream for America Democracy Summit</span>
+      <div class="stages">
+        <article class="stage">
+          <p class="s">Stage 0 &middot; Done</p><p class="amt">$20,000</p><h3>Election-only grants, fall 2026</h3>
+          <ul><li>5 voter registration events</li><li>10 Pups to the Polls pop-ups</li><li>5 community events</li><li>1 early-voting festival, Voter Fest</li></ul>
+          <p class="never"><b>Never paid for</b>Executive Director salary: $0. Support staff: volunteers only. Tools, travel and operations: $17,885 in 2026 that no grant could cover, mostly on my credit card.</p>
+        </article>
+        <article class="stage">
+          <p class="s">Stage 1</p><p class="amt">$190,000</p><h3>A real team in Austin</h3>
+          <ul><li>Executive Director salary</li><li>Part-time development director</li><li>Part-time communications</li><li>Tools, travel and operations</li></ul>
+        </article>
+        <article class="stage">
+          <p class="s">Stage 2</p><p class="amt">$325,000</p><h3>Consistent voice, a second city</h3>
+          <ul><li>Executive Director salary</li><li>Part-time development director</li><li>Full-time communications director</li><li>Part-time organizer in a second city</li><li>Tools, travel and operations</li></ul>
+        </article>
+        <article class="stage">
+          <p class="s">Stage 3</p><p class="amt">$535,000</p><h3>Organizers across Texas</h3>
+          <ul><li>Executive Director salary</li><li>Part-time development director</li><li>Full-time communications director</li><li>Full-time organizers in San Antonio, Houston and the Rio Grande Valley</li><li>Tools, travel and operations</li></ul>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ROADMAP -->
-  <section id="roadmap" class="section" style="background:var(--green-pale);">
-    <img src="tvp-bluebonnet-bloom-ink.svg" alt="" class="bb" style="right:6%; top:20px; width:120px;">
-    <div class="container">
-      <div style="max-width:720px; margin-bottom:36px;">
-        <span class="eyebrow" style="color:var(--red);">The Roadmap</span>
-        <h2 class="tvp-h" style="font-size:clamp(24px,4vw,34px); margin-bottom:14px;">From Stage 0 to statewide.</h2>
-        <p style="color:var(--ink-soft); line-height:1.65; margin:0;">There's no building to rent. Nearly every dollar goes to people building trust with other people.</p>
-      </div>
-
-      <div class="grid-3 roadmap-grid">
-        <div class="card" style="border:2px dashed rgba(62,44,28,.35); background:transparent; box-shadow:none;">
-          <span class="tier-tag" style="background:var(--cream-white);">Stage 0 &middot; Done</span>
-          <div class="tvp-h" style="font-size:30px; margin-bottom:6px;">$20,000</div>
-          <p style="font-size:13.5px; color:var(--muted); margin:0 0 14px;">Election-only grants, fall 2026</p>
-          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0 0 14px;">
-            <li>5 voter registration events</li>
-            <li>10 Pups to the Polls pop-ups</li>
-            <li>5 community events</li>
-            <li>1 large early-voting festival, Voter Fest</li>
-          </ul>
-          <p style="font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--red); margin:0 0 6px;">Never paid for</p>
-          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0;">
-            <li>Executive Director salary: $0</li>
-            <li>Support staff: volunteers only</li>
-            <li>Tools, travel and operations: $17,885 in 2026 that no grant could cover, mostly on my credit card</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="tier-tag" style="background:var(--green-pale);">Stage 1</span>
-          <div class="tvp-h" style="font-size:30px; margin-bottom:6px;">$190,000</div>
-          <p style="font-size:13.5px; color:var(--muted); margin:0 0 14px;">A real team in Austin</p>
-          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0;">
-            <li>Executive Director salary</li>
-            <li>Part-time development director</li>
-            <li>Part-time communications</li>
-            <li>Tools, travel and operations</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="tier-tag" style="background:var(--teal-pale);">Stage 2</span>
-          <div class="tvp-h" style="font-size:30px; margin-bottom:6px;">$325,000</div>
-          <p style="font-size:13.5px; color:var(--muted); margin:0 0 14px;">Consistent voice, a second city</p>
-          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0;">
-            <li>Executive Director salary</li>
-            <li>Part-time development director</li>
-            <li>Full-time communications director</li>
-            <li>Part-time organizer in a second city</li>
-            <li>Tools, travel and operations</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="tier-tag" style="background:#F8C6D2;">Stage 3</span>
-          <div class="tvp-h" style="font-size:30px; margin-bottom:6px;">$535,000</div>
-          <p style="font-size:13.5px; color:var(--muted); margin:0 0 14px;">Organizers across Texas</p>
-          <ul style="font-size:14px; line-height:1.75; color:var(--ink-soft); padding-left:18px; margin:0;">
-            <li>Executive Director salary</li>
-            <li>Part-time development director</li>
-            <li>Full-time communications director</li>
-            <li>Full-time organizers in San Antonio, Houston and the Rio Grande Valley</li>
-            <li>Tools, travel and operations</li>
-          </ul>
-        </div>
-      </div>
+  <section class="ask" aria-labelledby="ask-h">
+    <figure><img src="tvp-photo-ppp-group.jpg" alt="Friends laughing together with a pizza box at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy"></figure>
+    <div class="t">
+      <p class="kick">The ask</p>
+      <h2 id="ask-h">Ten people. $25,000 each.</h2>
+      <p>Ten founding seed funders fully funds Stage 1 and puts us well on the way to Stage 2: a paid team, a development director bringing in grants, consistent communications, and a path to our first organizer outside Austin. That's a real organization, ready to compete for the multi-year funding that sustains it.</p>
+      <p>I'll be straight with you. Without it, I'll have to step back and go do this work the way it's always been done, inside an institution where it's safe. I don't think Texas needs more of the same, and the more than 500 people who showed up this fall tell me they don't either. I'd much rather build the new thing with you.</p>
     </div>
   </section>
 
-  <!-- THE ASK -->
-  <section class="section bg-red" style="color:var(--cream-white);">
-    <img src="tvp-bluebonnet-bud-cream.svg" alt="" class="bb" style="left:5%; bottom:0; width:110px;"><img src="tvp-bluebonnet-bloom-cream.svg" alt="" class="bb" style="right:5%; bottom:0; width:130px;">
-    <div class="container center flex-col-center">
-      <span class="eyebrow" style="color:var(--gold);">The Ask</span>
-      <h2 class="tvp-h" style="font-size:clamp(28px,5vw,44px); max-width:760px; margin-bottom:18px;">Ten people. $25,000 each.</h2>
-      <p style="max-width:660px; line-height:1.7; margin:0 0 14px; color:#FBE3E8;">Ten founding seed funders fully funds Stage 1 and puts us well on the way to Stage 2: a paid team, a development director bringing in grants, consistent communications, and a path to our first organizer outside Austin. That's a real organization, ready to compete for the multi-year funding that sustains it.</p>
-      <p style="max-width:660px; line-height:1.7; margin:0; color:#FBE3E8;">I'll be straight with you. Without it, I'll have to step back and go do this work the way it's always been done, inside an institution where it's safe. I don't think Texas needs more of the same, and the more than 500 people who showed up this fall tell me they don't either. I'd much rather build the new thing with you.</p>
-    </div>
-  </section>
-
-  <!-- GIVING LEVELS -->
-  <section id="give" class="section bg-cream-white">
-    <div class="container">
-      <div style="max-width:720px; margin-bottom:36px;">
-        <span class="eyebrow" style="color:var(--green);">Giving Levels</span>
-        <h2 class="tvp-h" style="font-size:clamp(24px,4vw,34px); margin-bottom:14px;">Every seed gift builds the backbone.</h2>
+  <section class="give" id="give" aria-labelledby="give-h">
+    <div class="wrap">
+      <div>
+        <p class="kick">Giving levels</p>
+        <h2 id="give-h" class="big">Every seed gift builds the backbone.</h2>
       </div>
-      <div class="grid-4" style="margin-bottom:32px;">
-        <div class="card">
-          <div class="tvp-h" style="font-size:26px; color:var(--teal); margin-bottom:8px;">$1,000</div>
-          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:0;">Keeps our voter data tool running for about three months, so we can keep inviting new people in.</p>
-        </div>
-        <div class="card">
-          <div class="tvp-h" style="font-size:26px; color:var(--green); margin-bottom:8px;">$5,000</div>
-          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:0;">Covers a year of the organizing and fundraising systems that track every relationship from first event to lifelong volunteer.</p>
-        </div>
-        <div class="card">
-          <div class="tvp-h" style="font-size:26px; color:var(--pink); margin-bottom:8px;">$10,000</div>
-          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:0;">Funds about five months of our development director, the hire whose whole job is turning seed money into grants.</p>
-        </div>
-        <div class="card" style="border:3px solid var(--red);">
-          <div class="tvp-h" style="font-size:26px; color:var(--red); margin-bottom:8px;">$25,000</div>
-          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:0;"><strong>Founding Seed Funder.</strong> One of the ten people who take TVP from a founder-funded project to a staffed organization.</p>
-        </div>
+      <div class="levels">
+        <div class="lvl"><b>$1,000</b><p>Keeps our voter data tool running for about three months, so we can keep inviting new people in.</p></div>
+        <div class="lvl"><b>$5,000</b><p>Covers a year of the organizing and fundraising systems that track every relationship from first event to lifelong volunteer.</p></div>
+        <div class="lvl"><b>$10,000</b><p>Funds about five months of our development director, the hire whose whole job is turning seed money into grants.</p></div>
+        <div class="lvl top"><b>$25,000</b><p>Founding Seed Funder. One of the ten people who take TVP from a founder-funded project to a staffed organization.</p></div>
       </div>
-      <div class="center flex-col-center">
-        <a href="https://texas-voter-project.raiselysite.com/seed-fund?source=seed-fund" target="_blank" rel="noopener" class="btn btn-red" style="margin-bottom:14px;">Become a Seed Funder</a>
-        <p style="font-size:13px; color:var(--muted); max-width:560px; margin:0;">Prefer to give by check, wire or DAF, or want to talk first? <a href="donate.html#give" style="color:var(--green); font-weight:600;">See other ways to give</a> or email <a href="mailto:sophia@texasvoterproject.org" style="color:var(--green); font-weight:600;">sophia@texasvoterproject.org</a>.</p>
-        <p style="font-size:12px; color:var(--muted); max-width:560px; margin:14px 0 0;">Texas Voter Project is a fiscally sponsored project of Future Incubator, a 501(c)(3) (EIN 33-3913132). Gifts are tax-deductible to the extent allowed by law.</p>
+      <div class="cta">
+        <a href="https://texas-voter-project.raiselysite.com/seed-fund?source=seed-fund" class="btn btn-pink" target="_blank" rel="noopener">Become a seed funder</a>
+        <p>Prefer a check, wire or DAF, or want to talk first? <a href="donate.html#give">See other ways to give</a> or email <span class="mail">sophia@texasvoterproject.org</span></p>
       </div>
+      <p class="fine">Texas Voter Project is a fiscally sponsored project of Future Incubator, a 501(c)(3) (EIN 33-3913132). Gifts are tax-deductible to the extent allowed by law.</p>
     </div>
   </section>
 
 </main>
 
-<!-- Scroll-driven bluebonnet: a seed grows into a bluebonnet as you read -->
-<div class="bloom" aria-hidden="true">
-  
-<svg viewBox="0 0 160 260" class="bloom-svg" aria-hidden="true">
-<g class="bloom-wash" opacity="0"><ellipse cx="66.5" cy="131.0" rx="8.6" ry="9.8" fill="#6F95CF"/><ellipse cx="95.6" cy="124.9" rx="8.3" ry="9.4" fill="#6F95CF"/><ellipse cx="81.5" cy="118.7" rx="8.0" ry="9.1" fill="#6F95CF"/><ellipse cx="69.1" cy="112.6" rx="7.7" ry="8.8" fill="#6F95CF"/><ellipse cx="93.1" cy="106.4" rx="7.4" ry="8.4" fill="#6F95CF"/><ellipse cx="81.5" cy="100.3" rx="7.2" ry="8.1" fill="#6F95CF"/><ellipse cx="71.6" cy="94.1" rx="6.9" ry="7.8" fill="#6F95CF"/><ellipse cx="90.5" cy="88.0" rx="6.6" ry="7.4" fill="#6F95CF"/><ellipse cx="81.5" cy="81.9" rx="6.3" ry="7.1" fill="#6F95CF"/><ellipse cx="74.2" cy="75.7" rx="6.0" ry="6.8" fill="#6F95CF"/><ellipse cx="87.9" cy="69.6" rx="5.7" ry="6.4" fill="#6F95CF"/><ellipse cx="81.5" cy="63.4" rx="5.4" ry="6.1" fill="#6F95CF"/><ellipse cx="76.3" cy="59.3" rx="3.2" ry="3.8" fill="#F8F1E4"/><ellipse cx="84.9" cy="53.1" rx="3.2" ry="3.8" fill="#F8F1E4"/><ellipse cx="81.0" cy="47.0" rx="3.2" ry="3.8" fill="#F8F1E4"/></g>
-<g fill="none" stroke="#3E2C1C" stroke-linecap="round" stroke-linejoin="round">
-<path d="M18 226 C45 222 60 229 80 225 C100 221 118 229 142 225" pathLength="1" data-s="0.000" data-e="0.080" stroke-width="1.4"/>
-<path d="M71 229 C70 222 80 219 86 223 C91 227 88 233 80 233 C74 233 71 231 71 229 Z" pathLength="1" data-s="0.030" data-e="0.120" stroke-width="1.6"/>
-<path d="M80 233 C79 240 74 244 70 250" pathLength="1" data-s="0.100" data-e="0.160" stroke-width="1.2"/>
-<path d="M81 233 C83 240 88 243 91 249" pathLength="1" data-s="0.110" data-e="0.170" stroke-width="1.2"/>
-<path d="M80 223 C77 190 84 160 80 130 C77 105 81 80 80 44" pathLength="1" data-s="0.140" data-e="0.420" stroke-width="1.8"/>
-<path d="M79 205 Q64.5 188 50 192" pathLength="1" data-s="0.240" data-e="0.270" stroke-width="1.4"/>
-<path d="M50.0 192.0 Q39.4 190.5 32.6 196.7 Q41.5 198.6 50.0 192.0" pathLength="1" data-s="0.260" data-e="0.310" stroke-width="1.3"/>
-<path d="M50.0 192.0 Q40.6 184.1 30.3 184.8 Q37.7 192.0 50.0 192.0" pathLength="1" data-s="0.270" data-e="0.320" stroke-width="1.3"/>
-<path d="M50.0 192.0 Q45.9 178.8 36.2 172.3 Q39.0 183.6 50.0 192.0" pathLength="1" data-s="0.280" data-e="0.330" stroke-width="1.3"/>
-<path d="M50.0 192.0 Q54.2 180.4 50.0 171.0 Q45.8 180.4 50.0 192.0" pathLength="1" data-s="0.290" data-e="0.340" stroke-width="1.3"/>
-<path d="M50.0 192.0 Q59.1 186.3 60.3 177.3 Q52.2 181.5 50.0 192.0" pathLength="1" data-s="0.300" data-e="0.350" stroke-width="1.3"/>
-<path d="M80 188 Q96.0 172 112 176" pathLength="1" data-s="0.300" data-e="0.330" stroke-width="1.4"/>
-<path d="M112.0 176.0 Q109.8 165.5 101.7 161.3 Q102.9 170.3 112.0 176.0" pathLength="1" data-s="0.320" data-e="0.370" stroke-width="1.3"/>
-<path d="M112.0 176.0 Q116.2 164.4 112.0 155.0 Q107.8 164.4 112.0 176.0" pathLength="1" data-s="0.330" data-e="0.380" stroke-width="1.3"/>
-<path d="M112.0 176.0 Q123.0 167.6 125.8 156.3 Q116.1 162.8 112.0 176.0" pathLength="1" data-s="0.340" data-e="0.390" stroke-width="1.3"/>
-<path d="M112.0 176.0 Q124.3 176.0 131.7 168.8 Q121.4 168.1 112.0 176.0" pathLength="1" data-s="0.350" data-e="0.400" stroke-width="1.3"/>
-<path d="M112.0 176.0 Q120.5 182.6 129.4 180.7 Q122.6 174.5 112.0 176.0" pathLength="1" data-s="0.360" data-e="0.410" stroke-width="1.3"/>
-<path d="M79 165 Q65.5 148 52 152" pathLength="1" data-s="0.380" data-e="0.410" stroke-width="1.4"/>
-<path d="M52.0 152.0 Q43.1 149.3 37.2 154.6 Q44.6 157.6 52.0 152.0" pathLength="1" data-s="0.400" data-e="0.450" stroke-width="1.3"/>
-<path d="M52.0 152.0 Q45.1 144.1 36.1 144.6 Q41.5 151.7 52.0 152.0" pathLength="1" data-s="0.410" data-e="0.460" stroke-width="1.3"/>
-<path d="M52.0 152.0 Q50.1 140.4 42.0 134.7 Q42.9 144.6 52.0 152.0" pathLength="1" data-s="0.420" data-e="0.470" stroke-width="1.3"/>
-<path d="M52.0 152.0 Q57.0 142.8 53.5 134.6 Q48.7 142.0 52.0 152.0" pathLength="1" data-s="0.430" data-e="0.480" stroke-width="1.3"/>
-<path d="M52.0 152.0 Q60.5 148.4 61.6 140.5 Q54.1 143.0 52.0 152.0" pathLength="1" data-s="0.440" data-e="0.490" stroke-width="1.3"/>
-<path d="M81 148 Q94.5 134 108 138" pathLength="1" data-s="0.440" data-e="0.470" stroke-width="1.4"/>
-<path d="M108.0 138.0 Q106.4 129.6 99.3 127.7 Q100.0 135.0 108.0 138.0" pathLength="1" data-s="0.460" data-e="0.510" stroke-width="1.3"/>
-<path d="M108.0 138.0 Q111.4 129.0 106.6 122.3 Q103.1 129.7 108.0 138.0" pathLength="1" data-s="0.470" data-e="0.520" stroke-width="1.3"/>
-<path d="M108.0 138.0 Q116.6 131.5 117.0 122.4 Q109.3 127.3 108.0 138.0" pathLength="1" data-s="0.480" data-e="0.530" stroke-width="1.3"/>
-<path d="M108.0 138.0 Q117.6 138.1 122.3 131.3 Q114.1 130.5 108.0 138.0" pathLength="1" data-s="0.490" data-e="0.540" stroke-width="1.3"/>
-<path d="M108.0 138.0 Q114.6 143.4 121.3 140.3 Q116.0 135.2 108.0 138.0" pathLength="1" data-s="0.500" data-e="0.550" stroke-width="1.3"/>
-<path d="M80 136.0 Q72.5 137.0 65.0 134.0" pathLength="1" data-s="0.550" data-e="0.570" stroke-width="1.1"/>
-<path d="M71.9 133.0 C69.6 140.1 62.7 141.2 55.8 136.6" pathLength="1" data-s="0.560" data-e="0.620" stroke-width="1.3"/>
-<path d="M58.1 133.0 C55.8 125.1 61.5 119.3 65.0 119.3 C68.5 119.3 74.2 125.1 71.9 133.0" pathLength="1" data-s="0.570" data-e="0.620" stroke-width="1.3"/>
-<path d="M62.9 125.7 a2.1 1.8 0 1 0 4.1 0 a2.1 1.8 0 1 0 -4.1 0" pathLength="1" data-s="0.600" data-e="0.620" stroke-width="1.0"/>
-<path d="M80 129.9 Q87.1 130.9 94.1 127.9" pathLength="1" data-s="0.577" data-e="0.597" stroke-width="1.1"/>
-<path d="M87.5 126.9 C89.7 133.6 96.4 134.7 103.0 130.3" pathLength="1" data-s="0.587" data-e="0.647" stroke-width="1.3"/>
-<path d="M87.5 126.9 C85.3 119.2 90.8 113.6 94.1 113.6 C97.5 113.6 103.0 119.2 100.8 126.9" pathLength="1" data-s="0.597" data-e="0.647" stroke-width="1.3"/>
-<path d="M92.1 119.7 a2.0 1.8 0 1 0 4.0 0 a2.0 1.8 0 1 0 -4.0 0" pathLength="1" data-s="0.627" data-e="0.647" stroke-width="1.0"/>
-<path d="M80 123.7 Q80.0 124.7 80.0 121.7" pathLength="1" data-s="0.604" data-e="0.624" stroke-width="1.1"/>
-<path d="M73.6 120.7 C75.7 127.2 82.1 128.3 88.6 124.0" pathLength="1" data-s="0.614" data-e="0.674" stroke-width="1.3"/>
-<path d="M73.6 120.7 C71.4 113.3 76.8 107.9 80.0 107.9 C83.2 107.9 88.6 113.3 86.4 120.7" pathLength="1" data-s="0.624" data-e="0.674" stroke-width="1.3"/>
-<path d="M78.1 113.8 a1.9 1.7 0 1 0 3.9 0 a1.9 1.7 0 1 0 -3.9 0" pathLength="1" data-s="0.654" data-e="0.674" stroke-width="1.0"/>
-<path d="M80 117.6 Q73.8 118.6 67.6 115.6" pathLength="1" data-s="0.631" data-e="0.651" stroke-width="1.1"/>
-<path d="M73.8 114.6 C71.7 120.8 65.5 121.8 59.3 117.7" pathLength="1" data-s="0.641" data-e="0.701" stroke-width="1.3"/>
-<path d="M61.4 114.6 C59.3 107.4 64.5 102.2 67.6 102.2 C70.7 102.2 75.8 107.4 73.8 114.6" pathLength="1" data-s="0.651" data-e="0.701" stroke-width="1.3"/>
-<path d="M65.7 107.9 a1.9 1.7 0 1 0 3.7 0 a1.9 1.7 0 1 0 -3.7 0" pathLength="1" data-s="0.681" data-e="0.701" stroke-width="1.0"/>
-<path d="M80 111.4 Q85.8 112.4 91.6 109.4" pathLength="1" data-s="0.659" data-e="0.679" stroke-width="1.1"/>
-<path d="M85.6 108.4 C87.6 114.4 93.6 115.4 99.5 111.4" pathLength="1" data-s="0.669" data-e="0.729" stroke-width="1.3"/>
-<path d="M85.6 108.4 C83.6 101.5 88.6 96.5 91.6 96.5 C94.5 96.5 99.5 101.5 97.5 108.4" pathLength="1" data-s="0.679" data-e="0.729" stroke-width="1.3"/>
-<path d="M89.8 102.0 a1.8 1.6 0 1 0 3.6 0 a1.8 1.6 0 1 0 -3.6 0" pathLength="1" data-s="0.709" data-e="0.729" stroke-width="1.0"/>
-<path d="M80 105.3 Q80.0 106.3 80.0 103.3" pathLength="1" data-s="0.686" data-e="0.706" stroke-width="1.1"/>
-<path d="M74.3 102.3 C76.2 108.0 81.9 108.9 87.6 105.1" pathLength="1" data-s="0.696" data-e="0.756" stroke-width="1.3"/>
-<path d="M74.3 102.3 C72.4 95.6 77.1 90.8 80.0 90.8 C82.9 90.8 87.6 95.6 85.7 102.3" pathLength="1" data-s="0.706" data-e="0.756" stroke-width="1.3"/>
-<path d="M78.3 96.0 a1.7 1.5 0 1 0 3.4 0 a1.7 1.5 0 1 0 -3.4 0" pathLength="1" data-s="0.736" data-e="0.756" stroke-width="1.0"/>
-<path d="M80 99.1 Q75.1 100.1 70.1 97.1" pathLength="1" data-s="0.713" data-e="0.733" stroke-width="1.1"/>
-<path d="M75.6 96.1 C73.8 101.5 68.3 102.5 62.8 98.8" pathLength="1" data-s="0.723" data-e="0.783" stroke-width="1.3"/>
-<path d="M64.7 96.1 C62.8 89.7 67.4 85.1 70.1 85.1 C72.9 85.1 77.5 89.7 75.6 96.1" pathLength="1" data-s="0.733" data-e="0.783" stroke-width="1.3"/>
-<path d="M68.5 90.1 a1.6 1.5 0 1 0 3.3 0 a1.6 1.5 0 1 0 -3.3 0" pathLength="1" data-s="0.763" data-e="0.783" stroke-width="1.0"/>
-<path d="M80 93.0 Q84.5 94.0 89.0 91.0" pathLength="1" data-s="0.740" data-e="0.760" stroke-width="1.1"/>
-<path d="M83.8 90.0 C85.5 95.1 90.8 96.0 96.0 92.5" pathLength="1" data-s="0.750" data-e="0.810" stroke-width="1.3"/>
-<path d="M83.8 90.0 C82.0 83.8 86.4 79.4 89.0 79.4 C91.6 79.4 96.0 83.8 94.2 90.0" pathLength="1" data-s="0.760" data-e="0.810" stroke-width="1.3"/>
-<path d="M87.4 84.2 a1.6 1.4 0 1 0 3.1 0 a1.6 1.4 0 1 0 -3.1 0" pathLength="1" data-s="0.790" data-e="0.810" stroke-width="1.0"/>
-<path d="M80 86.9 Q80.0 87.9 80.0 84.9" pathLength="1" data-s="0.767" data-e="0.787" stroke-width="1.1"/>
-<path d="M75.0 83.9 C76.7 88.7 81.7 89.5 86.7 86.2" pathLength="1" data-s="0.777" data-e="0.837" stroke-width="1.3"/>
-<path d="M75.0 83.9 C73.3 77.8 77.5 73.7 80.0 73.7 C82.5 73.7 86.7 77.8 85.0 83.9" pathLength="1" data-s="0.787" data-e="0.837" stroke-width="1.3"/>
-<path d="M78.5 78.3 a1.5 1.3 0 1 0 3.0 0 a1.5 1.3 0 1 0 -3.0 0" pathLength="1" data-s="0.817" data-e="0.837" stroke-width="1.0"/>
-<path d="M80 80.7 Q76.4 81.7 72.7 78.7" pathLength="1" data-s="0.794" data-e="0.814" stroke-width="1.1"/>
-<path d="M77.5 77.7 C75.9 82.3 71.1 83.1 66.3 79.9" pathLength="1" data-s="0.804" data-e="0.864" stroke-width="1.3"/>
-<path d="M67.9 77.7 C66.3 71.9 70.3 68.0 72.7 68.0 C75.1 68.0 79.1 71.9 77.5 77.7" pathLength="1" data-s="0.814" data-e="0.864" stroke-width="1.3"/>
-<path d="M71.3 72.3 a1.4 1.3 0 1 0 2.9 0 a1.4 1.3 0 1 0 -2.9 0" pathLength="1" data-s="0.844" data-e="0.864" stroke-width="1.0"/>
-<path d="M80 74.6 Q83.2 75.6 86.4 72.6" pathLength="1" data-s="0.821" data-e="0.841" stroke-width="1.1"/>
-<path d="M81.9 71.6 C83.4 75.9 87.9 76.6 92.5 73.6" pathLength="1" data-s="0.831" data-e="0.891" stroke-width="1.3"/>
-<path d="M81.9 71.6 C80.4 66.0 84.2 62.2 86.4 62.2 C88.7 62.2 92.5 66.0 91.0 71.6" pathLength="1" data-s="0.841" data-e="0.891" stroke-width="1.3"/>
-<path d="M85.1 66.4 a1.4 1.2 0 1 0 2.7 0 a1.4 1.2 0 1 0 -2.7 0" pathLength="1" data-s="0.871" data-e="0.891" stroke-width="1.0"/>
-<path d="M80 68.4 Q80.0 69.4 80.0 66.4" pathLength="1" data-s="0.849" data-e="0.869" stroke-width="1.1"/>
-<path d="M75.7 65.4 C77.1 69.5 81.4 70.2 85.7 67.3" pathLength="1" data-s="0.859" data-e="0.919" stroke-width="1.3"/>
-<path d="M75.7 65.4 C74.3 60.1 77.8 56.5 80.0 56.5 C82.2 56.5 85.7 60.1 84.3 65.4" pathLength="1" data-s="0.869" data-e="0.919" stroke-width="1.3"/>
-<path d="M78.7 60.5 a1.3 1.1 0 1 0 2.6 0 a1.3 1.1 0 1 0 -2.6 0" pathLength="1" data-s="0.899" data-e="0.919" stroke-width="1.0"/>
-<path d="M72.5 58.3 a2.8 3.4 0 1 0 5.6 0 a2.8 3.4 0 1 0 -5.6 0" pathLength="1" data-s="0.876" data-e="0.946" stroke-width="1.2"/>
-<path d="M81.1 52.1 a2.8 3.4 0 1 0 5.6 0 a2.8 3.4 0 1 0 -5.6 0" pathLength="1" data-s="0.903" data-e="0.973" stroke-width="1.2"/>
-<path d="M77.2 46.0 a2.8 3.4 0 1 0 5.6 0 a2.8 3.4 0 1 0 -5.6 0" pathLength="1" data-s="0.930" data-e="1.000" stroke-width="1.2"/>
-<path d="M77 44 C77 38 83 38 83 44" pathLength="1" data-s="0.950" data-e="0.990" stroke-width="1.2"/>
-</g></svg>
-  <div class="bloom-label">Seed</div>
-</div>
-
-
-<!-- JOIN THE PARTY: newsletter strip -->
-<section class="party-strip">
-  <div class="container party-strip-inner">
-    <div>
-      <div class="tvp-h party-strip-title">Join the Party.</div>
-      <p>Get on the guest list — event invites, ballot breakdowns, and what's next.</p>
-    </div>
-    <div class="party-strip-ctas">
-      <a href="index.html#join-the-party" class="btn btn-gold">Get On The Guest List</a>
-      <a href="https://form.qomon.org/4054abad-text-alerts-sign-up-texas-voter-project/" class="btn btn-outline" target="_blank" rel="noopener">Get Text Alerts</a>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-about">
-      <div class="tvp-h">Texas Voter Project</div>
-    </div>
-    <nav class="footer-nav">
-      <a href="index.html">Home</a>
-      <a href="why-we-exist.html">Why We Exist</a>
-      <a href="election-prep.html">Election Prep</a>
-      <a href="know-your-government.html">Know Your Government</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="events.html">Events</a>
-      <a href="research.html">Research</a>
-      <a href="hot-takes.html">Hot Takes</a>
-      <a href="about.html">About</a>
-      <a href="shop.html">Shop</a>
-      <a href="donate.html">Donate</a>
+<footer class="foot">
+  <div class="wrap">
+    <div><h2>Texas Voter Project</h2><p class="fine">A fiscally sponsored project of Future Incubator, a 501(c)(3). EIN 33-3913132.</p></div>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a><a href="events.html">Events</a>
+      <a href="get-involved.html">Get Involved</a><a href="why-we-exist.html">Why We Exist</a>
+      <a href="research.html">Research</a><a href="about.html">About</a>
+      <a href="donate.html">Donate</a><a href="shop.html">Shop</a>
     </nav>
-    <div class="footer-contact">
-      <div class="footer-social">
-        <a href="https://www.instagram.com/texasvoterproject/" target="_blank" rel="noopener" aria-label="Texas Voter Project on Instagram">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/texas-voter-project/" target="_blank" rel="noopener" aria-label="Texas Voter Project on LinkedIn">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.59h-4v-4.95c0-1.18-.02-2.7-1.7-2.7-1.7 0-1.96 1.28-1.96 2.6v5.05h-4z"/></svg>
-        </a>
-      </div>
-      <p><a href="mailto:info@texasvoterproject.org">info@texasvoterproject.org</a></p>
-      <p class="copyright">© 2026 Texas Voter Project — a fiscally sponsored project of Future Incubator.</p>
-    </div>
+    <div><p>info@texasvoterproject.org</p><p class="fine">&copy; 2026 Texas Voter Project</p></div>
   </div>
 </footer>
-<script src="main.js"></script>
 <script>
-(function(){
-  var svg=document.querySelector('.bloom-svg'); if(!svg) return;
-  var paths=[].slice.call(svg.querySelectorAll('path')).map(function(el){return {el:el,s:+el.dataset.s,e:+el.dataset.e};});
-  var wash=svg.querySelector('.bloom-wash'), label=document.querySelector('.bloom-label');
-  var names=[[0.16,"Seed"],[0.32,"Sprout"],[0.56,"Seedling"],[0.9,"Bud"],[2,'Bluebonnet']];
-  var ticking=false;
-  function update(){
-    ticking=false;
-    var max=document.documentElement.scrollHeight-window.innerHeight;
-    var p=0.13+0.87*(max>0?Math.min(1,window.scrollY/max*1.1):1);
-    paths.forEach(function(o){var t=(p-o.s)/(o.e-o.s);o.el.style.strokeDashoffset=1-Math.max(0,Math.min(1,t));});
-    wash.setAttribute('opacity',p>0.9?0.85:0);
-    for(var i=0;i<names.length;i++){if(p<names[i][0]){label.textContent=names[i][1];break;}}
-  }
-  function req(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
-  window.addEventListener('scroll',req,{passive:true});
-  window.addEventListener('resize',req);
-  update();
-})();
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
 </script>
-
 </body>
 </html>
