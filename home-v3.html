@@ -94,30 +94,32 @@ p { margin: 0; }
 .impact figcaption { font-size: 14px; color: var(--soft); margin-top: 18px; }
 @media (max-width: 860px) { .impact .wrap { grid-template-columns: 1fr; } .impact figure { max-width: 420px; } .nums li { grid-template-columns: 1fr; gap: 4px; } }
 
-/* ===== The path: a scroll-driven run ===== */
-.path { position: relative; height: 340vh; background: var(--sky); border-top: var(--line); border-bottom: var(--line); }
-.path-stick { position: sticky; top: 76px; height: calc(100vh - 76px); overflow: hidden; display: grid; align-content: center; gap: clamp(26px, 5vh, 50px); }
-.path-head { display: grid; gap: 10px; }
-.path-head h2 { font: 400 clamp(34px, 4.6vw, 58px)/1.02 var(--display); color: var(--ink); }
-.path-head p { font-size: 18px; max-width: 46ch; }
-.course { position: relative; height: 270px; }
-.lane { position: absolute; left: 0; right: 0; bottom: 46px; height: 0; border-top: 4px dashed var(--ink); }
-.stop { position: absolute; bottom: 46px; transform: translateX(-50%); display: grid; justify-items: center; }
-.stop i { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: var(--line); transform: translateY(13px); transition: background .2s, transform .2s; }
-.stop span { position: absolute; top: 34px; font: 400 clamp(13px, 1.5vw, 18px)/1 var(--display); white-space: nowrap; color: var(--navy); opacity: .45; transition: opacity .2s; }
-.stop.on i { background: var(--pink); transform: translateY(13px) scale(1.15); }
-.stop.on span { opacity: 1; }
-.stop:last-child.on i { background: var(--gold); }
-.runner { position: absolute; bottom: 40px; left: 0; width: clamp(120px, 15vw, 190px); transform: translateX(-50%); will-change: left, transform; }
+/* ===== The path: two loops, scroll-driven ===== */
+.path { position: relative; height: 420vh; background: var(--sky); border-top: var(--line); border-bottom: var(--line); }
+.path-stick { position: sticky; top: 76px; height: calc(100vh - 76px); overflow: hidden; display: grid; align-content: center; gap: clamp(14px, 3vh, 30px); }
+.path-head { display: grid; gap: 8px; }
+.path-head h2 { font: 400 clamp(32px, 4.4vw, 56px)/1.02 var(--display); color: var(--ink); }
+.path-head p { font-size: 18px; max-width: 52ch; }
+.loops { position: relative; width: 100%; max-width: 1100px; margin: 0 auto; }
+.loops svg { width: 100%; height: auto; display: block; overflow: visible; }
+.loops .trk { fill: none; stroke: var(--ink); stroke-width: 4; stroke-dasharray: 12 9; }
+.loops .arw { fill: var(--ink); }
+.loops .ttl { font: 400 26px var(--brush); fill: var(--red); text-transform: uppercase; }
+.loops .lbl { font: 400 21px 'Ultra', Georgia, serif; fill: var(--navy); opacity: .45; transition: opacity .2s; }
+.loops .dot { fill: #fff; stroke: var(--ink); stroke-width: 4; transition: fill .2s; }
+.loops .on .lbl { opacity: 1; }
+.loops .on .dot { fill: var(--pink); }
+.loops .on.end .dot { fill: var(--gold); }
+.runner { position: absolute; left: 0; top: 0; width: clamp(64px, 8.5vw, 112px); transform: translate(-50%, -94%); will-change: left, top, transform; pointer-events: none; }
 .runner svg { width: 100%; height: auto; overflow: visible; }
 .caption { min-height: 64px; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
-.caption b { font: 400 clamp(26px, 3vw, 38px)/1 var(--brush); color: var(--pink); text-transform: uppercase; }
-.caption span { font-size: clamp(17px, 1.8vw, 21px); font-weight: 600; }
+.caption b { font: 400 clamp(24px, 3vw, 36px)/1 var(--brush); color: var(--pink); text-transform: uppercase; }
+.caption span { font-size: clamp(16px, 1.7vw, 20px); font-weight: 600; max-width: 60ch; }
 @media (max-width: 880px) { .path-stick { top: 64px; height: calc(100vh - 64px); } }
 @media (max-width: 700px) {
-  .path { height: 300vh; }
-  .stop span { display: none; }
-  .course { height: 200px; }
+  .path { height: 360vh; }
+  .loops .lbl { display: none; }
+  .loops .ttl { font-size: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .path { height: auto; }
@@ -297,19 +299,33 @@ p { margin: 0; }
     <div class="path-stick">
       <div class="wrap path-head">
         <h2 id="path-h">Every event leads somewhere</h2>
-        <p>One night out is the first step. Keep scrolling to follow the path from a game night to the ballot, and onto it.</p>
+        <p>It isn't a straight line. The first loop repeats every election. The second is for anyone ready to go deeper. Keep scrolling to follow the runner.</p>
       </div>
       <div class="wrap">
-        <div class="course" id="course">
-          <div class="lane"></div>
-          <div class="stop" data-at="0.04" data-t="Come to a low-key TVP event. There's no wrong place to start." style="left:4%"><i></i><span>Attend</span></div>
-          <div class="stop" data-at="0.17" data-t="Get curious about what's happening locally and who decides it." style="left:17%"><i></i><span>Inquire</span></div>
-          <div class="stop" data-at="0.30" data-t="Speak up at city hall, the county or the Capitol." style="left:30%"><i></i><span>Advocate</span></div>
-          <div class="stop" data-at="0.43" data-t="In every race on your ballot, all the way down." style="left:43%"><i></i><span>Vote</span></div>
-          <div class="stop" data-at="0.56" data-t="Throw a gathering of your own and bring your people." style="left:56%"><i></i><span>Host</span></div>
-          <div class="stop" data-at="0.69" data-t="Help run the next one." style="left:69%"><i></i><span>Volunteer</span></div>
-          <div class="stop" data-at="0.82" data-t="Take a seat on a local board, commission or community group." style="left:82%"><i></i><span>Join</span></div>
-          <div class="stop" data-at="0.95" data-t="Put your own name on the ballot." style="left:95%"><i></i><span>Run</span></div>
+        <div class="loops" id="loops">
+          <svg viewBox="0 0 1000 400" role="img" aria-label="Two loops. Start here: attend, inquire, advocate, vote, then back to attend. Go deeper: attend a civic event, host, volunteer, donate, join, run.">
+            <text class="ttl" x="270" y="24" text-anchor="middle">Start here</text>
+            <text class="ttl" x="730" y="24" text-anchor="middle">Go deeper</text>
+            <ellipse class="trk" cx="270" cy="210" rx="200" ry="130"/>
+            <ellipse class="trk" cx="730" cy="210" rx="200" ry="130"/>
+            <path class="arw" d="M262 330 l18 10 l-18 10 z"/>
+            <path class="arw" d="M278 90 l-18 -10 l18 -10 z"/>
+            <path class="arw" d="M722 70 l18 10 l-18 10 z"/>
+            <path class="arw" d="M738 350 l-18 -10 l18 -10 z"/>
+            <path class="trk" d="M482 210 L518 210"/>
+            <path id="route" d="M470,210 A200,130 0 0 1 70,210 A200,130 0 0 1 470,210 L530,210 A200,130 0 0 1 930,210 A200,130 0 0 1 630,322.6" fill="none" stroke="none"/>
+          <g class="stop" data-x="470" data-y="210" data-n="Attend" data-t="Come to a low-key TVP event. There's no wrong place to start."><circle class="dot" cx="470" cy="210" r="11"/><text class="lbl" x="452" y="186" text-anchor="end">Attend</text></g>
+          <g class="stop" data-x="270" data-y="340" data-n="Inquire" data-t="Get curious about what's affecting your community and who holds the levers of power."><circle class="dot" cx="270" cy="340" r="11"/><text class="lbl" x="270" y="380" text-anchor="middle">Inquire</text></g>
+          <g class="stop" data-x="70" data-y="210" data-n="Advocate" data-t="Testify at city hall, give public comment, join a rally or lobby at the Capitol."><circle class="dot" cx="70" cy="210" r="11"/><text class="lbl" x="70" y="252" text-anchor="middle">Advocate</text></g>
+          <g class="stop" data-x="270" data-y="80" data-n="Vote" data-t="In every election and every race, all the way down the ballot."><circle class="dot" cx="270" cy="80" r="11"/><text class="lbl" x="270" y="58" text-anchor="middle">Vote</text></g>
+          <g class="stop" data-x="470" data-y="210" data-n="Back to the start" data-t="Then back to the start, and bring a friend. Or step into the next loop."></g>
+          <g class="stop" data-x="530" data-y="210" data-n="Attend" data-t="Come to a more civic-focused event, like a town hall or a candidate meet and greet."><circle class="dot" cx="530" cy="210" r="11"/><text class="lbl" x="548" y="248" text-anchor="start">Attend</text></g>
+          <g class="stop" data-x="630" data-y="97.4" data-n="Host" data-t="Start an event series in your own neighborhood."><circle class="dot" cx="630" cy="97.4" r="11"/><text class="lbl" x="630" y="76" text-anchor="middle">Host</text></g>
+          <g class="stop" data-x="830" data-y="97.4" data-n="Volunteer" data-t="Help TVP or any local group or candidate."><circle class="dot" cx="830" cy="97.4" r="11"/><text class="lbl" x="830" y="76" text-anchor="middle">Volunteer</text></g>
+          <g class="stop" data-x="930" data-y="210" data-n="Donate" data-t="Give monthly to TVP, or to a local candidate or issue group."><circle class="dot" cx="930" cy="210" r="11"/><text class="lbl" x="930" y="252" text-anchor="middle">Donate</text></g>
+          <g class="stop" data-x="830" data-y="322.6" data-n="Join" data-t="A neighborhood association, campus group, city commission or community club."><circle class="dot" cx="830" cy="322.6" r="11"/><text class="lbl" x="830" y="362" text-anchor="middle">Join</text></g>
+          <g class="stop end" data-x="630" data-y="322.6" data-n="Run" data-t="For office, including boards and commissions."><circle class="dot" cx="630" cy="322.6" r="11"/><text class="lbl" x="630" y="362" text-anchor="middle">Run</text></g>
+          </svg>
           <div class="runner" id="runner" aria-hidden="true">
             <svg viewBox="0 0 160 200">
               <g id="leg-back"><path d="M66 118 L60 166" stroke="#1C3347" stroke-width="8" stroke-linecap="round"/><path d="M44 164 h24 q10 0 10 9 v5 h-36 q-4 0 -4 -5 q0 -9 6 -9z" fill="#8EC3E6" stroke="#1C3347" stroke-width="3.5" stroke-linejoin="round"/></g>
@@ -460,35 +476,46 @@ p { margin: 0; }
   if (reduce) vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
 
   var path = document.getElementById('path'), runner = document.getElementById('runner');
-  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  var route = document.getElementById('route'), loops = document.getElementById('loops');
+  var stops = Array.prototype.slice.call(document.querySelectorAll('#loops .stop'));
   var cap = document.getElementById('caption');
   var parts = { lb: 'leg-back', lf: 'leg-front', ab: 'arm-back', af: 'arm-front' };
   Object.keys(parts).forEach(function (k) { parts[k] = document.getElementById(parts[k]); });
+  var total = route.getTotalLength(), at = [], from = 0;
+  stops.forEach(function (s) {
+    var x = +s.dataset.x, y = +s.dataset.y;
+    for (var l = from; l <= total; l += 1) { var q = route.getPointAtLength(l); if (Math.hypot(q.x - x, q.y - y) < 1.5) { from = l + 20; break; } }
+    at.push(Math.max(0, l));
+  });
   var last = -1;
-
   function setCaption(i) {
     if (i === last) return; last = i;
-    var s = stops[i]; cap.innerHTML = '<b>' + s.querySelector('span').textContent + '</b><span>' + s.dataset.t + '</span>';
+    cap.innerHTML = '<b>' + stops[i].dataset.n + '</b><span>' + stops[i].dataset.t + '</span>';
   }
-  if (reduce) { stops.forEach(function (s) { s.classList.add('on'); }); runner.style.left = '95%'; setCaption(stops.length - 1); return; }
+  function place(len) {
+    var q = route.getPointAtLength(len), r = loops.querySelector('svg').getBoundingClientRect(), lr = loops.getBoundingClientRect();
+    runner.style.left = ((q.x / 1000) * r.width + (r.left - lr.left)) + 'px';
+    runner.style.top = ((q.y / 400) * r.height + (r.top - lr.top)) + 'px';
+    return q;
+  }
+  if (reduce) { stops.forEach(function (s) { s.classList.add('on'); }); place(total); setCaption(stops.length - 1); return; }
 
-  var ticking = false;
+  var ticking = false, prevX = 0;
   function frame() {
     ticking = false;
     var r = path.getBoundingClientRect(), vh = window.innerHeight;
     var p = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
-    var x = 2 + p * 93;
-    runner.style.left = x + '%';
-    var y = window.scrollY, swing = Math.sin(y / 26) * 34, bob = Math.abs(Math.sin(y / 26)) * -7;
-    var moving = p > 0 && p < 1;
-    if (!moving) swing = 0;
+    var len = p * total, q = place(len);
+    var dir = q.x >= prevX ? 1 : -1; prevX = q.x;
+    var y = window.scrollY, moving = p > 0 && p < 1;
+    var swing = moving ? Math.sin(y / 22) * 34 : 0, bob = moving ? Math.abs(Math.sin(y / 22)) * -6 : 0;
     parts.lb.setAttribute('transform', 'rotate(' + swing + ' 66 118)');
     parts.lf.setAttribute('transform', 'rotate(' + (-swing) + ' 96 118)');
     parts.ab.setAttribute('transform', 'rotate(' + (-swing * .8) + ' 30 78)');
     parts.af.setAttribute('transform', 'rotate(' + (swing * .8) + ' 132 74)');
-    runner.style.transform = 'translateX(-50%) translateY(' + (moving ? bob : 0) + 'px) rotate(' + (moving ? 4 : 0) + 'deg)';
+    runner.style.transform = 'translate(-50%, -94%) translateY(' + bob + 'px) rotate(' + (moving ? 4 * dir : 0) + 'deg)';
     var cur = 0;
-    stops.forEach(function (s, i) { var on = (x / 100) >= parseFloat(s.dataset.at) - .02; s.classList.toggle('on', on); if (on) cur = i; });
+    stops.forEach(function (s, i) { var on = len >= at[i] - 4; s.classList.toggle('on', on); if (on) cur = i; });
     setCaption(cur);
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
