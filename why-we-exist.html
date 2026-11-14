@@ -16,168 +16,278 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://texasvoterproject.org/tvp-share-community.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bevan&family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ultra&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap">
+<style>
+:root {
+  --ink: #1C3347; --navy: #1F4A6B; --deep: #142C40; --green: #178567; --forest: #123B2E;
+  --mint: #9FD6B8; --sky: #8EC3E6; --pink: #F33663; --red: #AB1337; --gold: #FFD037;
+  --soft: #4C6578; --mintbg: #D3ECDF; --skybg: #E4EEF5;
+  --display: 'Ultra', Georgia, serif; --body: 'Work Sans', system-ui, -apple-system, sans-serif;
+  --line: 3px solid var(--ink);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fff; color: var(--ink); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+p, ul, ol { margin: 0; }
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.btn { display: inline-flex; align-items: center; justify-content: center; font: 700 15.5px/1 var(--body); padding: 15px 26px; border: 0; border-radius: 999px; text-decoration: none; transition: filter .15s; cursor: pointer; }
+.btn:hover { filter: brightness(.92); }
+.btn-pink { background: var(--pink); color: #fff; } .btn-gold { background: var(--gold); color: var(--ink); } .btn-light { background: #fff; color: var(--ink); }
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+.kick { font-weight: 700; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
+
+.top { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; }
+.logo img { width: 88px; }
+.top nav { display: flex; align-items: center; gap: 26px; }
+.top nav a:not(.btn) { font-weight: 600; font-size: 15px; text-decoration: none; }
+.top nav a:not(.btn):hover, .top nav a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.top .btn { padding: 11px 18px; font-size: 14.5px; }
+@media (max-width: 880px) { .top nav a:not(.btn) { display: none; } .logo img { width: 74px; } .top .wrap { height: 64px; } }
+
+/* Hero */
+.hero { background: var(--deep); color: #fff; border-bottom: var(--line); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(30px, 5vw, 70px); align-items: center; padding-block: clamp(56px, 7vw, 90px); }
+.hero .kick { color: var(--gold); }
+.hero h1 { font: 400 clamp(40px, 6vw, 80px)/1 var(--display); margin: 14px 0 22px; }
+.hero h1 span { display: block; color: var(--sky); }
+.hero .lead { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 42ch; color: #DCE6EE; }
+.reel { position: relative; justify-self: center; width: min(100%, 360px); }
+.reel video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 14px; border: 3px solid #fff; box-shadow: 10px 10px 0 var(--pink); }
+.reel figcaption { font-size: 13.5px; color: #B9CBD8; margin-top: 16px; }
+@media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .reel { width: min(100%, 300px); } }
+
+/* Problem */
+.problem .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.problem .kick { color: var(--red); }
+.problem .t { display: grid; gap: 18px; }
+.problem .t p { font-size: 18px; }
+.problem img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: var(--line); }
+@media (max-width: 860px) { .problem .wrap { grid-template-columns: 1fr; } .problem img { aspect-ratio: 4 / 3; } }
+
+/* Statement */
+.state { color: #fff; text-align: center; background: linear-gradient(rgba(20,44,64,.62), rgba(20,44,64,.82)), url(tvp-photo-ppp-table.jpg) center 40% / cover; border-top: var(--line); border-bottom: var(--line); }
+.state .wrap { padding-block: clamp(90px, 12vw, 150px); display: grid; gap: 22px; justify-items: center; }
+.state h2 { font: 400 clamp(32px, 4.6vw, 58px)/1.08 var(--display); max-width: 20ch; }
+.state h2 span { color: var(--gold); }
+.state p { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 56ch; }
+
+/* Who */
+.who { background: var(--mintbg); border-bottom: var(--line); }
+.who .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 5vw, 70px); }
+.who .kick { color: var(--forest); }
+.who .t { display: grid; gap: 16px; align-content: start; }
+.who p.body { font-size: 18px; }
+@media (max-width: 820px) { .who .wrap { grid-template-columns: 1fr; } }
+
+/* Two infrastructures */
+.two .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; gap: 34px; }
+.two .kick { color: var(--green); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.infra { border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.infra img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-bottom: 2px solid var(--ink); }
+.infra .b { padding: 24px; display: grid; gap: 12px; align-content: start; }
+.infra h3 { font: 400 26px/1.15 var(--display); color: var(--navy); }
+.infra p { color: var(--soft); }
+.infra a { font-weight: 700; color: var(--green); text-underline-offset: 4px; }
+@media (max-width: 820px) { .pair { grid-template-columns: 1fr; } }
+
+/* Ladder */
+.ladder { background: var(--skybg); border-top: var(--line); border-bottom: var(--line); }
+.ladder .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; gap: 28px; }
+.ladder .kick { color: var(--navy); }
+.ladder .intro { font-size: 18px; max-width: 60ch; }
+.loopsx { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.loopx { background: #fff; border-radius: 12px; padding: 24px; display: grid; gap: 14px; align-content: start; }
+.loopx h3 { font: 400 22px/1.2 var(--display); color: var(--red); }
+.loopx ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.loopx li { background: var(--skybg); border-radius: 999px; padding: 8px 15px; font-weight: 600; }
+.loopx li:not(:last-child)::after { content: "  \2192"; color: var(--soft); }
+.loopx p { color: var(--soft); font-size: 15.5px; }
+@media (max-width: 820px) { .loopsx { grid-template-columns: 1fr; } }
+
+/* Origin */
+.origin .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.origin .kick { color: var(--pink); }
+.origin .t { display: grid; gap: 18px; }
+.origin .t p { font-size: 18px; }
+.origin figure { margin: 0; }
+.origin img { width: 100%; border: var(--line); transform: rotate(-1.5deg); box-shadow: 8px 8px 0 var(--gold); }
+.origin figcaption { font-size: 14px; color: var(--soft); margin-top: 16px; }
+@media (max-width: 860px) { .origin .wrap { grid-template-columns: 1fr; } }
+
+/* Belief */
+.belief { display: grid; grid-template-columns: 1fr 1.1fr; background: var(--pink); color: #fff; border-top: var(--line); border-bottom: var(--line); }
+.belief img { width: 100%; height: 100%; object-fit: cover; border-right: var(--line); }
+.belief .t { padding: clamp(44px, 6vw, 90px) clamp(24px, 5vw, 70px); display: grid; gap: 22px; align-content: center; }
+.belief .kick { color: #FFE2E9; }
+.belief blockquote { margin: 0; font: 400 clamp(28px, 3.4vw, 46px)/1.1 var(--display); }
+.belief .btns { display: flex; flex-wrap: wrap; gap: 14px; }
+@media (max-width: 860px) { .belief { grid-template-columns: 1fr; } .belief img { aspect-ratio: 4 / 3; border-right: 0; border-bottom: var(--line); } }
+
+/* Footer */
+.foot { background: var(--ink); color: #C7D6E2; }
+.foot .wrap { padding-block: 56px; display: grid; grid-template-columns: 1.2fr 2fr 1fr; gap: 32px; }
+.foot h2 { font: 400 22px/1.2 var(--display); color: #fff; margin-bottom: 8px; }
+.foot nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; align-content: start; }
+.foot a { text-decoration: none; } .foot a:hover { text-decoration: underline; }
+.foot .fine { font-size: 13.5px; }
+@media (max-width: 760px) { .foot .wrap { grid-template-columns: 1fr; } }
+
+/* Hot take pop-up */
+.promo-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(20,44,64,.6); display: grid; place-items: center; padding: 20px; }
+.promo-backdrop[hidden] { display: none; }
+.promo-card { position: relative; background: #fff; border-radius: 14px; padding: 34px 30px 26px; max-width: 440px; width: 100%; display: grid; gap: 12px; justify-items: start; }
+.promo-tag { background: var(--pink); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+.promo-title { font: 400 28px/1.15 var(--display); }
+.promo-text { color: var(--soft); }
+.promo-later { background: none; border: 0; font: 600 14.5px var(--body); color: var(--soft); text-decoration: underline; cursor: pointer; padding: 4px 0; }
+.recipe-modal-close { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--skybg); display: grid; place-items: center; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
 </head>
 <body>
 
-<main>
-
-  <section class="hero hero-bg-maroon" style="padding-bottom:48px;">
-  <header class="site-header site-header-overlay">
-    <div class="container">
-      <a href="index.html" class="logo"><img src="tvp-logo.png" alt="Texas Voter Project" class="logo-mark"></a>
-      <nav class="nav-desktop">
-        <a href="index.html">Home</a>
-        <a href="why-we-exist.html">Why We Exist</a>
-        <a href="know-your-government.html">Know Your Government</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="events.html">Events</a>
-        <a href="research.html">Research</a>
-        <a href="hot-takes.html">Hot Takes</a>
-        <a href="about.html">About</a>
-        <a href="shop.html">Shop</a>
-        <a href="donate.html" class="nav-cta">Donate</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F8F1E4" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-    <nav class="nav-mobile">
-      <a href="index.html">Home</a>
-      <a href="why-we-exist.html">Why We Exist</a>
-      <a href="know-your-government.html">Know Your Government</a>
-      <a href="get-involved.html">Get Involved</a>
+<header class="top">
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="tvp-logo.png" alt="Texas Voter Project home" width="140" height="104"></a>
+    <nav aria-label="Main">
       <a href="events.html">Events</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="why-we-exist.html" aria-current="page">Why We Exist</a>
       <a href="research.html">Research</a>
-      <a href="hot-takes.html">Hot Takes</a>
       <a href="about.html">About</a>
       <a href="shop.html">Shop</a>
-      <a href="donate.html" class="nav-cta">Donate</a>
+      <a href="donate.html" class="btn btn-pink">Donate</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-    <div class="container hero-inner center flex-col-center">
-      <span class="eyebrow" style="color:var(--gold);">Theory of Change</span>
-      <h1 class="tvp-h" style="max-width:760px;">Why We Exist</h1>
-      <p class="lede" style="max-width:640px;">TVP isn't a typical voter-guide organization. Here's the thinking behind why we build both information and community — and why neither one works alone.</p>
+<main>
+
+  <section class="hero" aria-labelledby="h">
+    <div class="wrap">
+      <div>
+        <p class="kick">Theory of change</p>
+        <h1 id="h">Why we exist <span>The problem isn't apathy. It's disconnection.</span></h1>
+        <p class="lead">TVP isn't a typical voter-guide organization. Here's the thinking behind why we build both information and community, and why neither one works alone.</p>
+      </div>
+      <figure class="reel">
+        <video src="tvp-vid-booth-dog.mp4" poster="tvp-vid-booth-dog.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Friends and a fluffy white dog hamming it up at the Voter Fest photo booth"></video>
+        <figcaption>The Voter Fest photo booth, October 2026.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- THE PROBLEM -->
-  <section class="section bg-cream">
-    <div class="container" style="max-width:800px;">
-      <span class="eyebrow" style="color:var(--red);">The Problem</span>
-      <h2 class="tvp-h" style="font-size:clamp(22px,4vw,30px); margin-bottom:18px;">The problem isn't apathy. It's disconnection.</h2>
-      <p style="color:var(--ink-soft); line-height:1.7; margin:0 0 16px;">Young Texans don't skip elections because they don't care. They skip them because formal political institutions routinely overlook them — and because the resources meant to help usually assume a level of context most people were never given.</p>
-      <p style="color:var(--ink-soft); line-height:1.7; margin:0;">That distrust and disconnection show up as low turnout. But turnout is a symptom. The real gap is that most young people have never been part of a community that made civic life feel like theirs.</p>
+  <section class="problem" aria-labelledby="p-h">
+    <div class="wrap">
+      <div class="t">
+        <p class="kick">The problem</p>
+        <h2 id="p-h" class="big">Turnout is a symptom.</h2>
+        <p>Young Texans don't skip elections because they don't care. They skip them because formal political institutions routinely overlook them, and because the resources meant to help usually assume a level of context most people were never given.</p>
+        <p>That distrust and disconnection show up as low turnout. But the real gap is that most young people have never been part of a community that made civic life feel like theirs.</p>
+      </div>
+      <img src="tvp-photo-ppp-worksheet.jpg" alt="A young woman holding up her ballot research worksheet at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy">
     </div>
   </section>
 
-  <!-- INFO VS COMMUNITY -->
-  <section class="section bg-teal-pale">
-    <div class="container center flex-col-center">
-      <h2 class="tvp-h" style="font-size:clamp(24px,4vw,32px); max-width:720px; margin-bottom:20px;">Information tells you how. Community tells you why.</h2>
-      <p style="color:var(--ink-soft); max-width:680px; line-height:1.7; margin:0;">A great voter guide can tell someone exactly how to register and where to vote. It can't give them a reason to want to. That reason comes from belonging somewhere — a bar trivia night, a board game table, a run club — where showing up for your community starts to feel like second nature, and voting is just one more way you show up.</p>
+  <section class="state">
+    <div class="wrap">
+      <h2>Information tells you how. <span>Community tells you why.</span></h2>
+      <p>A great voter guide can tell someone exactly how to register and where to vote. It can't give them a reason to want to. That reason comes from belonging somewhere, like a bar trivia night, a board game table or a run club, where showing up for your community starts to feel like second nature, and voting is one more way you show up.</p>
     </div>
   </section>
 
-  <!-- WHO THIS IS FOR -->
-  <section class="section bg-cream">
-    <div class="container" style="max-width:800px;">
-      <span class="eyebrow" style="color:var(--pink);">Who This Is For</span>
-      <h2 class="tvp-h" style="font-size:clamp(22px,4vw,30px); margin-bottom:18px;">Left out of the conversation — not just the most vulnerable.</h2>
-      <p style="color:var(--ink-soft); line-height:1.7; margin:0;">TVP isn't only trying to reach the hardest-to-reach voters. We're building for every young Texan other organizations don't think to look for — the ones who aren't disengaged, just underserved, and who've never been invited into a version of civic life that felt like it was actually for them.</p>
-    </div>
-  </section>
-
-  <!-- TWO INFRASTRUCTURES -->
-  <section class="section bg-gold-pale">
-    <div class="container flex-col-center">
-      <span class="eyebrow" style="color:var(--ink);">What We Do</span>
-      <h2 class="tvp-h center" style="font-size:clamp(24px,4vw,32px); max-width:720px; margin-bottom:44px;">Two infrastructures, built together.</h2>
-      <div class="grid-2" style="width:100%;">
-        <div class="card">
-          <h3 class="tvp-h" style="font-size:19px; margin-bottom:12px; color:var(--teal);">Information Infrastructure</h3>
-          <p style="color:var(--ink-soft); line-height:1.6; margin:0 0 16px;">Nonpartisan guides that start a level earlier than most — explaining what an office actually controls before asking who should hold it.</p>
-          <a href="election-prep.html" class="text-link">See Election Prep →</a>
-        </div>
-        <div class="card">
-          <h3 class="tvp-h" style="font-size:19px; margin-bottom:12px; color:var(--pink);">Social Infrastructure</h3>
-          <p style="color:var(--ink-soft); line-height:1.6; margin:0 0 16px;">Real, recurring third places — bar nights, game nights, run clubs — where trust and turnout grow out of the same soil.</p>
-          <a href="get-involved.html" class="text-link" style="color:var(--pink);">See Get Involved →</a>
-        </div>
+  <section class="who" aria-labelledby="w-h">
+    <div class="wrap">
+      <div class="t">
+        <p class="kick">Who this is for</p>
+        <h2 id="w-h" class="big">Left out of the conversation.</h2>
+      </div>
+      <div class="t">
+        <p class="body">Young people in general have been ignored or left out of the conversation. TVP was set up with the understanding that voters under 35, even with resources, have suffered from a lack of civics education and responsive government.</p>
+        <p class="body">We work to engage more vulnerable communities just as much as other young people, because we can't take anyone for granted.</p>
       </div>
     </div>
   </section>
 
-  <!-- BIGGER THAN ONE VOTE -->
-  <section class="section bg-cream">
-    <div class="container" style="max-width:800px;">
-      <span class="eyebrow" style="color:var(--green);">The Bigger Picture</span>
-      <h2 class="tvp-h" style="font-size:clamp(22px,4vw,30px); margin-bottom:18px;">This is bigger than one vote.</h2>
-      <p style="color:var(--ink-soft); line-height:1.7; margin:0;">Attend, Inquire, Advocate, Vote — and then Host, Volunteer, Donate, Join, Run. Civic participation is a whole ladder, not a single trip to the ballot box, and TVP tries to meet people wherever they are on it.</p>
+  <section class="two" aria-labelledby="t-h">
+    <div class="wrap">
+      <div>
+        <p class="kick">What we do</p>
+        <h2 id="t-h" class="big">Two infrastructures, built together.</h2>
+      </div>
+      <div class="pair">
+        <article class="infra">
+          <img src="tvp-photo-ppp-table.jpg" alt="Young voters researching their ballots together at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy">
+          <div class="b"><h3>Information infrastructure</h3><p>Nonpartisan resources that start a level earlier than most, explaining what an office actually controls before asking who should hold it.</p><a href="election-prep.html">See Election Prep</a></div>
+        </article>
+        <article class="infra">
+          <img src="tvp-photo-ppp-group.jpg" alt="Friends laughing together with a pizza box at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy">
+          <div class="b"><h3>Social infrastructure</h3><p>Real, recurring third places, like bar nights, game nights and run clubs, where trust and turnout grow out of the same soil.</p><a href="get-involved.html">See Get Involved</a></div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- WHAT WE BELIEVE -->
-  <section class="hero" style="background:linear-gradient(160deg, #6E4A2E 0%, #3E2C1C 100%); padding:64px 0; text-align:center;">
-    <div class="container flex-col-center">
-      <span class="eyebrow" style="color:var(--gold);">What We Believe</span>
-      <p class="quote-block tvp-h" style="color:var(--cream-white); max-width:760px; margin-bottom:32px;">If we want higher participation, we have to build communities people actually want to participate in.</p>
-      <a href="get-involved.html" class="btn btn-pink">Get Involved</a>
+  <section class="ladder" aria-labelledby="l-h">
+    <div class="wrap">
+      <p class="kick">The bigger picture</p>
+      <h2 id="l-h" class="big">This is bigger than one vote.</h2>
+      <p class="intro">Civic participation isn't a straight line or a single trip to the ballot box. It's two loops, and TVP tries to meet people wherever they are on them.</p>
+      <div class="loopsx">
+        <div class="loopx"><h3>Start here</h3><ol><li>Attend</li><li>Inquire</li><li>Advocate</li><li>Vote</li></ol><p>Then back to the start, bringing a friend. This loop repeats every election.</p></div>
+        <div class="loopx"><h3>Go deeper</h3><ol><li>Attend</li><li>Host</li><li>Volunteer</li><li>Donate</li><li>Join</li><li>Run</li></ol><p>For anyone ready to take on more, all the way to running for office.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="origin" aria-labelledby="o-h">
+    <div class="wrap">
+      <div class="t">
+        <p class="kick">Where the look comes from</p>
+        <h2 id="o-h" class="big">Built like a collage, on purpose.</h2>
+        <p>Before we redesigned anything, I made a vision board: magazine clippings, hand-drawn type, photos of people actually having fun together. Civic life should feel like that, layered and a little messy and full of people, not like a form you fill out once every two years.</p>
+      </div>
+      <figure>
+        <img src="tvp-collage-vision-board.jpg" alt="A magazine-clipping collage vision board" width="2000" height="1509" loading="lazy">
+        <figcaption>The vision board behind TVP's look.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="belief" aria-labelledby="b-h">
+    <img src="tvp-photo-ppp-yvis.jpg" alt="A guest in a Your Vote Is Sexy shirt at Pinot, Pizza and Politics" width="1400" height="1400" loading="lazy">
+    <div class="t">
+      <p class="kick" id="b-h">What we believe</p>
+      <blockquote>If we want higher participation, we have to build communities people actually want to participate in.</blockquote>
+      <div class="btns">
+        <a href="index.html#join" class="btn btn-light">Get event invites</a>
+        <a href="https://form.qomon.org/4054abad-text-alerts-sign-up-texas-voter-project/" class="btn btn-gold" target="_blank" rel="noopener">Get text alerts</a>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- JOIN THE PARTY: newsletter strip -->
-<section class="party-strip">
-  <div class="container party-strip-inner">
-    <div>
-      <div class="tvp-h party-strip-title">Join the Party.</div>
-      <p>Get on the guest list — event invites, ballot breakdowns, and what's next.</p>
-    </div>
-    <div class="party-strip-ctas">
-      <a href="index.html#join-the-party" class="btn btn-gold">Get On The Guest List</a>
-      <a href="https://form.qomon.org/4054abad-text-alerts-sign-up-texas-voter-project/" class="btn btn-outline" target="_blank" rel="noopener">Get Text Alerts</a>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-about">
-      <div class="tvp-h">Texas Voter Project</div>
-    </div>
-    <nav class="footer-nav">
-      <a href="index.html">Home</a>
-      <a href="why-we-exist.html">Why We Exist</a>
-      <a href="election-prep.html">Election Prep</a>
-      <a href="know-your-government.html">Know Your Government</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="events.html">Events</a>
-      <a href="research.html">Research</a>
-      <a href="hot-takes.html">Hot Takes</a>
-      <a href="about.html">About</a>
-      <a href="shop.html">Shop</a>
-      <a href="donate.html">Donate</a>
+<footer class="foot">
+  <div class="wrap">
+    <div><h2>Texas Voter Project</h2><p class="fine">A fiscally sponsored project of Future Incubator, a 501(c)(3). EIN 33-3913132.</p></div>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a><a href="events.html">Events</a>
+      <a href="get-involved.html">Get Involved</a><a href="election-prep.html">Election Prep</a>
+      <a href="know-your-government.html">Know Your Government</a><a href="research.html">Research</a>
+      <a href="hot-takes.html">Hot Takes</a><a href="about.html">About</a>
+      <a href="shop.html">Shop</a><a href="donate.html">Donate</a>
     </nav>
-    <div class="footer-contact">
-      <div class="footer-social">
-        <a href="https://www.instagram.com/texasvoterproject/" target="_blank" rel="noopener" aria-label="Texas Voter Project on Instagram">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/texas-voter-project/" target="_blank" rel="noopener" aria-label="Texas Voter Project on LinkedIn">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.59h-4v-4.95c0-1.18-.02-2.7-1.7-2.7-1.7 0-1.96 1.28-1.96 2.6v5.05h-4z"/></svg>
-        </a>
-      </div>
-      <p><a href="mailto:info@texasvoterproject.org">info@texasvoterproject.org</a></p>
-      <p class="copyright">© 2026 Texas Voter Project — a fiscally sponsored project of Future Incubator.</p>
-    </div>
+    <div><p>info@texasvoterproject.org</p><p class="fine">&copy; 2026 Texas Voter Project</p></div>
   </div>
 </footer>
-<script src="main.js"></script>
 
 <!-- HOT TAKE PROMO: pops up once per visitor, links to the election post -->
 <div id="promo-backdrop" class="promo-backdrop" hidden>
@@ -188,7 +298,7 @@
     <span class="pill-tag promo-tag">Hot Take</span>
     <h2 id="promo-title" class="tvp-h promo-title">Nov. 3 wasn't the finish line.</h2>
     <p class="promo-text">What Texas voters said, the risk hiding in the win, and why TVP is built for what comes next.</p>
-    <a id="promo-read" href="hot-takes.html" class="btn btn-red">Read the hot take &rarr;</a>
+    <a id="promo-read" href="hot-takes.html" class="btn btn-pink">Read the hot take</a>
     <button id="promo-later" class="promo-later" type="button">Maybe later</button>
   </div>
 </div>
@@ -219,6 +329,9 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !backdrop.hidden) close(); });
   setTimeout(open, 3500);
 })();
+</script>
+<script>
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
 </script>
 </body>
 </html>
