@@ -37,7 +37,7 @@ p, ul { margin: 0; }
 .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 .btn { display: inline-flex; align-items: center; justify-content: center; font: 700 15.5px/1 var(--body); padding: 15px 26px; border: 0; border-radius: 999px; text-decoration: none; transition: filter .15s; cursor: pointer; }
 .btn:hover { filter: brightness(.92); }
-.btn-pink { background: var(--pink); color: #fff; } .btn-gold { background: var(--gold); color: var(--ink); } .btn-light { background: #fff; color: var(--ink); }
+.btn-pink { background: var(--pink); color: #fff; } .btn-gold { background: var(--gold); color: var(--ink); } .btn-light { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
 :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
 .kick { font-weight: 700; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
 h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
@@ -53,15 +53,15 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 @media (max-width: 880px) { .top nav a:not(.btn) { display: none; } .logo img { width: 74px; } .top .wrap { height: 64px; } }
 
 /* Hero */
-.hero { position: relative; min-height: min(88vh, 800px); display: grid; align-items: end; color: #fff; overflow: hidden; border-bottom: var(--line); background: var(--bbdeep) url(https://images.unsplash.com/photo-1586026799184-2b6a80de4c4a?w=2400&q=80&fm=jpg&fit=max) center 40% / cover; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,47,102,0) 20%, rgba(27,47,102,.55) 55%, rgba(27,47,102,.94) 100%); }
-.credit { position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: 11.5px; color: rgba(255,255,255,.75); }
-.credit a { color: inherit; }
-.hero .wrap { position: relative; z-index: 2; padding-block: 80px 70px; display: grid; gap: 22px; }
-.hero .kick { color: var(--gold); }
-.hero h1 { font: 400 clamp(38px, 6vw, 82px)/1.02 var(--display); max-width: 15ch; }
-.hero h1 span { color: var(--gold); }
-.hero p { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 46ch; }
+.hero { position: relative; color: var(--ink); overflow: hidden; border-bottom: var(--line); background: #EEF3FA; }
+.credit { font-size: 11.5px; color: rgba(255,255,255,.8); position: absolute; right: 12px; bottom: 8px; } .credit a { color: inherit; }
+.hero .wrap { position: relative; z-index: 2; padding-block: clamp(60px, 8vw, 100px) 0; display: grid; gap: 22px; }
+.meadow { display: block; width: min(100% - 40px, 1100px); margin: 34px auto 0; height: auto; }
+@media (min-width: 900px) { .hero .wrap { padding-top: 56px; } }
+.hero .kick { color: var(--leaf); }
+.hero h1 { font: 400 clamp(36px, 5vw, 66px)/1.04 var(--display); max-width: 17ch; }
+.hero h1 span { color: var(--bb); }
+.hero p { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 46ch; color: var(--soft); }
 .hero .btns { display: flex; flex-wrap: wrap; gap: 14px; }
 
 /* Name band */
@@ -225,11 +225,11 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
       <h1 id="h">Election money built a moment. <span>Seed money builds what lasts.</span></h1>
       <p>I'm looking for ten people to put $20,000 behind Texas Voter Project, so we can stop starting over every cycle and build the civic infrastructure young Texans deserve.</p>
       <div class="btns">
-        <a href="#give" class="btn btn-gold">Become a seed funder</a>
+        <a href="#give" class="btn btn-pink">Become a seed funder</a>
         <a href="#roadmap" class="btn btn-light">See the roadmap</a>
       </div>
     </div>
-    <p class="credit">Photo: <a href="https://unsplash.com/@matthewelancaster" target="_blank" rel="noopener">Matthew Lancaster</a> on Unsplash</p>
+    <img class="meadow" src="tvp-wildflowers-line.svg" alt="" width="1220" height="256">
   </section>
 
   <section class="name" aria-labelledby="name-h">
