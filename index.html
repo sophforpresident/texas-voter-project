@@ -225,6 +225,10 @@ p { margin: 0; }
 @media (max-width: 760px) { .foot .wrap { grid-template-columns: 1fr; } }
 
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } html { scroll-behavior: auto; } }
+
+/* iOS: hide the play overlay when autoplay is blocked (Low Power Mode) */
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls { display: none !important; }
 </style>
 <script defer async src="https://scripts.qomon.org/forms/v1/setup.js"></script>
 </head>
@@ -257,7 +261,7 @@ p { margin: 0; }
     </div>
     <div class="wrap hero-copy">
       <h1 id="hero-h" class="paint"><span class="p1">Building</span> <span class="p2">social</span> <span class="p3">capital</span></h1>
-      <p>We bring civic life to the bars, run clubs and patios where young Texans already spend their time. Over a drink or a board game, people learn how local power works, meet their neighbors and find reasons to keep showing up.</p>
+      <p>We leverage cultural power, bringing civic life to the bars, run clubs and patios where young Texans already spend their time. Over a drink or a board game, people learn how local power works, meet their neighbors and find reasons to keep showing up.</p>
       <div class="btns">
         <a href="#join" class="btn btn-gold">Get event invites</a>
         <a href="#funders" class="btn btn-light">Back the work</a>
@@ -540,6 +544,16 @@ p { margin: 0; }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   window.addEventListener('resize', frame);
   frame();
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var vids = [].slice.call(document.querySelectorAll('video[autoplay]'));
+  function go() { vids.forEach(function (v) { v.muted = true; v.setAttribute('muted', ''); var p = v.play(); if (p && p.catch) p.catch(function () {}); }); }
+  go();
+  ['touchstart', 'scroll', 'click'].forEach(function (e) { window.addEventListener(e, go, { once: true, passive: true }); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
 })();
 </script>
 </body>

@@ -149,6 +149,10 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .promo-later { background: none; border: 0; font: 600 14.5px var(--body); color: var(--soft); text-decoration: underline; cursor: pointer; padding: 4px 0; }
 .recipe-modal-close { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--skybg); display: grid; place-items: center; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+
+/* iOS: hide the play overlay when autoplay is blocked (Low Power Mode) */
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls { display: none !important; }
 </style>
 </head>
 <body>
@@ -332,6 +336,16 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 </script>
 <script>
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+</script>
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var vids = [].slice.call(document.querySelectorAll('video[autoplay]'));
+  function go() { vids.forEach(function (v) { v.muted = true; v.setAttribute('muted', ''); var p = v.play(); if (p && p.catch) p.catch(function () {}); }); }
+  go();
+  ['touchstart', 'scroll', 'click'].forEach(function (e) { window.addEventListener(e, go, { once: true, passive: true }); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
+})();
 </script>
 </body>
 </html>
