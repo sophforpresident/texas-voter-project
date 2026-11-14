@@ -203,6 +203,14 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .bloom-wash{transition:opacity .6s ease}
 .bloom-label{margin-top:2px;color:var(--ink);font:700 11px/1.3 "Work Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
 @media (max-width:1380px){.bloom{display:none}}
+
+/* Why now / why us */
+.now { border-top: var(--line); }
+.now .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); }
+.now .t { display: grid; gap: 16px; align-content: start; }
+.now .t p:not(.kick) { font-size: 17.5px; }
+.now .kick { color: var(--bb); }
+@media (max-width: 860px) { .now .wrap { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -384,13 +392,29 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
     </div>
   </section>
 
+  <section class="now" aria-labelledby="now-h">
+    <div class="wrap">
+      <div class="t">
+        <p class="kick">Why now</p>
+        <h2 id="now-h" class="big">Momentum fades. Relationships don't.</h2>
+        <p>Turnout that rides on one exciting candidate or one big election year disappears when that moment passes. What lasts is a young person who knows how local government works, has friends to show up with, and trusts the people who invited them. The months after an election, when the stakes feel lower and attention moves on, are exactly when that trust can be earned. That window is open right now.</p>
+      </div>
+      <div class="t">
+        <p class="kick">Why us</p>
+        <h2 class="big">This approach comes from years in the work.</h2>
+        <p>I've spent my career in campaign management, field directing and voter engagement across multiple states. I wrote my honors thesis on why young people don't vote, and found the same thing I see at every TVP event: they aren't apathetic, they're disconnected from institutions that never invited them in.</p>
+        <p>TVP is built on that finding. We pair nonpartisan political education with real third places, and this fall proved it works: over 500 relationships on $20,000 with no paid staff. My work was featured in <em>The Young Vote</em>, a PBS documentary about young voters.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="ask" aria-labelledby="ask-h">
     <figure><img src="tvp-photo-ppp-yvis.jpg" alt="A guest in a Your Vote Is Sexy shirt at Pinot, Pizza and Politics, with friends smiling at the table" width="1400" height="1400" loading="lazy"></figure>
     <div class="t">
       <p class="kick">The ask</p>
       <h2 id="ask-h">Ten people. $20,000 each.</h2>
       <p>That&rsquo;s $200,000. It pays back the $17,885 TVP had to borrow this year to cover what no grant would, and it puts us within reach of Stage 1: a paid team, a development director bringing in grants and consistent communications. That&rsquo;s a real organization, ready to compete for the multi-year funding that sustains it.</p>
-      <p>I'll be straight with you. Without it, I'll have to step back and go do this work the way it's always been done, inside an institution where it's safe. I don't think Texas needs more of the same, and the more than 500 people who showed up this fall tell me they don't either. I'd much rather build the new thing with you.</p>
+      <p>I'll be straight with you. Without it, TVP goes back to the way this work has always been done: sending a text to a list instead of hosting a night in someone's neighborhood. I don't think Texas needs more of the same, and the more than 500 people who showed up this fall tell me they don't either. I'd much rather build the new thing with you.</p>
     </div>
   </section>
 
