@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Lege Fantasy League — Texas Voter Project">
+<meta property="og:description" content="Draft the Texas Legislature. Score as bills move. A free fantasy league for young Texans.">
+<meta property="og:url" content="https://texasvoterproject.org/lege-fantasy-league">
+<meta property="og:image" content="https://texasvoterproject.org/tvp-share-default.jpg">
+<link rel="icon" href="/tvp-logo.png">
+<title>Lege Fantasy League — Texas Voter Project</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ultra&family=Barlow+Condensed:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --night:#0F1D27; --night2:#162B39; --night3:#1F3A4C; --line:#2A4659;
+  --ink:#1E3442; --body:#3B5262; --denim:#5B84A3; --teal:#178567; --teal2:#22B38B; --sky:#B9D4DC;
+  --pink:#F33663; --red:#AB1337; --yellow:#FFD037; --paper:#F4F7F8; --cream:#F8F1E4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Work Sans',system-ui,sans-serif;color:var(--body);background:var(--paper);font-size:16px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.cond{font-family:'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.ultra{font-family:'Ultra',Georgia,serif;font-weight:400}
+h2.sec{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:30px;color:var(--ink);margin:0;letter-spacing:.01em}
+.sechead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:8px;margin-bottom:18px}
+.sechead a{font-weight:700;font-size:14px;color:var(--teal);text-decoration:none}
+.sample{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--denim);background:#e3edf1;padding:3px 8px;border-radius:4px}
+
+/* utility bar */
+.util{background:#08131a;color:#9fb6c4;font-size:13px}
+.util .wrap{display:flex;justify-content:space-between;height:34px;align-items:center}
+.util b{color:var(--yellow)}
+.util .r{display:flex;gap:18px;font-weight:600}
+/* nav */
+.nav{background:var(--night);position:sticky;top:0;z-index:30;border-bottom:3px solid var(--pink)}
+.nav .wrap{display:flex;align-items:center;gap:26px;height:68px}
+.nav .logo{background:#fff;border-radius:10px;padding:4px 8px;display:flex}
+.nav .logo img{height:42px}
+.nav .brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#fff;font-size:20px;line-height:1;text-transform:uppercase}
+.nav .brand small{display:block;color:var(--yellow);font-size:12px;letter-spacing:.12em;font-weight:700}
+.nav .tabs{display:flex;gap:4px;margin-left:auto}
+.nav .tabs a{color:#dbe6ec;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:17px;padding:22px 12px;border-bottom:3px solid transparent;margin-bottom:-3px}
+.nav .tabs a:hover{color:#fff;border-bottom-color:var(--yellow)}
+.nav .tabs a.fund{color:var(--yellow)}
+@media(max-width:900px){.nav .tabs{display:none}}
+
+/* ticker */
+.ticker{background:var(--night2);color:#e8f0f3;overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line);font-size:14px}
+.ticker .lbl{position:absolute;z-index:2;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;padding:9px 14px;letter-spacing:.06em}
+.ticker .rail{display:inline-block;padding:9px 0 9px 100%;animation:tick 60s linear infinite}
+.ticker:hover .rail{animation-play-state:paused}
+.ticker .it{display:inline-block;margin-right:42px}
+.ticker .up{color:var(--teal2);font-weight:700}
+.ticker .dn{color:var(--pink);font-weight:700}
+.ticker .bill{font-weight:700;color:var(--yellow)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.tickwrap{position:relative}
+
+/* hero */
+.hero{background:radial-gradient(circle at 80% 20%,rgba(23,133,103,.45),transparent 50%),radial-gradient(circle at 10% 90%,rgba(243,54,99,.28),transparent 45%),var(--night);color:#fff;padding:54px 0 64px}
+.hero .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+@media(max-width:920px){.hero .grid{grid-template-columns:1fr}}
+.hero .kicker{display:inline-block;background:var(--yellow);color:var(--night);font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;padding:4px 12px;border-radius:4px;letter-spacing:.06em}
+.hero h1{font-family:'Ultra',serif;font-weight:400;font-size:clamp(40px,6vw,68px);line-height:1.02;margin:16px 0 8px}
+.hero h1 span{color:var(--yellow)}
+.hero .sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;color:var(--sky);margin-bottom:14px}
+.hero p{color:#c9d8e0;font-size:18px;max-width:560px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:18px;letter-spacing:.04em;padding:13px 26px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:transform .12s,filter .12s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn-y{background:var(--yellow);color:var(--night)}
+.btn-p{background:var(--pink);color:#fff}
+.btn-t{background:var(--teal);color:#fff}
+.btn-o{background:transparent;color:#fff;border:2px solid #fff}
+.btn-d{background:var(--night);color:#fff}
+.btn:disabled{opacity:.35;cursor:not-allowed;transform:none;filter:none}
+
+/* matchup card */
+.match{background:#fff;color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.35)}
+.match .mh{background:var(--night3);color:#fff;display:flex;justify-content:space-between;padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:15px}
+.match .mh .live{color:var(--pink)}
+.match .mh .live::before{content:"";display:inline-block;width:8px;height:8px;background:var(--pink);border-radius:50%;margin-right:6px;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 16px;gap:10px}
+.team{display:flex;align-items:center;gap:10px}
+.team.r{flex-direction:row-reverse;text-align:right}
+.av{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#fff;font-size:20px;flex:none}
+.team .tn{font-weight:700;font-size:15px;line-height:1.2}
+.team .rec{font-size:12px;color:var(--denim)}
+.score{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1}
+.score.win{color:var(--teal)}
+.vs{font-family:'Barlow Condensed',sans-serif;color:#9aaab4;font-weight:700}
+.wp{height:8px;background:#e7eef1;margin:0 16px;border-radius:4px;overflow:hidden;display:flex}
+.wp i{background:var(--teal)}
+.wp b{background:var(--pink)}
+.wpl{display:flex;justify-content:space-between;font-size:12px;color:var(--denim);padding:4px 16px 10px}
+.mrows{border-top:1px solid #e7eef1}
+.mrow{display:grid;grid-template-columns:1fr 46px 70px 46px 1fr;align-items:center;padding:8px 16px;font-size:13px;border-bottom:1px solid #f0f4f6}
+.mrow .p{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;text-align:center}
+.mrow .pos{text-align:center;font-weight:700;font-size:11px;color:#fff;background:var(--denim);border-radius:4px;padding:2px 0}
+.mrow .pos.s{background:var(--red)}
+.mrow .r{text-align:right}
+
+/* problem strip */
+.why-strip{background:#fff;border-bottom:1px solid #e1e9ed}
+.why-strip .wrap{padding-top:40px;padding-bottom:40px}
+.probs{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+@media(max-width:900px){.probs{grid-template-columns:1fr 1fr}}
+.pr{padding:4px 18px;border-left:1px solid #e1e9ed}
+.pr:first-child{border-left:none;padding-left:0}
+.pr .n{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--pink);font-size:15px}
+.pr h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;color:var(--ink);font-size:20px;margin:2px 0 6px;line-height:1.1}
+.pr p{font-size:14px;margin:0}
+
+section.blk{padding:54px 0}
+/* join panels */
+.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.panels{grid-template-columns:1fr}}
+.panel{border-radius:14px;padding:26px;color:#fff;position:relative;overflow:hidden}
+.panel h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:30px;margin:0 0 6px;line-height:1}
+.panel p{margin:0 0 18px;color:rgba(255,255,255,.88)}
+.panel.a{background:linear-gradient(135deg,var(--teal),#0f5f49)}
+.panel.b{background:linear-gradient(135deg,var(--denim),#33566f)}
+.panel.c{background:linear-gradient(135deg,var(--red),#6e0c24)}
+.panel .big{position:absolute;right:-10px;bottom:-30px;font-family:'Ultra',serif;font-size:140px;opacity:.12;line-height:1}
+
+/* news + rankings layout */
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:30px}
+@media(max-width:920px){.two{grid-template-columns:1fr}}
+.news{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(15,29,39,.06)}
+.ni{display:flex;gap:14px;padding:16px 18px;border-bottom:1px solid #edf2f4}
+.ni:last-child{border-bottom:none}
+.ni .meta{font-size:13px;color:var(--denim);margin-bottom:2px}
+.ni .meta b{color:var(--ink)}
+.ni h4{margin:0 0 4px;font-size:16px;color:var(--ink)}
+.ni p{margin:0;font-size:14px}
+.tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.05em;padding:2px 8px;border-radius:4px;color:#fff;margin-left:6px;vertical-align:1px}
+.t-cmte{background:var(--denim)}.t-pass{background:var(--teal)}.t-dead{background:#7c8b94}.t-law{background:var(--yellow);color:var(--night)}.t-hear{background:var(--pink)}
+
+.rank{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(15,29,39,.06)}
+.rtabs{display:flex;background:var(--night)}
+.rtabs button{flex:1;background:none;border:none;color:#9fb6c4;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:17px;padding:12px;cursor:pointer;border-bottom:3px solid transparent}
+.rtabs button.on{color:#fff;border-bottom-color:var(--yellow)}
+table.rt{width:100%;border-collapse:collapse;font-size:14px}
+table.rt th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-weight:700;font-size:13px;color:var(--denim);text-align:left;padding:10px 12px;border-bottom:2px solid #e1e9ed;background:#f7fafb}
+table.rt td{padding:10px 12px;border-bottom:1px solid #edf2f4}
+table.rt td.num,table.rt th.num{text-align:right}
+table.rt .rk{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--ink);width:36px}
+table.rt .pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--teal)}
+.tr-up{color:var(--teal);font-weight:700}.tr-dn{color:var(--pink);font-weight:700}
+.dist{font-size:12px;color:var(--denim)}
+
+/* mock draft */
+.draft{background:var(--night);color:#fff}
+.draft h2.sec{color:#fff}
+.draft .sechead{border-color:var(--yellow)}
+.draft .sechead span.sample{background:var(--night3);color:var(--sky)}
+.draftgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+@media(max-width:920px){.draftgrid{grid-template-columns:1fr}}
+.pool{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:600px){.pool{grid-template-columns:1fr}}
+.leg{background:var(--night2);border:2px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;display:flex;gap:12px;align-items:center;transition:border-color .12s,background .12s;user-select:none}
+.leg:hover{border-color:var(--sky)}
+.leg.sel{border-color:var(--yellow);background:var(--night3)}
+.leg .av{width:42px;height:42px;font-size:16px}
+.leg .nm{font-weight:700;font-size:15px}
+.leg .ar{font-size:13px;color:var(--sky)}
+.leg .ex{margin-left:auto;text-align:right;font-size:12px;color:#9fb6c4}
+.leg .ex b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:20px;color:#fff}
+.mybox{background:var(--night2);border:1px solid var(--line);border-radius:12px;padding:18px}
+.slot{display:flex;align-items:center;gap:10px;padding:10px;border:1px dashed var(--line);border-radius:8px;margin-bottom:8px;min-height:52px;color:#9fb6c4;font-size:14px}
+.slot.f{border-style:solid;border-color:var(--yellow);color:#fff}
+.slot .sn{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--yellow);width:26px}
+.civic{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.civic label{display:flex;gap:10px;align-items:center;margin:8px 0;cursor:pointer;font-size:14px}
+.civic input{width:18px;height:18px;accent-color:var(--pink)}
+.civic .fine{font-size:12px;color:#9fb6c4;margin-top:6px}
+.res{display:none;margin-top:24px}
+.res.show{display:block}
+.sb{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sbx{background:#fff;color:var(--ink);border-radius:12px;padding:18px}
+.sbx .lab{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;color:var(--denim)}
+.sbx .tot{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;line-height:1;color:var(--teal)}
+.sbx.c .tot{color:var(--pink)}
+.lrow{margin-top:12px}
+.lrow .ln{display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+.funnel{display:flex;gap:3px;margin-top:5px}
+.funnel div{flex:1;height:24px;border-radius:4px;background:#e7eef1;position:relative;overflow:hidden;font-size:11px;font-weight:700;display:grid;place-items:center}
+.funnel span{position:relative;z-index:1}
+.funnel i{position:absolute;left:0;top:0;bottom:0;background:var(--sky);transition:width .6s}
+.funnel div:last-child i{background:var(--yellow)}
+.lg{display:flex;gap:3px;font-size:10px;color:var(--denim);margin-top:3px}
+.lg span{flex:1;text-align:center}
+.lesson{background:var(--yellow);color:var(--night);border-radius:12px;padding:18px 22px;margin-top:14px;font-weight:500}
+@media(max-width:600px){.sb{grid-template-columns:1fr}}
+
+/* settings & dates */
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+@media(max-width:920px){.three{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(15,29,39,.06)}
+.card h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;color:var(--ink);font-size:22px;margin:0 0 10px}
+.kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #edf2f4;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv b{font-family:'Barlow Condensed',sans-serif;font-size:18px;color:var(--teal)}
+.dt{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #edf2f4;font-size:14px}
+.dt:last-child{border-bottom:none}
+.dt .d{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--red);width:78px;flex:none;text-transform:uppercase}
+
+/* funders */
+.funders{background:var(--night);color:#d5e2e9}
+.funders h2.sec{color:#fff}
+.funders .sechead{border-color:var(--pink)}
+.statband{display:flex;gap:30px;align-items:center;flex-wrap:wrap;background:var(--night2);border-radius:14px;padding:26px 28px}
+.statband .n{font-family:'Ultra',serif;font-size:clamp(60px,9vw,96px);color:var(--yellow);line-height:1}
+.statband p{max-width:640px;margin:0;font-size:17px}
+.src{font-size:12px;color:#86a0ae;margin-top:8px}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
+.fg{background:var(--night2);border-radius:12px;padding:18px;border-top:4px solid var(--teal)}
+.fg:nth-child(2){border-color:var(--pink)}.fg:nth-child(3){border-color:var(--yellow)}.fg:nth-child(4){border-color:var(--denim)}
+.fg h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;color:#fff;font-size:19px;margin:0 0 6px}
+.fg p{margin:0;font-size:14px}
+.budget{background:#fff;color:var(--ink);border-radius:14px;padding:6px 22px;margin-top:24px}
+.bl{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #edf2f4}
+.bl:last-child{border-bottom:none}
+.bl .amt{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;white-space:nowrap}
+.bl small{color:var(--body)}
+.tbd{background:var(--yellow);color:var(--night);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;padding:3px 10px;border-radius:4px;text-transform:uppercase}
+.meas{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+@media(max-width:900px){.meas{grid-template-columns:1fr 1fr}}
+.meas div{background:var(--night2);border-radius:10px;padding:14px;font-size:13px}
+.meas b{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--yellow);font-size:17px}
+.contact{background:linear-gradient(135deg,var(--pink),var(--red));color:#fff;border-radius:14px;padding:28px;margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.contact h3{font-family:'Ultra',serif;font-weight:400;font-size:28px;margin:0}
+.contact .em{font-weight:700;background:rgba(0,0,0,.18);padding:10px 16px;border-radius:6px}
+footer{background:#08131a;color:#7f98a6;font-size:13px;text-align:center;padding:24px 0}
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap"><span><b>Season 1</b> &middot; 90th Texas Legislature &middot; Jan 12 &ndash; May 31, 2027</span><span class="r"><span>Join the Club</span><span>Sign in</span></span></div></div>
+
+<div class="nav"><div class="wrap">
+  <span class="logo"><img src="/tvp-logo.png" alt="Texas Voter Project"></span>
+  <div class="brand">Lege Fantasy League<small>Civic Sports Social Club</small></div>
+  <div class="tabs">
+    <a href="#leagues">Leagues</a><a href="#news">Bill News</a><a href="#rankings">Rankings</a><a href="#draft">Mock Draft</a><a href="#settings">Scoring</a><a href="#funders" class="fund">For Funders</a>
+  </div>
+</div></div>
+
+<div class="tickwrap"><div class="ticker"><span class="lbl">Live Feed</span><div class="rail" id="rail"></div></div></div>
+
+<header class="hero"><div class="wrap grid">
+  <div>
+    <span class="kicker">Season 1 &middot; Draft opens January 2027</span>
+    <h1>Lege Fantasy League <span>2027</span></h1>
+    <div class="sub">Draft the Texas Legislature. Score as bills move.</div>
+    <p>A free fantasy league for young Texans. Draft any of the 181 state legislators, earn points as their bills move through the session, and speak up to the two who represent you.</p>
+    <div class="ctas"><a class="btn btn-y" href="#draft">Try a Mock Draft</a><a class="btn btn-o" href="#funders">Back the League</a></div>
+  </div>
+  <div class="match">
+    <div class="mh"><span>Week 9 Matchup &middot; Sample</span><span class="live">Live</span></div>
+    <div class="teams">
+      <div class="team"><div class="av" style="background:var(--teal)">CC</div><div><div class="tn">Committee Crushers</div><div class="rec">6-2 &middot; 1st</div></div></div>
+      <div style="text-align:center"><span class="score win">87</span> <span class="vs">&ndash;</span> <span class="score">74</span></div>
+      <div class="team r"><div class="av" style="background:var(--pink)">SD</div><div><div class="tn">Sine Die Hards</div><div class="rec">5-3 &middot; 3rd</div></div></div>
+    </div>
+    <div class="wp"><i style="width:68%"></i><b style="width:32%"></b></div>
+    <div class="wpl"><span>68% win probability</span><span>32%</span></div>
+    <div class="mrows">
+      <div class="mrow"><span>Rep. Workman</span><span class="p">22</span><span class="pos">HOUSE</span><span class="p">18</span><span class="r">Rep. Ortega</span></div>
+      <div class="mrow"><span>Sen. Calderón</span><span class="p">31</span><span class="pos s">SENATE</span><span class="p">25</span><span class="r">Sen. Hartley</span></div>
+      <div class="mrow"><span>Rep. Nguyen</span><span class="p">12</span><span class="pos">HOUSE</span><span class="p">9</span><span class="r">Rep. Bauer</span></div>
+      <div class="mrow"><span>Civic pts</span><span class="p" style="color:var(--pink)">22</span><span class="pos" style="background:var(--pink)">CIVIC</span><span class="p" style="color:var(--pink)">22</span><span class="r">Civic pts</span></div>
+    </div>
+  </div>
+</div></header>
+
+<div class="why-strip"><div class="wrap">
+  <div class="sechead"><h2 class="sec">Why we're building this</h2></div>
+  <div class="probs">
+    <div class="pr"><div class="n">01</div><h3>The knowledge gap</h3><p>Fewer than 1 in 5 Americans under 45 could pass the U.S. citizenship test, and Texas ranked among the lowest-scoring states. Among 18&ndash;24-year-olds, only 4% could answer four basic civics questions. <a href="#sources" style="color:var(--teal);font-weight:600">Sources</a></p></div>
+    <div class="pr"><div class="n">02</div><h3>Big expectations, divided power</h3><p>A new governor and a divided Legislature. Voters expect sweeping change, but every bill has to clear both chambers.</p></div>
+    <div class="pr"><div class="n">03</div><h3>Conditional voters</h3><p>Young Texans vote when they feel it matters, and sit out when change seems slow.</p></div>
+    <div class="pr"><div class="n">04</div><h3>Frustrated with the pace</h3><p>Government moves slowly, and it's most frustrating for people who were never taught why.</p></div>
+    <div class="pr"><div class="n">05</div><h3>Schools can't close it</h3><p>Civics in schools has been limited and politicized, and graduates won't be reached by any classroom fix.</p></div>
+  </div>
+</div></div>
+
+<section class="blk" id="leagues"><div class="wrap">
+  <div class="sechead"><h2 class="sec">Get in the game</h2><span class="sample">Free to enter</span></div>
+  <div class="panels">
+    <div class="panel a"><h3>Join a League</h3><p>Get matched with players across Texas in a public league. Draft day is in early January, before session opens.</p><a class="btn btn-y" href="#draft">Join Now</a><div class="big">J</div></div>
+    <div class="panel b"><h3>Create a League</h3><p>Start a private league with your friends, run club, classmates or coworkers. Bragging rights included.</p><a class="btn btn-d" href="#draft">Create Now</a><div class="big">C</div></div>
+    <div class="panel c"><h3>Prize Leagues</h3><p>Season champions win cash prizes. Always free to enter, with no purchase or donation required.</p><a class="btn btn-y" href="#funders">See Prizes</a><div class="big">$</div></div>
+  </div>
+</div></section>
+
+<section class="blk" style="padding-top:0"><div class="wrap two">
+  <div id="news">
+    <div class="sechead"><h2 class="sec">Latest Bill News</h2><span class="sample">Sample data</span></div>
+    <div class="news">
+      <div class="ni"><div class="av" style="background:var(--red)">RC</div><div><div class="meta"><b>Sen. Ray Calderón</b> &middot; SD-00 &middot; 12 min ago <span class="tag t-pass">Passed Senate</span></div><h4>SB 000 clears the Senate floor, heads to the House</h4><p>Calderón owners pick up 5 points. The bill now needs a House committee hearing to keep scoring.</p></div></div>
+      <div class="ni"><div class="av" style="background:var(--teal)">DW</div><div><div class="meta"><b>Rep. Dana Workman</b> &middot; HD-00 &middot; 1 hr ago <span class="tag t-hear">Hearing set</span></div><h4>Three Workman bills get a committee hearing Tuesday</h4><p>Each hearing is worth 2 points. Constituents can email Workman through the app before the hearing.</p></div></div>
+      <div class="ni"><div class="av" style="background:var(--denim)">TB</div><div><div class="meta"><b>Rep. Tess Bauer</b> &middot; HD-00 &middot; 3 hr ago <span class="tag t-dead">Dead</span></div><h4>HB 000 misses its committee deadline</h4><p>Most bills die in committee without ever getting a vote. Bauer owners may want to check the waiver wire.</p></div></div>
+      <div class="ni"><div class="av" style="background:var(--pink)">LH</div><div><div class="meta"><b>Sen. Lou Hartley</b> &middot; SD-00 &middot; 5 hr ago <span class="tag t-cmte">Out of committee</span></div><h4>Bipartisan bill voted out of committee 7&ndash;2</h4><p>Hartley's co-authored bill moves to the Senate floor calendar. +3 points.</p></div></div>
+    </div>
+  </div>
+  <div id="rankings">
+    <div class="sechead"><h2 class="sec">Rankings</h2><span class="sample">Sample data</span></div>
+    <div class="rank">
+      <div class="rtabs"><button class="on" data-t="h">House</button><button data-t="s">Senate</button></div>
+      <table class="rt"><thead><tr><th>#</th><th>Legislator</th><th class="num">Filed</th><th class="num">Out of Cmte</th><th class="num">Pts</th><th class="num">Trend</th></tr></thead><tbody id="rbody"></tbody></table>
+    </div>
+  </div>
+</div></section>
+
+<section class="blk draft" id="draft"><div class="wrap">
+  <div class="sechead"><h2 class="sec">Mock Draft: pick three, run the session</h2><span class="sample">Made-up legislators</span></div>
+  <div class="draftgrid">
+    <div class="pool" id="pool"></div>
+    <div class="mybox">
+      <div class="cond" style="font-weight:800;font-size:20px;color:#fff">My Roster</div>
+      <div id="slots"></div>
+      <div class="civic">
+        <div class="cond" style="font-weight:800;font-size:17px;color:var(--pink)">Civic points (in-app emails)</div>
+        <label><input type="checkbox" data-pts="3"> Emailed my state rep about one of their bills (+3)</label>
+        <label><input type="checkbox" data-pts="3"> Emailed my state senator about one of their bills (+3)</label>
+        <div class="fine">Only emails sent through the app count, only to your own two legislators, up to one scored email per legislator per week. Civic points are scored separately from your roster.</div>
+      </div>
+      <button class="btn btn-y" id="runBtn" style="width:100%;margin-top:14px" disabled>Draft 3 to start</button>
+    </div>
+  </div>
+  <div class="res" id="res">
+    <div class="sb">
+      <div class="sbx"><div class="lab">Roster points</div><div class="tot" id="rt">0</div><div id="rows"></div></div>
+      <div class="sbx c"><div class="lab" style="color:var(--pink)">Civic points</div><div class="tot" id="ct">0</div><p style="font-size:14px;margin-top:12px">Scored separately, so there's never a points reason to push a bill you disagree with. They reward speaking up to the people who represent you.</p></div>
+    </div>
+    <div class="lesson" id="lesson"></div>
+  </div>
+</div></section>
+
+<section class="blk" id="settings"><div class="wrap">
+  <div class="sechead"><h2 class="sec">League Settings</h2></div>
+  <div class="three">
+    <div class="card"><h3>Scoring (bill stage)</h3>
+      <div class="kv"><span>Filed</span><b>1</b></div><div class="kv"><span>Heard in committee</span><b>2</b></div><div class="kv"><span>Voted out of committee</span><b>3</b></div><div class="kv"><span>Passes first chamber</span><b>5</b></div><div class="kv"><span>Passes second chamber</span><b>8</b></div><div class="kv"><span>Signed into law</span><b>10</b></div><div class="kv"><span>Freshman bonus (all bill points)</span><b>&times;1.5</b></div>
+      <p style="font-size:12px;color:var(--denim);margin:10px 0 0">Draft values. What a bill says never affects its score.</p>
+    </div>
+    <div class="card"><h3>Roster rules</h3>
+      <div class="kv"><span>Draft pool</span><b>181</b></div><div class="kv"><span>House members</span><b>150</b></div><div class="kv"><span>Senators</span><b>31</b></div><div class="kv"><span>Freshman slot (required)</span><b>1</b></div><div class="kv"><span>Scored emails per legislator</span><b>1/wk</b></div><div class="kv"><span>Entry fee</span><b>$0</b></div>
+      <p style="font-size:12px;color:var(--denim);margin:10px 0 0">Civic points come only from in-app emails to your own state rep and senator.</p>
+    </div>
+    <div class="card"><h3>Important dates</h3>
+      <div class="dt"><span class="d">Nov 9</span><span>Bill filing opened (2026)</span></div>
+      <div class="dt"><span class="d">Early Jan</span><span>Draft day</span></div>
+      <div class="dt"><span class="d">Jan 12</span><span>Session opens, scoring starts</span></div>
+      <div class="dt"><span class="d">Mar 12</span><span>Last day to file bills</span></div>
+      <div class="dt"><span class="d">May 31</span><span>Sine die: season ends, champions crowned</span></div>
+      <div class="dt"><span class="d">Summer</span><span>Results report to funders</span></div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--denim);margin-top:10px">Session dates: <a href="https://txla.org/advocacy/texas-legislative-process-2/">Texas Library Association</a></div>
+</div></section>
+
+<section class="blk funders" id="funders"><div class="wrap">
+  <div class="sechead"><h2 class="sec">For Funders</h2></div>
+  <div class="statband"><div class="n">&lt;20%</div><p>In a typical 140-day Texas session, fewer than one in five filed bills becomes law. That's how the system is built. The league lets players watch it happen to "their" legislators week by week, so slow progress makes sense instead of feeling like betrayal.</p></div>
+  <div class="src">Source: <a href="https://www.texaspolicyresearch.com/legislative-calendar-89th-legislative-session/">Texas Policy Research, 90th Legislative Session calendar</a></div>
+  <div class="fgrid">
+    <div class="fg"><h4>Meets people where they are</h4><p>Plenty of young Texans already follow a fantasy league. We use that habit to teach how a bill becomes law, reaching people long past graduation.</p></div>
+    <div class="fg"><h4>Nonpartisan by design</h4><p>Scoring follows the process, not the politics. Players can draft any legislator from either party and win.</p></div>
+    <div class="fg"><h4>Builds real relationships</h4><p>Players only email their own legislators, through the app. Freshmen earn 1.5x points, so players follow the new members who are still building their networks and want to hear from constituents.</p></div>
+    <div class="fg"><h4>Built to last</h4><p>Built by the developer of Govvy, a civic transparency app. Players can dig deeper on Govvy with a free trial for the length of the session.</p></div>
+  </div>
+  <div class="budget">
+    <div class="bl"><div><b>App design, build and maintenance</b><br><small>Through sine die, built by the Govvy developer</small></div><div class="amt">$5,000</div></div>
+    <div class="bl"><div><b>Season prize pool, player recruitment and district meetups</b><br><small>Cash prizes for champions, launch events, and small gatherings with legislators</small></div><div class="amt">$15,000</div></div>
+    <div class="bl" style="border-top:3px solid var(--ink)"><div><b>Total season budget</b></div><div class="amt" style="color:var(--teal)">$20,000</div></div>
+  </div>
+  <div class="meas">
+    <div><b>Players</b>Sign-ups, and the share who are 18&ndash;35</div>
+    <div><b>Knowledge</b>Pre- and post-season quiz on how the Legislature works</div>
+    <div><b>Civic actions</b>In-app emails to players' own legislators</div>
+    <div><b>Retention</b>Players still active at sine die</div>
+    <div><b>Relationships</b>Legislators who attend a district meetup</div>
+  </div>
+  <div class="contact">
+    <div><h3>Help us get to draft day.</h3><div style="margin-top:4px">Sophia DeLoretto-Chudy, Executive Director, Texas Voter Project</div></div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="em">sophia@texasvoterproject.org</span><button class="btn btn-y" id="copyBtn">Copy email</button></div>
+  </div>
+</div></section>
+
+<div class="wrap" id="sources" style="padding:28px 20px;font-size:13px;color:var(--body)"><b style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:16px;color:var(--ink)">Sources</b><ol style="margin:8px 0 0 18px;padding:0"><li>Citizenship test results for Americans under 45 and Texas&rsquo;s state ranking: 2018 Woodrow Wilson National Fellowship Foundation (now Institute for Citizens &amp; Scholars) survey, as reported by <a href="https://carnegie.org/article/citizenship-test-gilder-lehrman/">Carnegie Corporation of New York</a> and <a href="https://www.texaspolicy.com/wp-content/uploads/2020/09/2021-22-Lege-Guide-1-pager-NGT-Civic-Ed.pdf">Texas Public Policy Foundation</a>.</li><li>18&ndash;24-year-olds&rsquo; civics answers: <a href="https://cands.org/?p=7684">Institute for Citizens &amp; Scholars, The Civic Outlook of Young Adults in America (2023)</a>.</li><li>Share of filed bills that become law: <a href="https://www.texaspolicyresearch.com/legislative-calendar-89th-legislative-session/">Texas Policy Research</a>.</li><li>Session dates: <a href="https://txla.org/advocacy/texas-legislative-process-2/">Texas Library Association</a>.</li></ol></div>
+<footer>Texas Voter Project &middot; Civic Sports Social Club &middot; Nonpartisan and free to play &middot; Legislators and bills shown are made up.</footer>
+
+<script>
+const TICK=[
+ ['up','SB 000','Sen. Calderón','passed the Senate','+5'],
+ ['up','HB 000','Rep. Workman','set for committee hearing','+2'],
+ ['dn','HB 000','Rep. Bauer','died in committee','0'],
+ ['up','SB 000','Sen. Hartley','voted out of committee 7-2','+3'],
+ ['up','HB 000','Rep. Ortega','passed the House','+5'],
+ ['up','HB 000','Rep. Nguyen','first bill filed','+1'],
+ ['dn','HB 000','Rep. Workman','left pending in committee','0'],
+ ['up','SB 000','Sen. Calderón','signed into law','+10']
+];
+document.getElementById('rail').innerHTML=TICK.concat(TICK).map(t=>`<span class="it"><span class="bill">${t[1]}</span> &middot; ${t[2]} ${t[3]} <span class="${t[0]}">${t[4]}</span></span>`).join('')+'<span class="it" style="color:#86a0ae">Sample feed. Bills and legislators are made up.</span>';
+
+const RK={h:[['Rep. Max Ortega','HD-00',16,9,88,'up'],['Rep. Dana Workman','HD-00',34,7,81,'up'],['Rep. Jo Nguyen','HD-00',12,4,41,'dn'],['Rep. Tess Bauer','HD-00',21,2,29,'dn'],['Rep. Ana Reyes','HD-00',10,3,27,'up']],
+ s:[['Sen. Ray Calderón','SD-00',8,7,96,'up'],['Sen. Lou Hartley','SD-00',14,8,90,'up'],['Sen. Pat Okafor','SD-00',11,4,52,'dn'],['Sen. Kim Delgado','SD-00',9,3,38,'up'],['Sen. Bo Whitfield','SD-00',13,2,24,'dn']]};
+function rr(k){document.getElementById('rbody').innerHTML=RK[k].map((r,i)=>`<tr><td class="rk">${i+1}</td><td><b>${r[0]}</b><div class="dist">${r[1]}</div></td><td class="num">${r[2]}</td><td class="num">${r[3]}</td><td class="num pts">${r[4]}</td><td class="num ${r[5]=='up'?'tr-up':'tr-dn'}">${r[5]=='up'?'&#9650;':'&#9660;'}</td></tr>`).join('')}
+rr('h');
+document.querySelectorAll('.rtabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.rtabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');rr(b.dataset.t)});
+
+const COL=['var(--teal)','var(--red)','var(--denim)','var(--pink)','#5a6f7d','#c08a00'];
+const LEGS=[
+ {name:"Rep. Dana Workman",ch:"House",arch:"The Workhorse: files tons, few go far",bills:30,mult:0.6},
+ {name:"Sen. Ray Calderón",ch:"Senate",arch:"The Committee Chair: decides what gets heard",bills:8,mult:1.6},
+ {name:"Rep. Jo Nguyen",ch:"House",arch:"The Freshman: earns 1.5x points",bills:12,mult:0.75,fr:1},
+ {name:"Sen. Lou Hartley",ch:"Senate",arch:"The Dealmaker: co-authors across the aisle",bills:14,mult:1.1},
+ {name:"Rep. Max Ortega",ch:"House",arch:"The Veteran: knows every procedural trick",bills:16,mult:1.2},
+ {name:"Rep. Tess Bauer",ch:"House",arch:"The Messenger: files bills to make a point",bills:20,mult:0.45}
+];
+const ini=n=>n.replace(/^(Rep|Sen)\. /,'').split(' ').map(w=>w[0]).join('');
+const STG=[{k:"Filed",p:1},{k:"Hearing",p:2},{k:"Out cmte",p:3},{k:"Chamber 1",p:5},{k:"Chamber 2",p:8},{k:"Law",p:10}];
+const BASE=[1,0.5,0.75,0.75,0.8,0.85];
+let picked=[];
+const pool=document.getElementById('pool');
+LEGS.forEach((l,i)=>{
+  const d=document.createElement('div');d.className='leg';d.tabIndex=0;
+  d.innerHTML=`<div class="av" style="background:${COL[i]}">${ini(l.name)}</div><div><div class="nm">${l.name}${l.fr?' <span class="tag t-law">Fresh</span>':''}</div><div class="ar">${l.ch} &middot; ${l.arch}</div></div><div class="ex"><b>${l.bills}</b>bills</div>`;
+  const tg=()=>{const k=picked.indexOf(i);if(k>-1){picked.splice(k,1);d.classList.remove('sel')}else if(picked.length<3){picked.push(i);d.classList.add('sel')}draw()};
+  d.onclick=tg;d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tg()}};
+  pool.appendChild(d);
+});
+const run=document.getElementById('runBtn');
+function draw(){
+  document.getElementById('slots').innerHTML=[0,1,2].map(s=>{const i=picked[s];return i===undefined?`<div class="slot"><span class="sn">R${s+1}</span>Empty pick</div>`:`<div class="slot f"><span class="sn">R${s+1}</span><div class="av" style="width:32px;height:32px;font-size:13px;background:${COL[i]}">${ini(LEGS[i].name)}</div>${LEGS[i].name}</div>`}).join('');
+  run.disabled=picked.length!==3;run.textContent=picked.length===3?'Run the session':`Draft ${3-picked.length} more`;
+}
+draw();
+function sim(l){const c=[0,0,0,0,0,0];for(let b=0;b<l.bills;b++){c[0]++;for(let s=1;s<6;s++){const p=Math.min(0.88,BASE[s]*(s<=2?l.mult:Math.pow(l.mult,0.25)));if(Math.random()<p)c[s]++;else break}}const raw=c.reduce((a,v,i)=>a+v*STG[i].p,0);return{c,pts:l.fr?Math.round(raw*1.5):raw}}
+run.onclick=()=>{
+  const res=document.getElementById('res');res.classList.add('show');
+  const rows=document.getElementById('rows');rows.innerHTML='';let tot=0,f=0,law=0,cm=0;
+  picked.forEach(i=>{const l=LEGS[i],r=sim(l);tot+=r.pts;f+=r.c[0];law+=r.c[5];cm+=r.c[0]-r.c[2];
+    const el=document.createElement('div');el.className='lrow';
+    el.innerHTML=`<div class="ln"><span>${l.name}${l.fr?' (freshman &times;1.5)':''}</span><span>${r.pts} pts</span></div><div class="funnel">${r.c.map(v=>`<div><i style="width:0"></i><span>${v}</span></div>`).join('')}</div><div class="lg">${STG.map(s=>`<span>${s.k}</span>`).join('')}</div>`;
+    rows.appendChild(el);setTimeout(()=>el.querySelectorAll('.funnel i').forEach((x,k)=>x.style.width=(r.c[0]?r.c[k]/r.c[0]*100:0)+'%'),60)});
+  let cv=0;document.querySelectorAll('.civic input:checked').forEach(c=>cv+=+c.dataset.pts);
+  document.getElementById('rt').textContent=tot;document.getElementById('ct').textContent=cv;
+  document.getElementById('lesson').innerHTML=`<b>Final:</b> your roster filed ${f} bills. ${law} became law (${f?Math.round(law/f*100):0}%). ${cm} never made it out of committee. Committees are where most bills live or die, and where a constituent's voice matters most.`;
+  run.textContent='Run it again';res.scrollIntoView({behavior:'smooth',block:'start'});
+};
+document.getElementById('copyBtn').onclick=async e=>{try{await navigator.clipboard.writeText('sophia@texasvoterproject.org');e.target.textContent='Copied'}catch(x){e.target.textContent='Select to copy'}setTimeout(()=>e.target.textContent='Copy email',2000)};
+</script>
+</body>
+</html>

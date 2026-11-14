@@ -12,3 +12,6 @@
 
 /tvp-vote-early-day*
   Access-Control-Allow-Origin: *
+
+/lege-fantasy-league*
+  X-Robots-Tag: noindex, nofollow
