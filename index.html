@@ -44,6 +44,11 @@ p { margin: 0; }
 :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
+/* ===== Alert bar ===== */
+.alert { background: #AB1337; color: #fff; text-align: center; font-weight: 600; font-size: 15px; }
+.alert .wrap { padding-block: 10px; }
+.alert a { color: #fff; font-weight: 700; text-underline-offset: 3px; margin-left: 6px; }
+
 /* ===== Header ===== */
 .top { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: var(--line); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; }
@@ -224,6 +229,8 @@ p { margin: 0; }
 <script defer async src="https://scripts.qomon.org/forms/v1/setup.js"></script>
 </head>
 <body>
+
+<div class="alert"><div class="wrap">Wondering how Texas flipped, and what happens next? <a href="hot-takes.html">Read our election hot take</a></div></div>
 
 <header class="top">
   <div class="wrap">
