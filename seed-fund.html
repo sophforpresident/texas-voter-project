@@ -136,8 +136,12 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .travel .wrap { padding-block: clamp(70px, 9vw, 110px); display: grid; gap: 22px; }
 .travel .kick { color: var(--navy); }
 .travel .wrap > p { font-size: 18px; max-width: 64ch; }
-.conf { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin-top: 6px; }
-.conf li { background: var(--skybg); border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 15px; }
+.marq { display: flex; overflow: hidden; gap: 10px; margin-top: 6px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.conf { display: flex; flex-shrink: 0; gap: 10px; list-style: none; padding: 0; margin: 0; animation: marq 60s linear infinite; }
+.conf li { background: var(--skybg); border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 15px; white-space: nowrap; }
+.marq:hover .conf { animation-play-state: paused; }
+@keyframes marq { to { transform: translateX(calc(-100% - 10px)); } }
+@media (prefers-reduced-motion: reduce) { .marq { flex-wrap: wrap; -webkit-mask-image: none; mask-image: none; } .conf { animation: none; flex-wrap: wrap; flex-shrink: 1; } .conf[aria-hidden] { display: none; } }
 
 /* Roadmap */
 .road { background: var(--skybg); border-top: var(--line); border-bottom: var(--line); }
@@ -341,30 +345,10 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
       <p class="kick">What "travel" means</p>
       <h2 id="tr-h" class="big">This is where funders and partners decide who they trust.</h2>
       <p>When we say travel, we mean these rooms. They're where national funders, coalition partners and peer organizations meet new groups, and where a young Texas organization either gets known or gets overlooked. Here are the conferences and convenings we're working to be in the room for.</p>
-      <ul class="conf">
-        <li>Crooked Con</li>
-        <li>Facing Race</li>
-        <li>NANR</li>
-        <li>BISC Road Ahead</li>
-        <li>America Votes</li>
-        <li>Hispanics in Philanthropy</li>
-        <li>Netroots Nation</li>
-        <li>Democracy Alliance</li>
-        <li>Climate Week</li>
-        <li>Aspen Ideas Festival</li>
-        <li>NALEO</li>
-        <li>Color of Change</li>
-        <li>Power of Pink</li>
-        <li>State Voices</li>
-        <li>Higher Ground Labs</li>
-        <li>Gain Power</li>
-        <li>FCCP</li>
-        <li>Committee on States</li>
-        <li>PolicyLink</li>
-        <li>Independent Sector</li>
-        <li>Echoing Green Just Futures</li>
-        <li>Dream for America Democracy Summit</li>
-      </ul>
+      <div class="marq" role="region" aria-label="Conferences and convenings">
+        <ul class="conf"><li>Crooked Con</li><li>Facing Race</li><li>NANR</li><li>BISC Road Ahead</li><li>America Votes</li><li>Hispanics in Philanthropy</li><li>Netroots Nation</li><li>Democracy Alliance</li><li>Climate Week</li><li>Aspen Ideas Festival</li><li>NALEO</li><li>Color of Change</li><li>Power of Pink</li><li>State Voices</li><li>Higher Ground Labs</li><li>Gain Power</li><li>FCCP</li><li>Committee on States</li><li>PolicyLink</li><li>Independent Sector</li><li>Echoing Green Just Futures</li><li>Dream for America Democracy Summit</li></ul>
+        <ul class="conf" aria-hidden="true"><li>Crooked Con</li><li>Facing Race</li><li>NANR</li><li>BISC Road Ahead</li><li>America Votes</li><li>Hispanics in Philanthropy</li><li>Netroots Nation</li><li>Democracy Alliance</li><li>Climate Week</li><li>Aspen Ideas Festival</li><li>NALEO</li><li>Color of Change</li><li>Power of Pink</li><li>State Voices</li><li>Higher Ground Labs</li><li>Gain Power</li><li>FCCP</li><li>Committee on States</li><li>PolicyLink</li><li>Independent Sector</li><li>Echoing Green Just Futures</li><li>Dream for America Democracy Summit</li></ul>
+      </div>
     </div>
   </section>
 
