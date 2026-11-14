@@ -23,7 +23,7 @@
 :root {
   --ink: #1C3347; --navy: #1F4A6B; --deep: #142C40; --green: #178567; --forest: #123B2E;
   --mint: #9FD6B8; --sky: #8EC3E6; --pink: #F33663; --red: #AB1337; --gold: #FFD037;
-  --white: #fff; --soft: #4C6578; --mintbg: #D3ECDF; --skybg: #DCEBF4;
+  --white: #fff; --soft: #4C6578; --mintbg: #E2EFE6; --skybg: #E4ECF8; --bb: #2E4FA3; --bbdeep: #1B2F66; --leaf: #4E7D4A;
   --display: 'Ultra', Georgia, serif; --body: 'Work Sans', system-ui, -apple-system, sans-serif;
   --line: 3px solid var(--ink);
 }
@@ -53,9 +53,10 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 @media (max-width: 880px) { .top nav a:not(.btn) { display: none; } .logo img { width: 74px; } .top .wrap { height: 64px; } }
 
 /* Hero */
-.hero { position: relative; min-height: min(86vh, 780px); display: grid; align-items: end; color: #fff; overflow: hidden; border-bottom: var(--line); background: var(--deep); }
-.hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,44,64,.2) 0%, rgba(20,44,64,.55) 45%, rgba(20,44,64,.92) 100%); }
+.hero { position: relative; min-height: min(88vh, 800px); display: grid; align-items: end; color: #fff; overflow: hidden; border-bottom: var(--line); background: var(--bbdeep) url(https://images.unsplash.com/photo-1586026799184-2b6a80de4c4a?w=2400&q=80&fm=jpg&fit=max) center 40% / cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,47,102,0) 20%, rgba(27,47,102,.55) 55%, rgba(27,47,102,.94) 100%); }
+.credit { position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: 11.5px; color: rgba(255,255,255,.75); }
+.credit a { color: inherit; }
 .hero .wrap { position: relative; z-index: 2; padding-block: 80px 70px; display: grid; gap: 22px; }
 .hero .kick { color: var(--gold); }
 .hero h1 { font: 400 clamp(38px, 6vw, 82px)/1.02 var(--display); max-width: 15ch; }
@@ -64,7 +65,7 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .hero .btns { display: flex; flex-wrap: wrap; gap: 14px; }
 
 /* Name band */
-.name { background: var(--pink); color: #fff; border-bottom: var(--line); }
+.name { background: var(--bb); color: #fff; border-bottom: var(--line); }
 .name .wrap { padding-block: 34px; display: grid; grid-template-columns: auto 1fr; gap: 14px 40px; align-items: center; }
 .name h2 { font: 400 clamp(24px, 2.6vw, 32px)/1.1 var(--display); }
 .name p { font-size: 17px; font-weight: 500; max-width: 70ch; }
@@ -82,10 +83,11 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 16px; }
 .notes h3 { font: 700 18px/1.3 var(--body); margin-bottom: 6px; }
 .notes p { font-size: 15.5px; color: var(--soft); }
-.zero figure { margin: 0; }
-.zero figure img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: 50% 15%; border: var(--line); }
-.zero figcaption { font-size: 14px; color: var(--soft); margin-top: 12px; }
-@media (max-width: 880px) { .zero .wrap { grid-template-columns: 1fr; } .zero figure { max-width: 420px; } .notes { grid-template-columns: 1fr; } .nums li { grid-template-columns: 1fr; gap: 2px; } }
+.grow { display: grid; justify-items: center; align-content: center; gap: 16px; background: var(--skybg); border-radius: 14px; padding: 40px 24px; text-align: center; }
+.grow img { width: min(200px, 60%); }
+.grow p { font-size: 16px; color: var(--soft); max-width: 26ch; }
+.grow b { display: block; font: 400 22px/1.2 var(--display); color: var(--bb); margin-bottom: 4px; }
+@media (max-width: 880px) { .zero .wrap { grid-template-columns: 1fr; } .grow { padding: 30px 20px; } .notes { grid-template-columns: 1fr; } .nums li { grid-template-columns: 1fr; gap: 2px; } }
 
 /* Partners */
 .partners { background: var(--mintbg); border-top: var(--line); border-bottom: var(--line); }
@@ -98,7 +100,7 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .partners details p { margin-top: 10px; max-width: 110ch; }
 
 /* Statement over photo */
-.over { color: #fff; text-align: center; background: linear-gradient(rgba(20,44,64,.7), rgba(20,44,64,.86)), url(tvp-bg-bar-posters.jpg) center 35% / cover; border-bottom: var(--line); }
+.over { color: #fff; text-align: center; background: linear-gradient(rgba(27,47,102,.72), rgba(27,47,102,.88)), url(https://images.unsplash.com/photo-1586026799184-2b6a80de4c4a?w=2400&q=80&fm=jpg&fit=max) center 70% / cover; border-bottom: var(--line); }
 .over .wrap { padding-block: clamp(90px, 12vw, 150px); display: grid; gap: 22px; justify-items: center; }
 .over h2 { font: 400 clamp(30px, 4vw, 50px)/1.12 var(--display); max-width: 22ch; }
 .over p { font-size: clamp(18px, 1.8vw, 21px); font-weight: 500; max-width: 54ch; }
@@ -108,7 +110,6 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .why .kick { color: var(--red); }
 .why .intro { display: grid; gap: 18px; }
 .why .intro > p { font-size: 18px; }
-.why img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border: var(--line); margin-top: 8px; }
 .reasons { display: grid; gap: 0; border-top: var(--line); }
 .reasons div { padding: 22px 0; border-bottom: 2px solid var(--ink); display: grid; gap: 8px; }
 .reasons h3 { font: 400 22px/1.2 var(--display); color: var(--navy); }
@@ -145,7 +146,8 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .road .head p { font-size: 18px; margin-top: 12px; }
 .stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .stage { background: #fff; border-radius: 10px; padding: 22px 20px; display: grid; gap: 10px; align-content: start; border-top: 8px solid var(--sky); }
-.stage:nth-child(1) { border-top-color: var(--green); } .stage:nth-child(2) { border-top-color: var(--gold); } .stage:nth-child(3) { border-top-color: var(--pink); } .stage:nth-child(4) { border-top-color: var(--red); }
+.stage { border-top-color: var(--bb); } .stage:nth-child(1) { border-top-color: var(--leaf); }
+.stage-art { width: 74px; height: 120px; object-fit: contain; object-position: bottom; justify-self: start; }
 .stage .s { font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--soft); }
 .stage .amt { font: 400 clamp(28px, 2.6vw, 36px)/1 var(--display); }
 .stage h3 { font: 700 17px/1.3 var(--body); }
@@ -156,11 +158,11 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 @media (max-width: 560px) { .stages { grid-template-columns: 1fr; } }
 
 /* Ask */
-.ask { display: grid; grid-template-columns: 1fr 1.1fr; background: var(--pink); color: #fff; border-bottom: var(--line); }
-.ask figure { margin: 0; }
-.ask figure img { width: 100%; height: 100%; object-fit: cover; border-right: var(--line); }
+.ask { display: grid; grid-template-columns: 1fr 1.1fr; background: var(--bbdeep); color: #fff; border-bottom: var(--line); }
+.ask figure { margin: 0; position: relative; }
+.ask figure img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; border-right: var(--line); }
 .ask .t { padding: clamp(44px, 6vw, 90px) clamp(24px, 5vw, 70px); display: grid; gap: 20px; align-content: center; }
-.ask .kick { color: #FFE2E9; }
+.ask .kick { color: var(--gold); }
 .ask h2 { font: 400 clamp(34px, 4.6vw, 60px)/1.02 var(--display); }
 .ask p { font-size: 17.5px; font-weight: 500; }
 @media (max-width: 860px) { .ask { grid-template-columns: 1fr; } .ask figure img { aspect-ratio: 4 / 3; border-right: 0; border-bottom: var(--line); } }
@@ -172,8 +174,10 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .lvl { border: 2px solid var(--ink); border-radius: 10px; padding: 22px 20px; display: grid; gap: 10px; align-content: start; }
 .lvl b { font: 400 34px/1 var(--display); color: var(--navy); }
 .lvl p { font-size: 15.5px; color: var(--soft); }
-.lvl.top { background: var(--forest); color: #fff; border-color: var(--forest); }
-.lvl.top b { color: var(--gold); } .lvl.top p { color: #D5E8DD; }
+.lvl.top { background: var(--bb); color: #fff; border-color: var(--bb); }
+.lvl.top b { color: var(--gold); }
+.lvl { position: relative; overflow: hidden; }
+.lvl-art { position: absolute; right: -6px; bottom: -10px; width: 64px; opacity: .55; } .lvl.top p { color: #DCE4F7; }
 .give .cta { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; }
 .give .fine { font-size: 14.5px; color: var(--soft); max-width: 80ch; }
 .give .mail { user-select: all; font-weight: 700; color: var(--ink); }
@@ -189,6 +193,12 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 .foot .fine { font-size: 13.5px; }
 @media (max-width: 760px) { .foot .wrap { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+.bloom{position:fixed;right:clamp(12px,2vw,32px);bottom:clamp(16px,4vh,40px);width:clamp(100px,8.5vw,128px);z-index:20;pointer-events:none;background:#fff;border:1.5px solid rgba(28,51,71,.2);border-radius:18px;padding:8px 8px 6px;box-shadow:0 8px 24px rgba(20,44,64,.18);text-align:center}
+.bloom-svg{display:block;width:100%;height:auto}
+.bloom-svg path{stroke-dasharray:1;stroke-dashoffset:1}
+.bloom-wash{transition:opacity .6s ease}
+.bloom-label{margin-top:2px;color:var(--ink);font:700 11px/1.3 "Work Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:900px){.bloom{display:none}}
 </style>
 </head>
 <body>
@@ -210,7 +220,6 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
 <main>
 
   <section class="hero" aria-labelledby="h">
-    <video src="tvp-vid-voterfest-courtyard.mp4" poster="tvp-vid-voterfest-courtyard.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
     <div class="wrap">
       <p class="kick">Founding seed funders</p>
       <h1 id="h">Election money built a moment. <span>Seed money builds what lasts.</span></h1>
@@ -220,6 +229,7 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
         <a href="#roadmap" class="btn btn-light">See the roadmap</a>
       </div>
     </div>
+    <p class="credit">Photo: <a href="https://unsplash.com/@matthewelancaster" target="_blank" rel="noopener">Matthew Lancaster</a> on Unsplash</p>
   </section>
 
   <section class="name" aria-labelledby="name-h">
@@ -246,10 +256,10 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
           <div><h3>Then it all went away</h3><p>Every dollar was tied to the election, and none of it could go toward the tools, travel or staff it takes to run a nonprofit. On November 4, the funding ended. The relationships didn't, and neither did the work.</p></div>
         </div>
       </div>
-      <figure>
-        <img src="tvp-photo-jrn-table.jpg" alt="Two volunteers waving small flags at a voter registration table" width="700" height="1256" loading="lazy">
-        <figcaption>Registering voters with the Joy Resistance Network, Austin, fall 2026.</figcaption>
-      </figure>
+      <div class="grow">
+        <img src="tvp-bluebonnet-sprout-ink.svg" alt="" width="160" height="260">
+        <p><b>Stage 0</b>A sprout. Proof the seed takes in Texas soil.</p>
+      </div>
     </div>
   </section>
 
@@ -296,7 +306,6 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
         <p class="kick">Why seed money</p>
         <h2 id="why-h" class="big">It costs money to raise money.</h2>
         <p>No one expects a startup to build its product, pay for its own pitch meetings and fund its first hires out of its first customer's order. A new nonprofit is a startup too, and it needs seed capital for the same reasons.</p>
-        <img src="tvp-photo-ppp-table.jpg" alt="Young voters researching their ballots around a table at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy">
       </div>
       <div class="reasons">
         <div><h3>Grants come with strings</h3><p>We are absolutely going after grants, and we'll keep winning them. But every grant TVP received this year was for program spending only. None of it can keep the lights on between cycles.</p></div>
@@ -368,19 +377,23 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
       </div>
       <div class="stages">
         <article class="stage">
+          <img class="stage-art" src="tvp-bluebonnet-sprout-ink.svg" alt="" width="160" height="260">
           <p class="s">Stage 0 &middot; Done</p><p class="amt">$20,000</p><h3>Election-only grants, fall 2026</h3>
           <ul><li>5 voter registration events</li><li>10 Pups to the Polls pop-ups</li><li>5 community events</li><li>1 early-voting festival, Voter Fest</li></ul>
           <p class="never"><b>Never paid for</b>Executive Director salary: $0. Support staff: volunteers only. Tools, travel and operations: $17,885 in 2026 that no grant could cover, mostly on my credit card.</p>
         </article>
         <article class="stage">
+          <img class="stage-art" src="tvp-bluebonnet-seedling-ink.svg" alt="" width="160" height="260">
           <p class="s">Stage 1</p><p class="amt">$190,000</p><h3>A real team in Austin</h3>
           <ul><li>Executive Director salary</li><li>Part-time development director</li><li>Part-time communications</li><li>Tools, travel and operations</li></ul>
         </article>
         <article class="stage">
+          <img class="stage-art" src="tvp-bluebonnet-bud-ink.svg" alt="" width="160" height="260">
           <p class="s">Stage 2</p><p class="amt">$325,000</p><h3>Consistent voice, a second city</h3>
           <ul><li>Executive Director salary</li><li>Part-time development director</li><li>Full-time communications director</li><li>Part-time organizer in a second city</li><li>Tools, travel and operations</li></ul>
         </article>
         <article class="stage">
+          <img class="stage-art" src="tvp-bluebonnet-bloom-ink.svg" alt="" width="160" height="260">
           <p class="s">Stage 3</p><p class="amt">$535,000</p><h3>Organizers across Texas</h3>
           <ul><li>Executive Director salary</li><li>Part-time development director</li><li>Full-time communications director</li><li>Full-time organizers in San Antonio, Houston and the Rio Grande Valley</li><li>Tools, travel and operations</li></ul>
         </article>
@@ -389,7 +402,7 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
   </section>
 
   <section class="ask" aria-labelledby="ask-h">
-    <figure><img src="tvp-photo-ppp-group.jpg" alt="Friends laughing together with a pizza box at Pinot, Pizza and Politics" width="1600" height="1067" loading="lazy"></figure>
+    <figure><img src="https://images.unsplash.com/photo-1770329036807-20822f617d5d?w=1400&q=80&fm=jpg&fit=max" alt="A single Texas bluebonnet in bloom" width="1400" height="2100" loading="lazy"><figcaption class="credit">Photo: <a href="https://unsplash.com/@impossibleboi" target="_blank" rel="noopener">EJ Morris</a> on Unsplash</figcaption></figure>
     <div class="t">
       <p class="kick">The ask</p>
       <h2 id="ask-h">Ten people. $25,000 each.</h2>
@@ -408,7 +421,7 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
         <div class="lvl"><b>$1,000</b><p>Keeps our voter data tool running for about three months, so we can keep inviting new people in.</p></div>
         <div class="lvl"><b>$5,000</b><p>Covers a year of the organizing and fundraising systems that track every relationship from first event to lifelong volunteer.</p></div>
         <div class="lvl"><b>$10,000</b><p>Funds about five months of our development director, the hire whose whole job is turning seed money into grants.</p></div>
-        <div class="lvl top"><b>$25,000</b><p>Founding Seed Funder. One of the ten people who take TVP from a founder-funded project to a staffed organization.</p></div>
+        <div class="lvl top"><img src="tvp-bluebonnet-bloom-cream.svg" alt="" width="160" height="260" class="lvl-art"><b>$25,000</b><p>Founding Seed Funder. One of the ten people who take TVP from a founder-funded project to a staffed organization.</p></div>
       </div>
       <div class="cta">
         <a href="https://texas-voter-project.raiselysite.com/seed-fund?source=seed-fund" class="btn btn-pink" target="_blank" rel="noopener">Become a seed funder</a>
@@ -419,6 +432,97 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
   </section>
 
 </main>
+
+<div class="bloom" aria-hidden="true">
+  
+<svg viewBox="0 0 160 260" class="bloom-svg" aria-hidden="true">
+<g class="bloom-wash" opacity="0"><ellipse cx="66.5" cy="131.0" rx="8.6" ry="9.8" fill="#6F95CF"/><ellipse cx="95.6" cy="124.9" rx="8.3" ry="9.4" fill="#6F95CF"/><ellipse cx="81.5" cy="118.7" rx="8.0" ry="9.1" fill="#6F95CF"/><ellipse cx="69.1" cy="112.6" rx="7.7" ry="8.8" fill="#6F95CF"/><ellipse cx="93.1" cy="106.4" rx="7.4" ry="8.4" fill="#6F95CF"/><ellipse cx="81.5" cy="100.3" rx="7.2" ry="8.1" fill="#6F95CF"/><ellipse cx="71.6" cy="94.1" rx="6.9" ry="7.8" fill="#6F95CF"/><ellipse cx="90.5" cy="88.0" rx="6.6" ry="7.4" fill="#6F95CF"/><ellipse cx="81.5" cy="81.9" rx="6.3" ry="7.1" fill="#6F95CF"/><ellipse cx="74.2" cy="75.7" rx="6.0" ry="6.8" fill="#6F95CF"/><ellipse cx="87.9" cy="69.6" rx="5.7" ry="6.4" fill="#6F95CF"/><ellipse cx="81.5" cy="63.4" rx="5.4" ry="6.1" fill="#6F95CF"/><ellipse cx="76.3" cy="59.3" rx="3.2" ry="3.8" fill="#F8F1E4"/><ellipse cx="84.9" cy="53.1" rx="3.2" ry="3.8" fill="#F8F1E4"/><ellipse cx="81.0" cy="47.0" rx="3.2" ry="3.8" fill="#F8F1E4"/></g>
+<g fill="none" stroke="#1C3347" stroke-linecap="round" stroke-linejoin="round">
+<path d="M18 226 C45 222 60 229 80 225 C100 221 118 229 142 225" pathLength="1" data-s="0.000" data-e="0.080" stroke-width="1.4"/>
+<path d="M71 229 C70 222 80 219 86 223 C91 227 88 233 80 233 C74 233 71 231 71 229 Z" pathLength="1" data-s="0.030" data-e="0.120" stroke-width="1.6"/>
+<path d="M80 233 C79 240 74 244 70 250" pathLength="1" data-s="0.100" data-e="0.160" stroke-width="1.2"/>
+<path d="M81 233 C83 240 88 243 91 249" pathLength="1" data-s="0.110" data-e="0.170" stroke-width="1.2"/>
+<path d="M80 223 C77 190 84 160 80 130 C77 105 81 80 80 44" pathLength="1" data-s="0.140" data-e="0.420" stroke-width="1.8"/>
+<path d="M79 205 Q64.5 188 50 192" pathLength="1" data-s="0.240" data-e="0.270" stroke-width="1.4"/>
+<path d="M50.0 192.0 Q39.4 190.5 32.6 196.7 Q41.5 198.6 50.0 192.0" pathLength="1" data-s="0.260" data-e="0.310" stroke-width="1.3"/>
+<path d="M50.0 192.0 Q40.6 184.1 30.3 184.8 Q37.7 192.0 50.0 192.0" pathLength="1" data-s="0.270" data-e="0.320" stroke-width="1.3"/>
+<path d="M50.0 192.0 Q45.9 178.8 36.2 172.3 Q39.0 183.6 50.0 192.0" pathLength="1" data-s="0.280" data-e="0.330" stroke-width="1.3"/>
+<path d="M50.0 192.0 Q54.2 180.4 50.0 171.0 Q45.8 180.4 50.0 192.0" pathLength="1" data-s="0.290" data-e="0.340" stroke-width="1.3"/>
+<path d="M50.0 192.0 Q59.1 186.3 60.3 177.3 Q52.2 181.5 50.0 192.0" pathLength="1" data-s="0.300" data-e="0.350" stroke-width="1.3"/>
+<path d="M80 188 Q96.0 172 112 176" pathLength="1" data-s="0.300" data-e="0.330" stroke-width="1.4"/>
+<path d="M112.0 176.0 Q109.8 165.5 101.7 161.3 Q102.9 170.3 112.0 176.0" pathLength="1" data-s="0.320" data-e="0.370" stroke-width="1.3"/>
+<path d="M112.0 176.0 Q116.2 164.4 112.0 155.0 Q107.8 164.4 112.0 176.0" pathLength="1" data-s="0.330" data-e="0.380" stroke-width="1.3"/>
+<path d="M112.0 176.0 Q123.0 167.6 125.8 156.3 Q116.1 162.8 112.0 176.0" pathLength="1" data-s="0.340" data-e="0.390" stroke-width="1.3"/>
+<path d="M112.0 176.0 Q124.3 176.0 131.7 168.8 Q121.4 168.1 112.0 176.0" pathLength="1" data-s="0.350" data-e="0.400" stroke-width="1.3"/>
+<path d="M112.0 176.0 Q120.5 182.6 129.4 180.7 Q122.6 174.5 112.0 176.0" pathLength="1" data-s="0.360" data-e="0.410" stroke-width="1.3"/>
+<path d="M79 165 Q65.5 148 52 152" pathLength="1" data-s="0.380" data-e="0.410" stroke-width="1.4"/>
+<path d="M52.0 152.0 Q43.1 149.3 37.2 154.6 Q44.6 157.6 52.0 152.0" pathLength="1" data-s="0.400" data-e="0.450" stroke-width="1.3"/>
+<path d="M52.0 152.0 Q45.1 144.1 36.1 144.6 Q41.5 151.7 52.0 152.0" pathLength="1" data-s="0.410" data-e="0.460" stroke-width="1.3"/>
+<path d="M52.0 152.0 Q50.1 140.4 42.0 134.7 Q42.9 144.6 52.0 152.0" pathLength="1" data-s="0.420" data-e="0.470" stroke-width="1.3"/>
+<path d="M52.0 152.0 Q57.0 142.8 53.5 134.6 Q48.7 142.0 52.0 152.0" pathLength="1" data-s="0.430" data-e="0.480" stroke-width="1.3"/>
+<path d="M52.0 152.0 Q60.5 148.4 61.6 140.5 Q54.1 143.0 52.0 152.0" pathLength="1" data-s="0.440" data-e="0.490" stroke-width="1.3"/>
+<path d="M81 148 Q94.5 134 108 138" pathLength="1" data-s="0.440" data-e="0.470" stroke-width="1.4"/>
+<path d="M108.0 138.0 Q106.4 129.6 99.3 127.7 Q100.0 135.0 108.0 138.0" pathLength="1" data-s="0.460" data-e="0.510" stroke-width="1.3"/>
+<path d="M108.0 138.0 Q111.4 129.0 106.6 122.3 Q103.1 129.7 108.0 138.0" pathLength="1" data-s="0.470" data-e="0.520" stroke-width="1.3"/>
+<path d="M108.0 138.0 Q116.6 131.5 117.0 122.4 Q109.3 127.3 108.0 138.0" pathLength="1" data-s="0.480" data-e="0.530" stroke-width="1.3"/>
+<path d="M108.0 138.0 Q117.6 138.1 122.3 131.3 Q114.1 130.5 108.0 138.0" pathLength="1" data-s="0.490" data-e="0.540" stroke-width="1.3"/>
+<path d="M108.0 138.0 Q114.6 143.4 121.3 140.3 Q116.0 135.2 108.0 138.0" pathLength="1" data-s="0.500" data-e="0.550" stroke-width="1.3"/>
+<path d="M80 136.0 Q72.5 137.0 65.0 134.0" pathLength="1" data-s="0.550" data-e="0.570" stroke-width="1.1"/>
+<path d="M71.9 133.0 C69.6 140.1 62.7 141.2 55.8 136.6" pathLength="1" data-s="0.560" data-e="0.620" stroke-width="1.3"/>
+<path d="M58.1 133.0 C55.8 125.1 61.5 119.3 65.0 119.3 C68.5 119.3 74.2 125.1 71.9 133.0" pathLength="1" data-s="0.570" data-e="0.620" stroke-width="1.3"/>
+<path d="M62.9 125.7 a2.1 1.8 0 1 0 4.1 0 a2.1 1.8 0 1 0 -4.1 0" pathLength="1" data-s="0.600" data-e="0.620" stroke-width="1.0"/>
+<path d="M80 129.9 Q87.1 130.9 94.1 127.9" pathLength="1" data-s="0.577" data-e="0.597" stroke-width="1.1"/>
+<path d="M87.5 126.9 C89.7 133.6 96.4 134.7 103.0 130.3" pathLength="1" data-s="0.587" data-e="0.647" stroke-width="1.3"/>
+<path d="M87.5 126.9 C85.3 119.2 90.8 113.6 94.1 113.6 C97.5 113.6 103.0 119.2 100.8 126.9" pathLength="1" data-s="0.597" data-e="0.647" stroke-width="1.3"/>
+<path d="M92.1 119.7 a2.0 1.8 0 1 0 4.0 0 a2.0 1.8 0 1 0 -4.0 0" pathLength="1" data-s="0.627" data-e="0.647" stroke-width="1.0"/>
+<path d="M80 123.7 Q80.0 124.7 80.0 121.7" pathLength="1" data-s="0.604" data-e="0.624" stroke-width="1.1"/>
+<path d="M73.6 120.7 C75.7 127.2 82.1 128.3 88.6 124.0" pathLength="1" data-s="0.614" data-e="0.674" stroke-width="1.3"/>
+<path d="M73.6 120.7 C71.4 113.3 76.8 107.9 80.0 107.9 C83.2 107.9 88.6 113.3 86.4 120.7" pathLength="1" data-s="0.624" data-e="0.674" stroke-width="1.3"/>
+<path d="M78.1 113.8 a1.9 1.7 0 1 0 3.9 0 a1.9 1.7 0 1 0 -3.9 0" pathLength="1" data-s="0.654" data-e="0.674" stroke-width="1.0"/>
+<path d="M80 117.6 Q73.8 118.6 67.6 115.6" pathLength="1" data-s="0.631" data-e="0.651" stroke-width="1.1"/>
+<path d="M73.8 114.6 C71.7 120.8 65.5 121.8 59.3 117.7" pathLength="1" data-s="0.641" data-e="0.701" stroke-width="1.3"/>
+<path d="M61.4 114.6 C59.3 107.4 64.5 102.2 67.6 102.2 C70.7 102.2 75.8 107.4 73.8 114.6" pathLength="1" data-s="0.651" data-e="0.701" stroke-width="1.3"/>
+<path d="M65.7 107.9 a1.9 1.7 0 1 0 3.7 0 a1.9 1.7 0 1 0 -3.7 0" pathLength="1" data-s="0.681" data-e="0.701" stroke-width="1.0"/>
+<path d="M80 111.4 Q85.8 112.4 91.6 109.4" pathLength="1" data-s="0.659" data-e="0.679" stroke-width="1.1"/>
+<path d="M85.6 108.4 C87.6 114.4 93.6 115.4 99.5 111.4" pathLength="1" data-s="0.669" data-e="0.729" stroke-width="1.3"/>
+<path d="M85.6 108.4 C83.6 101.5 88.6 96.5 91.6 96.5 C94.5 96.5 99.5 101.5 97.5 108.4" pathLength="1" data-s="0.679" data-e="0.729" stroke-width="1.3"/>
+<path d="M89.8 102.0 a1.8 1.6 0 1 0 3.6 0 a1.8 1.6 0 1 0 -3.6 0" pathLength="1" data-s="0.709" data-e="0.729" stroke-width="1.0"/>
+<path d="M80 105.3 Q80.0 106.3 80.0 103.3" pathLength="1" data-s="0.686" data-e="0.706" stroke-width="1.1"/>
+<path d="M74.3 102.3 C76.2 108.0 81.9 108.9 87.6 105.1" pathLength="1" data-s="0.696" data-e="0.756" stroke-width="1.3"/>
+<path d="M74.3 102.3 C72.4 95.6 77.1 90.8 80.0 90.8 C82.9 90.8 87.6 95.6 85.7 102.3" pathLength="1" data-s="0.706" data-e="0.756" stroke-width="1.3"/>
+<path d="M78.3 96.0 a1.7 1.5 0 1 0 3.4 0 a1.7 1.5 0 1 0 -3.4 0" pathLength="1" data-s="0.736" data-e="0.756" stroke-width="1.0"/>
+<path d="M80 99.1 Q75.1 100.1 70.1 97.1" pathLength="1" data-s="0.713" data-e="0.733" stroke-width="1.1"/>
+<path d="M75.6 96.1 C73.8 101.5 68.3 102.5 62.8 98.8" pathLength="1" data-s="0.723" data-e="0.783" stroke-width="1.3"/>
+<path d="M64.7 96.1 C62.8 89.7 67.4 85.1 70.1 85.1 C72.9 85.1 77.5 89.7 75.6 96.1" pathLength="1" data-s="0.733" data-e="0.783" stroke-width="1.3"/>
+<path d="M68.5 90.1 a1.6 1.5 0 1 0 3.3 0 a1.6 1.5 0 1 0 -3.3 0" pathLength="1" data-s="0.763" data-e="0.783" stroke-width="1.0"/>
+<path d="M80 93.0 Q84.5 94.0 89.0 91.0" pathLength="1" data-s="0.740" data-e="0.760" stroke-width="1.1"/>
+<path d="M83.8 90.0 C85.5 95.1 90.8 96.0 96.0 92.5" pathLength="1" data-s="0.750" data-e="0.810" stroke-width="1.3"/>
+<path d="M83.8 90.0 C82.0 83.8 86.4 79.4 89.0 79.4 C91.6 79.4 96.0 83.8 94.2 90.0" pathLength="1" data-s="0.760" data-e="0.810" stroke-width="1.3"/>
+<path d="M87.4 84.2 a1.6 1.4 0 1 0 3.1 0 a1.6 1.4 0 1 0 -3.1 0" pathLength="1" data-s="0.790" data-e="0.810" stroke-width="1.0"/>
+<path d="M80 86.9 Q80.0 87.9 80.0 84.9" pathLength="1" data-s="0.767" data-e="0.787" stroke-width="1.1"/>
+<path d="M75.0 83.9 C76.7 88.7 81.7 89.5 86.7 86.2" pathLength="1" data-s="0.777" data-e="0.837" stroke-width="1.3"/>
+<path d="M75.0 83.9 C73.3 77.8 77.5 73.7 80.0 73.7 C82.5 73.7 86.7 77.8 85.0 83.9" pathLength="1" data-s="0.787" data-e="0.837" stroke-width="1.3"/>
+<path d="M78.5 78.3 a1.5 1.3 0 1 0 3.0 0 a1.5 1.3 0 1 0 -3.0 0" pathLength="1" data-s="0.817" data-e="0.837" stroke-width="1.0"/>
+<path d="M80 80.7 Q76.4 81.7 72.7 78.7" pathLength="1" data-s="0.794" data-e="0.814" stroke-width="1.1"/>
+<path d="M77.5 77.7 C75.9 82.3 71.1 83.1 66.3 79.9" pathLength="1" data-s="0.804" data-e="0.864" stroke-width="1.3"/>
+<path d="M67.9 77.7 C66.3 71.9 70.3 68.0 72.7 68.0 C75.1 68.0 79.1 71.9 77.5 77.7" pathLength="1" data-s="0.814" data-e="0.864" stroke-width="1.3"/>
+<path d="M71.3 72.3 a1.4 1.3 0 1 0 2.9 0 a1.4 1.3 0 1 0 -2.9 0" pathLength="1" data-s="0.844" data-e="0.864" stroke-width="1.0"/>
+<path d="M80 74.6 Q83.2 75.6 86.4 72.6" pathLength="1" data-s="0.821" data-e="0.841" stroke-width="1.1"/>
+<path d="M81.9 71.6 C83.4 75.9 87.9 76.6 92.5 73.6" pathLength="1" data-s="0.831" data-e="0.891" stroke-width="1.3"/>
+<path d="M81.9 71.6 C80.4 66.0 84.2 62.2 86.4 62.2 C88.7 62.2 92.5 66.0 91.0 71.6" pathLength="1" data-s="0.841" data-e="0.891" stroke-width="1.3"/>
+<path d="M85.1 66.4 a1.4 1.2 0 1 0 2.7 0 a1.4 1.2 0 1 0 -2.7 0" pathLength="1" data-s="0.871" data-e="0.891" stroke-width="1.0"/>
+<path d="M80 68.4 Q80.0 69.4 80.0 66.4" pathLength="1" data-s="0.849" data-e="0.869" stroke-width="1.1"/>
+<path d="M75.7 65.4 C77.1 69.5 81.4 70.2 85.7 67.3" pathLength="1" data-s="0.859" data-e="0.919" stroke-width="1.3"/>
+<path d="M75.7 65.4 C74.3 60.1 77.8 56.5 80.0 56.5 C82.2 56.5 85.7 60.1 84.3 65.4" pathLength="1" data-s="0.869" data-e="0.919" stroke-width="1.3"/>
+<path d="M78.7 60.5 a1.3 1.1 0 1 0 2.6 0 a1.3 1.1 0 1 0 -2.6 0" pathLength="1" data-s="0.899" data-e="0.919" stroke-width="1.0"/>
+<path d="M72.5 58.3 a2.8 3.4 0 1 0 5.6 0 a2.8 3.4 0 1 0 -5.6 0" pathLength="1" data-s="0.876" data-e="0.946" stroke-width="1.2"/>
+<path d="M81.1 52.1 a2.8 3.4 0 1 0 5.6 0 a2.8 3.4 0 1 0 -5.6 0" pathLength="1" data-s="0.903" data-e="0.973" stroke-width="1.2"/>
+<path d="M77.2 46.0 a2.8 3.4 0 1 0 5.6 0 a2.8 3.4 0 1 0 -5.6 0" pathLength="1" data-s="0.930" data-e="1.000" stroke-width="1.2"/>
+<path d="M77 44 C77 38 83 38 83 44" pathLength="1" data-s="0.950" data-e="0.990" stroke-width="1.2"/>
+</g></svg>
+  <div class="bloom-label">Seed</div>
+</div>
+
 
 <footer class="foot">
   <div class="wrap">
@@ -432,6 +536,27 @@ h2.big { font: 400 clamp(32px, 4.2vw, 52px)/1.06 var(--display); }
     <div><p>info@texasvoterproject.org</p><p class="fine">&copy; 2026 Texas Voter Project</p></div>
   </div>
 </footer>
+<script>
+(function(){
+  var svg=document.querySelector('.bloom-svg'); if(!svg) return;
+  var paths=[].slice.call(svg.querySelectorAll('path')).map(function(el){return {el:el,s:+el.dataset.s,e:+el.dataset.e};});
+  var wash=svg.querySelector('.bloom-wash'), label=document.querySelector('.bloom-label');
+  var names=[[0.16,"Seed"],[0.32,"Sprout"],[0.56,"Seedling"],[0.9,"Bud"],[2,'Bluebonnet']];
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    var p=0.13+0.87*(max>0?Math.min(1,window.scrollY/max*1.1):1);
+    paths.forEach(function(o){var t=(p-o.s)/(o.e-o.s);o.el.style.strokeDashoffset=1-Math.max(0,Math.min(1,t));});
+    wash.setAttribute('opacity',p>0.9?0.85:0);
+    for(var i=0;i<names.length;i++){if(p<names[i][0]){label.textContent=names[i][1];break;}}
+  }
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',req);
+  update();
+})();
+</script>
 <script>
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
 </script>
